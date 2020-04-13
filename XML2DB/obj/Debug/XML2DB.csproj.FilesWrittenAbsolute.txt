@@ -1,0 +1,5 @@
+/root/EMSI/C#/Projects/XML2DB/XML2DB/obj/Debug/.NETFramework,Version=v4.8.AssemblyAttribute.cs
+/root/EMSI/C#/Projects/XML2DB/XML2DB/bin/Debug/XML2DB.exe.mdb
+/root/EMSI/C#/Projects/XML2DB/XML2DB/bin/Debug/XML2DB.exe
+/root/EMSI/C#/Projects/XML2DB/XML2DB/obj/Debug/XML2DB.exe
+/root/EMSI/C#/Projects/XML2DB/XML2DB/obj/Debug/XML2DB.exe.mdb
