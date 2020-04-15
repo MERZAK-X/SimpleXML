@@ -1,4 +1,4 @@
-﻿using System;
+﻿using XML2DB.XML;
 
 namespace XML2DB
 {
@@ -6,7 +6,7 @@ namespace XML2DB
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("TEST");
+            XMLParser.TEST();
         }
     }
 }

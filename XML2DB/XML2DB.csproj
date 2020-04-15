@@ -46,7 +46,9 @@
     <Folder Include="src\DB" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\TEST.xml" />
+    <Content Include="lib\examples\contosoBooks.xml" />
+    <Content Include="lib\examples\contosoBooks.xsd" />
+    <Content Include="lib\examples\TEST.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
