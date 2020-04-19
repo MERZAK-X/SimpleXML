@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Runtime.Remoting;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -9,9 +12,12 @@ namespace XML2DB.XML
         public static void TEST()
         {
             var someXmlFile = new XmlDocument();
-            someXmlFile.Load(Environment.CurrentDirectory + @"../../../lib/examples/contosoBooks.xml");
+            var NodeNames = new List<String>();
+            NodeNames.Add("TEST");
+            /*someXmlFile.Load(Environment.CurrentDirectory + @"../../../lib/examples/contosoBooks.xml");
             var fileLoaded = checkValidXML(someXmlFile);
-            Console.WriteLine("TEST " + (fileLoaded ? "PASS" : "FAIL"));
+            Console.WriteLine("TEST " + (fileLoaded ? "PASS" : "FAIL"));*/
+            printData(someXmlFile, NodeNames);
         }
         
         public static bool checkValidXML(XmlDocument xmlFile)
@@ -32,7 +38,13 @@ namespace XML2DB.XML
 
             return true;
         }
-        
+
+        static void printData(XmlDocument xmlDoc, List<String> NodeNames)
+        {
+            xmlDoc.Load(Environment.CurrentDirectory + @"../../../lib/examples/test.xml");
+            Console.WriteLine(xmlDoc.DocumentElement.SelectSingleNode(NodeNames[0]).InnerText);
+            
+        }
         
         
     }
