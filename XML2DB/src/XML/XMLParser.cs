@@ -43,7 +43,7 @@ namespace XML2DB.XML
         {
             xmlDoc.Load(Environment.CurrentDirectory + @"../../../lib/examples/test.xml");
             Console.WriteLine(xmlDoc.DocumentElement.SelectSingleNode(NodeNames[0]).InnerText);
-            
+            // TODO: Test in Windows OS with WinForms
         }
         
         
