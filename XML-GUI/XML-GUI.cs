@@ -29,14 +29,28 @@ namespace XML_GUI
         }
         private void saveXml_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            saveXmlFile();
         }
         
-        
-        
-        private void loadXmlFile(Stream xmlFile)
+        private void saveXmlFile()
         {
-            xmlDataGrid.DataSource = XML2DB.XML.XMLParser.getXmlData(xmlFile).Tables[0];
+            using (SaveFileDialog fileDialog = new SaveFileDialog()){
+                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                fileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                fileDialog.FilterIndex = 1;
+                fileDialog.RestoreDirectory = true;
+
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Load the contents of the file into xmlDataGrid
+                    XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
+                }
+            }
+        }
+        
+        private void loadXmlFile()
+        {
+            xmlDataGrid.DataSource = XML2DB.XML.XMLParser.getXmlData(xmlDoc).Tables[0];
         }
         private void openXmlFile(){
             using (OpenFileDialog openFileDialog = new OpenFileDialog()){
@@ -48,7 +62,8 @@ namespace XML_GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //Load the contents of the file into xmlDataGrid
-                loadXmlFile(openFileDialog.OpenFile());
+                xmlDoc = openFileDialog.OpenFile();
+                loadXmlFile();
             }
         }
     }

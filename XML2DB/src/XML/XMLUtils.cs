@@ -59,9 +59,9 @@ namespace XML2DB.XML
             return xmlData;
         }
         
-        public static void exportXmlData(DataSet xmlData, ref Stream xmlDoc)
+        public static void exportXmlData(DataTable xmlData, String xmlDocPath)
         {
-            xmlData.WriteXml(xmlDoc);
+            xmlData.WriteXml(xmlDocPath);
         }
         
         /*public static (String, StreamReader) openXmlFile(){
