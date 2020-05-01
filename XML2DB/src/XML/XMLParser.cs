@@ -46,6 +46,10 @@ namespace XML2DB.XML
             // TODO: Test in Windows OS with WinForms
         }
         
-        
+        public static DataSet getXmlData(String xmlDocPath){
+            DataSet xmlData = new DataSet();
+            xmlData.ReadXml(xmlDocPath);
+            return xmlData;
+        }
     }
 }

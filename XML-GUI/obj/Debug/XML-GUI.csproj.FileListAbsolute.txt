@@ -1,0 +1,13 @@
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\bin\Debug\XML_GUI.exe.config
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\bin\Debug\XML_GUI.exe
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\bin\Debug\XML_GUI.pdb
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML-GUI.csprojAssemblyReference.cache
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML_GUI.Properties.Resources.resources
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML-GUI.csproj.GenerateResource.cache
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML-GUI.csproj.CoreCompileInputs.cache
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML_GUI.exe
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML_GUI.pdb
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\bin\Debug\XML2DB.exe
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\bin\Debug\XML2DB.pdb
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML_GUI.Form1.resources
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML-GUI\obj\Debug\XML-GUI.csproj.CopyComplete
