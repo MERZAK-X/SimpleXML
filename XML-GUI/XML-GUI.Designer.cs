@@ -30,6 +30,8 @@
         private void InitializeComponent()
         {
             this.xmlDataGrid = new System.Windows.Forms.DataGridView();
+            this.openXml = new System.Windows.Forms.Button();
+            this.saveXml = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,22 +41,46 @@
             this.xmlDataGrid.Location = new System.Drawing.Point(12, 94);
             this.xmlDataGrid.Name = "xmlDataGrid";
             this.xmlDataGrid.RowTemplate.Height = 28;
-            this.xmlDataGrid.Size = new System.Drawing.Size(591, 344);
+            this.xmlDataGrid.Size = new System.Drawing.Size(1020, 383);
             this.xmlDataGrid.TabIndex = 0;
             // 
-            // XML-GUI
+            // openXml
+            // 
+            this.openXml.Location = new System.Drawing.Point(870, 12);
+            this.openXml.Name = "openXml";
+            this.openXml.Size = new System.Drawing.Size(162, 59);
+            this.openXml.TabIndex = 1;
+            this.openXml.Text = "Open XML";
+            this.openXml.UseVisualStyleBackColor = true;
+            this.openXml.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // saveXml
+            // 
+            this.saveXml.Location = new System.Drawing.Point(684, 12);
+            this.saveXml.Name = "saveXml";
+            this.saveXml.Size = new System.Drawing.Size(153, 59);
+            this.saveXml.TabIndex = 2;
+            this.saveXml.Text = "Save";
+            this.saveXml.UseVisualStyleBackColor = true;
+            this.saveXml.Click += new System.EventHandler(this.saveXml_Click);
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 450);
+            this.ClientSize = new System.Drawing.Size(1044, 489);
+            this.Controls.Add(this.saveXml);
+            this.Controls.Add(this.openXml);
             this.Controls.Add(this.xmlDataGrid);
-            this.Name = "XML-GUI";
+            this.Name = "Form1";
             this.Text = "XML-GUI";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).EndInit();
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Button openXml;
+        private System.Windows.Forms.Button saveXml;
         private System.Windows.Forms.DataGridView xmlDataGrid;
 
         #endregion
