@@ -48,7 +48,7 @@ namespace XML_GUI
             }
         }
         
-        private void loadXmlFile()
+        private void loadXmlFile(Stream xmlDoc)
         {
             xmlDataGrid.DataSource = XML2DB.XML.XMLParser.getXmlData(xmlDoc).Tables[0];
         }
@@ -62,13 +62,11 @@ namespace XML_GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //Load the contents of the file into xmlDataGrid
-                xmlDoc = openFileDialog.OpenFile();
-                loadXmlFile();
+                Stream xmlDoc = openFileDialog.OpenFile();
+                loadXmlFile(xmlDoc);
             }
         }
     }
-
-        private static Stream xmlDoc;
-
+        
     }
 }

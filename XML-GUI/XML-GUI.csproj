@@ -46,6 +46,12 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="XML-DB.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="XML-DB.Designer.cs">
+          <DependentUpon>XML-DB.cs</DependentUpon>
+        </Compile>
         <Compile Include="XML-GUI.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -54,6 +60,9 @@
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <EmbeddedResource Include="XML-DB.resx">
+          <DependentUpon>XML-DB.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="XML-GUI.resx">
           <DependentUpon>XML-GUI.cs</DependentUpon>
         </EmbeddedResource>

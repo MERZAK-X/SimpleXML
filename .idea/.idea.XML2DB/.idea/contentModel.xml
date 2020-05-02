@@ -17,6 +17,9 @@
           <e p="Settings.Designer.cs" t="Include" />
           <e p="Settings.settings" t="Include" />
         </e>
+        <e p="XML-DB.cs" t="Include" />
+        <e p="XML-DB.Designer.cs" t="Include" />
+        <e p="XML-DB.resx" t="Include" />
         <e p="XML-GUI.cs" t="Include" />
         <e p="XML-GUI.csproj" t="IncludeRecursive" />
         <e p="XML-GUI.Designer.cs" t="Include" />
