@@ -20,7 +20,7 @@ namespace XML_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            xmlDataGrid.DataSource = XML2DB.XML.XMLParser.getXmlData(@"C:\Users\MS7WN7D V3N0M\Documents\ISMO-NTIC\XML\contosoBooks.xml").Tables[0];
+            openXmlFile();
         }
 
         private void button1_Click(object sender, EventArgs e)

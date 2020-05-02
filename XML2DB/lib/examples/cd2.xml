@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<CATALOG>
+  <CD>
+    <TITLE>C#</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>MA</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>10.90</PRICE>
+    <YEAR>1999</YEAR>
+  </CD>
+  <CD>
+    <TITLE>TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>TEST</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </CD>
+</CATALOG>

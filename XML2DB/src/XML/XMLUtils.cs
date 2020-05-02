@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
@@ -53,6 +54,7 @@ namespace XML2DB.XML
             xmlData.ReadXml(xmlDocPath);
             return xmlData;
         }
+        
         public static DataSet getXmlData(Stream xmlDoc){
             DataSet xmlData = new DataSet();
             xmlData.ReadXml(xmlDoc);
@@ -92,5 +94,35 @@ namespace XML2DB.XML
             }
                 return (filePath, fileContent);
         }*/
+
+        public static bool export2DB(DataTable xmlData, String connectionString)
+        {
+            bool pass = false;
+            //string connectionString = @"Data Source = MyServerName/Instance; Integrated Security=true; Initial Catalog=YourDatabase";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                {
+                    foreach (DataColumn c in xmlData.Columns)
+                        bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
+ 
+                    bulkCopy.DestinationTableName = xmlData.TableName;
+                    try
+                    {
+                        bulkCopy.WriteToServer(xmlData);
+                        pass = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        pass = false;
+                    }
+                }
+            }
+
+            return pass;
+        }
+        
     }
 }
