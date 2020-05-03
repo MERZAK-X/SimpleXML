@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using XML_GUI.Properties;
 
 namespace XML_GUI
 {
@@ -32,17 +27,23 @@ namespace XML_GUI
             saveXmlFile();
         }
         
+        private void saveCurrent_Click(object sender, EventArgs e)
+        {
+            XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
+            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
+        }
+        
         private void saveXmlFile()
         {
             using (SaveFileDialog fileDialog = new SaveFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                fileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                fileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
                 fileDialog.FilterIndex = 1;
                 fileDialog.RestoreDirectory = true;
 
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Load the contents of the file into xmlDataGrid
+                    //Save the contents of the xmlDataGrid into the chosen file
                     XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
                 }
             }
@@ -55,7 +56,7 @@ namespace XML_GUI
         private void openXmlFile(){
             using (OpenFileDialog openFileDialog = new OpenFileDialog()){
             //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
 
@@ -64,9 +65,13 @@ namespace XML_GUI
                 //Load the contents of the file into xmlDataGrid
                 Stream xmlDoc = openFileDialog.OpenFile();
                 loadXmlFile(xmlDoc);
+                currentOpenXmlPath = openFileDialog.FileName; //Set the static variable to be used later for saving
+                xmlDoc.Close();
             }
         }
     }
-        
+
+        private static String currentOpenXmlPath = String.Empty;
+
     }
 }
