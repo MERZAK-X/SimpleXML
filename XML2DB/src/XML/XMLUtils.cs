@@ -10,7 +10,7 @@ using System.Xml.Schema;
 
 namespace XML2DB.XML
 {
-    public static class XMLParser
+    public static class XmlUtils
     {
         public static void TEST()
         {

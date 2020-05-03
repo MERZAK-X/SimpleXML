@@ -31,7 +31,7 @@
         {
             this.xmlDataGrid = new System.Windows.Forms.DataGridView();
             this.openXml = new System.Windows.Forms.Button();
-            this.saveXml = new System.Windows.Forms.Button();
+            this.exportXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
             this.readOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
@@ -60,17 +60,17 @@
             this.openXml.UseVisualStyleBackColor = true;
             this.openXml.Click += new System.EventHandler(this.OpenXmlDoc_Click);
             // 
-            // saveXml
+            // exportXml
             // 
-            this.saveXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveXml.Location = new System.Drawing.Point(879, 12);
-            this.saveXml.MinimumSize = new System.Drawing.Size(153, 59);
-            this.saveXml.Name = "saveXml";
-            this.saveXml.Size = new System.Drawing.Size(153, 59);
-            this.saveXml.TabIndex = 2;
-            this.saveXml.Text = "Export to";
-            this.saveXml.UseVisualStyleBackColor = true;
-            this.saveXml.Click += new System.EventHandler(this.saveXml_Click);
+            this.exportXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportXml.Location = new System.Drawing.Point(879, 12);
+            this.exportXml.MinimumSize = new System.Drawing.Size(153, 59);
+            this.exportXml.Name = "exportXml";
+            this.exportXml.Size = new System.Drawing.Size(153, 59);
+            this.exportXml.TabIndex = 2;
+            this.exportXml.Text = "Export to";
+            this.exportXml.UseVisualStyleBackColor = true;
+            this.exportXml.Click += new System.EventHandler(this.saveXml_Click);
             // 
             // saveCurrent
             // 
@@ -102,7 +102,7 @@
             this.ClientSize = new System.Drawing.Size(1044, 489);
             this.Controls.Add(this.readOnly);
             this.Controls.Add(this.saveCurrent);
-            this.Controls.Add(this.saveXml);
+            this.Controls.Add(this.exportXml);
             this.Controls.Add(this.openXml);
             this.Controls.Add(this.xmlDataGrid);
             this.Name = "XmlGUI";
@@ -112,10 +112,10 @@
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Button exportXml;
         private System.Windows.Forms.Button openXml;
         private System.Windows.Forms.CheckBox readOnly;
         private System.Windows.Forms.Button saveCurrent;
-        private System.Windows.Forms.Button saveXml;
         private System.Windows.Forms.DataGridView xmlDataGrid;
 
         #endregion

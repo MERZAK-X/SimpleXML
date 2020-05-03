@@ -6,7 +6,7 @@ namespace XML2DB
     {
         public static void Main(string[] args)
         {
-            XMLParser.TEST();
+            XmlUtils.TEST();
         }
     }
 }

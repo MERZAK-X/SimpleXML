@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using XML_GUI.Properties;
+using XML2DB.XML;
 
 namespace XML_GUI
 {
@@ -16,7 +17,7 @@ namespace XML_GUI
         private void XmlGUI_Load(object sender, EventArgs e)
         {
             enableCtrl(false); // Disable control since no xml doc is loaded  
-            //openXmlFile(); // no need to show open dialog at start 
+            //openXmlFile(); // No need to show open dialog at start 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -32,7 +33,7 @@ namespace XML_GUI
         {
             readOnly.Enabled = status;
             saveCurrent.Enabled = !readOnly.Checked;
-            saveXml.Enabled = status;
+            exportXml.Enabled = status;
         }
         
         private void readOnly_CheckedChanged(object sender, EventArgs e)
@@ -51,20 +52,20 @@ namespace XML_GUI
         }
         private void saveXml_Click(object sender, EventArgs e)
         {
-             saveXmlFile();
+            exportXmlFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
             if (!readOnly.Checked)
             {
-                XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
+                XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
                 MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
             }
             else MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail);
         }
         
-        private void saveXmlFile()
+        private void exportXmlFile()
         {
             using (SaveFileDialog fileDialog = new SaveFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
@@ -74,15 +75,17 @@ namespace XML_GUI
 
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Save the contents of the xmlDataGrid into the chosen file
-                    XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
+                    // Save the contents of the xmlDataGrid into the chosen file
+                    XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
+                    currentOpenXmlPath = fileDialog.FileName;
+                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
                 }
             }
         }
         
         private void loadXmlFile(Stream xmlDoc)
         {
-            xmlDataGrid.DataSource = XML2DB.XML.XMLParser.getXmlData(xmlDoc).Tables[0];
+            xmlDataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
         }
         private void openXmlFile(){
             using (OpenFileDialog openFileDialog = new OpenFileDialog()){
@@ -93,11 +96,11 @@ namespace XML_GUI
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Load the contents of the file into xmlDataGrid
+                // Load the contents of the file into xmlDataGrid
                 Stream xmlDoc = openFileDialog.OpenFile();
                 loadXmlFile(xmlDoc);
                 enableCtrl(true);
-                currentOpenXmlPath = openFileDialog.FileName; //Set the static variable to be used later for saving
+                currentOpenXmlPath = openFileDialog.FileName; // Set the static variable to be used later for saving
                 xmlDoc.Close();
             }
         }
