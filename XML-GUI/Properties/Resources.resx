@@ -123,4 +123,11 @@
   <data name="XMLGUI_xmlfile_dialogextention" xml:space="preserve">
     <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
+  <data name="XMLGUI_saveXml_fail_msg" xml:space="preserve">
+    <value>Can't save while on read only mode !
+Disable read only mode and try again.</value>
+  </data>
+  <data name="XMLGUI_saveXml_fail" xml:space="preserve">
+    <value>Failure</value>
+  </data>
 </root>

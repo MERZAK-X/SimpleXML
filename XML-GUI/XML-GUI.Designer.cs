@@ -33,6 +33,7 @@
             this.openXml = new System.Windows.Forms.Button();
             this.saveXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
+            this.readOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +70,7 @@
             // 
             // saveCurrent
             // 
+            this.saveCurrent.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveCurrent.Location = new System.Drawing.Point(720, 12);
             this.saveCurrent.Name = "saveCurrent";
             this.saveCurrent.Size = new System.Drawing.Size(153, 59);
@@ -77,11 +79,22 @@
             this.saveCurrent.UseVisualStyleBackColor = true;
             this.saveCurrent.Click += new System.EventHandler(this.saveCurrent_Click);
             // 
+            // readOnly
+            // 
+            this.readOnly.Location = new System.Drawing.Point(197, 30);
+            this.readOnly.Name = "readOnly";
+            this.readOnly.Size = new System.Drawing.Size(114, 24);
+            this.readOnly.TabIndex = 4;
+            this.readOnly.Text = "Read Only";
+            this.readOnly.UseVisualStyleBackColor = true;
+            this.readOnly.CheckedChanged += new System.EventHandler(this.readOnly_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 489);
+            this.Controls.Add(this.readOnly);
             this.Controls.Add(this.saveCurrent);
             this.Controls.Add(this.saveXml);
             this.Controls.Add(this.openXml);
@@ -94,6 +107,7 @@
         }
 
         private System.Windows.Forms.Button openXml;
+        private System.Windows.Forms.CheckBox readOnly;
         private System.Windows.Forms.Button saveCurrent;
         private System.Windows.Forms.Button saveXml;
         private System.Windows.Forms.DataGridView xmlDataGrid;

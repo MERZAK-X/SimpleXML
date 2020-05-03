@@ -15,7 +15,22 @@ namespace XML_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            openXmlFile();
+            //openXmlFile(); // no need to show open dialog at start 
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                saveCurrent_Click(this,null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        
+        private void readOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            saveCurrent.Enabled = !readOnly.Checked;
+            xmlDataGrid.ReadOnly = readOnly.Checked;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -24,13 +39,17 @@ namespace XML_GUI
         }
         private void saveXml_Click(object sender, EventArgs e)
         {
-            saveXmlFile();
+             saveXmlFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
-            XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
-            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
+            if (!readOnly.Checked)
+            {
+                XML2DB.XML.XMLParser.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
+                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
+            }
+            else MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail);
         }
         
         private void saveXmlFile()
