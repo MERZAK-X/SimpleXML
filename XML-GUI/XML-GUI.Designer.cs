@@ -1,6 +1,6 @@
 ﻿namespace XML_GUI
 {
-    partial class Form1
+    partial class XmlGUI
     {
         /// <summary>
         /// Required designer variable.
@@ -39,11 +39,13 @@
             // 
             // xmlDataGrid
             // 
+            this.xmlDataGrid.AllowUserToDeleteRows = false;
             this.xmlDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.xmlDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.xmlDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.xmlDataGrid.Location = new System.Drawing.Point(12, 94);
             this.xmlDataGrid.Name = "xmlDataGrid";
+            this.xmlDataGrid.ReadOnly = true;
             this.xmlDataGrid.RowTemplate.Height = 28;
             this.xmlDataGrid.Size = new System.Drawing.Size(1020, 383);
             this.xmlDataGrid.TabIndex = 0;
@@ -56,11 +58,13 @@
             this.openXml.TabIndex = 1;
             this.openXml.Text = "Open XML";
             this.openXml.UseVisualStyleBackColor = true;
-            this.openXml.Click += new System.EventHandler(this.button1_Click);
+            this.openXml.Click += new System.EventHandler(this.OpenXmlDoc_Click);
             // 
             // saveXml
             // 
+            this.saveXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveXml.Location = new System.Drawing.Point(879, 12);
+            this.saveXml.MinimumSize = new System.Drawing.Size(153, 59);
             this.saveXml.Name = "saveXml";
             this.saveXml.Size = new System.Drawing.Size(153, 59);
             this.saveXml.TabIndex = 2;
@@ -81,6 +85,8 @@
             // 
             // readOnly
             // 
+            this.readOnly.Checked = true;
+            this.readOnly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.readOnly.Location = new System.Drawing.Point(197, 30);
             this.readOnly.Name = "readOnly";
             this.readOnly.Size = new System.Drawing.Size(114, 24);
@@ -89,7 +95,7 @@
             this.readOnly.UseVisualStyleBackColor = true;
             this.readOnly.CheckedChanged += new System.EventHandler(this.readOnly_CheckedChanged);
             // 
-            // Form1
+            // XmlGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,9 +105,9 @@
             this.Controls.Add(this.saveXml);
             this.Controls.Add(this.openXml);
             this.Controls.Add(this.xmlDataGrid);
-            this.Name = "Form1";
+            this.Name = "XmlGUI";
             this.Text = "XML-GUI";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.XmlGUI_Load);
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).EndInit();
             this.ResumeLayout(false);
         }

@@ -6,15 +6,16 @@ using XML_GUI.Properties;
 
 namespace XML_GUI
 {
-    public partial class Form1 : Form
+    public partial class XmlGUI : Form
     {
-        public Form1()
+        public XmlGUI()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void XmlGUI_Load(object sender, EventArgs e)
         {
+            enableCtrl(false); // Disable control since no xml doc is loaded  
             //openXmlFile(); // no need to show open dialog at start 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -26,14 +27,25 @@ namespace XML_GUI
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void enableCtrl(bool status)
+        {
+            readOnly.Enabled = status;
+            saveCurrent.Enabled = !readOnly.Checked;
+            saveXml.Enabled = status;
+        }
         
         private void readOnly_CheckedChanged(object sender, EventArgs e)
         {
-            saveCurrent.Enabled = !readOnly.Checked;
-            xmlDataGrid.ReadOnly = readOnly.Checked;
+            if (currentOpenXmlPath != String.Empty)
+            {
+                saveCurrent.Enabled = !readOnly.Checked;
+                xmlDataGrid.ReadOnly = readOnly.Checked;
+                xmlDataGrid.AllowUserToDeleteRows = !readOnly.Checked;
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void OpenXmlDoc_Click(object sender, EventArgs e)
         {
             openXmlFile();
         }
@@ -84,6 +96,7 @@ namespace XML_GUI
                 //Load the contents of the file into xmlDataGrid
                 Stream xmlDoc = openFileDialog.OpenFile();
                 loadXmlFile(xmlDoc);
+                enableCtrl(true);
                 currentOpenXmlPath = openFileDialog.FileName; //Set the static variable to be used later for saving
                 xmlDoc.Close();
             }

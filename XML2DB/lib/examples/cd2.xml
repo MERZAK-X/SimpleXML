@@ -32,4 +32,12 @@
     <PRICE>9.99</PRICE>
     <YEAR>2020</YEAR>
   </CD>
+  <CD>
+    <TITLE>#7 TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>null</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </CD>
 </CATALOG>

@@ -65,40 +65,11 @@ namespace XML2DB.XML
         {
             xmlData.WriteXml(xmlDocPath);
         }
-        
-        /*public static (String, StreamReader) openXmlFile(){
-            
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "XML files (*.xml)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-
-                    //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        fileContent = reader.ReadToEnd();
-                    }
-                }
-            }
-                return (filePath, fileContent);
-        }*/
 
         public static bool export2DB(DataTable xmlData, String connectionString)
         {
             bool pass = false;
-            //string connectionString = @"Data Source = MyServerName/Instance; Integrated Security=true; Initial Catalog=YourDatabase";
+            //string connectionString = @"Data Source = ServerName/Instance; Integrated Security=true; Initial Catalog=Database";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

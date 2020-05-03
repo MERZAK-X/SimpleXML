@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Parent>
-    <Child>TEST</Child>
-</Parent>
+<?xml version="1.0" standalone="yes"?>
+<CATALOG>
+  <CD>
+    <TITLE>C#</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>MA</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>10.90</PRICE>
+    <YEAR>1999</YEAR>
+  </CD>
+  <CD>
+    <TITLE>TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>TEST</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </CD>
+  <CD>
+    <TITLE>SAVE TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>null</COUNTRY>
+    <COMPANY>null</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2002</YEAR>
+  </CD>
+  <CD>
+    <TITLE>Ctrl+S test</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>DE</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>9.99</PRICE>
+    <YEAR>2020</YEAR>
+  </CD>
+  <CD>
+    <TITLE>#7 TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>null</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </CD>
+</CATALOG>
