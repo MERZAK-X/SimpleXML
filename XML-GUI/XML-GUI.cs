@@ -101,6 +101,7 @@ namespace XML_GUI
                 loadXmlFile(xmlDoc);
                 enableCtrl(true);
                 currentOpenXmlPath = openFileDialog.FileName; // Set the static variable to be used later for saving
+                this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
                 xmlDoc.Close();
             }
         }

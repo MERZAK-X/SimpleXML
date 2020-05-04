@@ -1,0 +1,6 @@
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\bin\Release\XML2DB.exe
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\bin\Release\XML2DB.pdb
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\obj\Release\XML2DB.csprojAssemblyReference.cache
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\obj\Release\XML2DB.csproj.CoreCompileInputs.cache
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\obj\Release\XML2DB.exe
+C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB\XML2DB\obj\Release\XML2DB.pdb

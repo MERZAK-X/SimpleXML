@@ -130,4 +130,7 @@ Disable read only mode and try again.</value>
   <data name="XMLGUI_saveXml_fail" xml:space="preserve">
     <value>Failure</value>
   </data>
+  <data name="XmlGUI_title_" xml:space="preserve">
+    <value>XML-GUI - </value>
+  </data>
 </root>

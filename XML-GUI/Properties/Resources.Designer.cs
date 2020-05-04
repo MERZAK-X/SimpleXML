@@ -98,6 +98,15 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XML-GUI - .
+        /// </summary>
+        internal static string XmlGUI_title_ {
+            get {
+                return ResourceManager.GetString("XmlGUI_title_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XML files (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
         internal static string XMLGUI_xmlfile_dialogextention {
