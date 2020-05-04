@@ -7,8 +7,8 @@
     <ProjectGuid>{59903DAB-11D3-4ADC-B972-B17B8D50198A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XML2DB</RootNamespace>
-    <AssemblyName>XML2DB</AssemblyName>
+    <RootNamespace>XML-DB</RootNamespace>
+    <AssemblyName>XML-DB</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

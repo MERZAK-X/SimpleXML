@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\MS7WN7D V3N0M\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\MS7WN7D V3N0M\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_XML2DB.-242865619.00" t="ExcludeRecursive" />
-    <e p="C:\Users\MS7WN7D V3N0M\Documents\GitHub\XML2DB" t="IncludeFlat">
-      <e p="packages" t="ExcludeRecursive" />
-      <e p="XML-GUI" t="IncludeRecursive">
-        <e p="App.config" t="Include" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_XML2DB.954595696.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="XML-DB" t="IncludeRecursive">
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="XML-DB.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="src" t="Include">
+          <e p="DB" t="Include" />
+          <e p="XML" t="Include">
+            <e p="XMLUtils.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="XML-GUI" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
@@ -17,30 +29,18 @@
           <e p="Settings.Designer.cs" t="Include" />
           <e p="Settings.settings" t="Include" />
         </e>
-        <e p="XML-DB.cs" t="Include" />
         <e p="XML-DB.Designer.cs" t="Include" />
+        <e p="XML-DB.cs" t="Include" />
         <e p="XML-DB.resx" t="Include" />
+        <e p="XML-GUI.Designer.cs" t="Include" />
         <e p="XML-GUI.cs" t="Include" />
         <e p="XML-GUI.csproj" t="IncludeRecursive" />
-        <e p="XML-GUI.Designer.cs" t="Include" />
         <e p="XML-GUI.resx" t="Include" />
-      </e>
-      <e p="XML2DB" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
-        <e p="Program.cs" t="Include" />
-        <e p="Properties" t="Include">
-          <e p="AssemblyInfo.cs" t="Include" />
-        </e>
-        <e p="src" t="Include">
-          <e p="DB" t="Include" />
-          <e p="XML" t="Include">
-            <e p="XMLUtils.cs" t="Include" />
-          </e>
-        </e>
-        <e p="XML2DB.csproj" t="IncludeRecursive" />
       </e>
       <e p="XML2DB.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
 </project>

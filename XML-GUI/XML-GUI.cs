@@ -2,8 +2,8 @@
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using XMLUtils;
 using XML_GUI.Properties;
-using XML2DB.XML;
 
 namespace XML_GUI
 {

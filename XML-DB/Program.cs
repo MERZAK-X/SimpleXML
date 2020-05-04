@@ -1,12 +1,10 @@
-﻿using XML2DB.XML;
-
-namespace XML2DB
+﻿namespace XMLUtils
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
-            XmlUtils.TEST();
+            //XmlUtils.TEST();
         }
     }
 }
