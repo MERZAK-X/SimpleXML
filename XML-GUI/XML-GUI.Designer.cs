@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlGUI));
             this.xmlDataGrid = new System.Windows.Forms.DataGridView();
             this.openXml = new System.Windows.Forms.Button();
             this.exportXml = new System.Windows.Forms.Button();
@@ -105,6 +106,7 @@
             this.Controls.Add(this.exportXml);
             this.Controls.Add(this.openXml);
             this.Controls.Add(this.xmlDataGrid);
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "XmlGUI";
             this.Text = "XML-GUI";
             this.Load += new System.EventHandler(this.XmlGUI_Load);

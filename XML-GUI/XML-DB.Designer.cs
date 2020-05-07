@@ -31,6 +31,7 @@ namespace XML_GUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XML_DB));
             this.testConnection = new System.Windows.Forms.Button();
             this.labelDbSvr = new System.Windows.Forms.Label();
             this.dbServer = new System.Windows.Forms.TextBox();
@@ -68,8 +69,9 @@ namespace XML_GUI
             this.Controls.Add(this.dbServer);
             this.Controls.Add(this.labelDbSvr);
             this.Controls.Add(this.testConnection);
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "XML_DB";
-            this.Text = "XML_DB";
+            this.Text = "XML DB";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
