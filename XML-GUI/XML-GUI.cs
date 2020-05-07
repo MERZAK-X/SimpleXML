@@ -9,6 +9,8 @@ namespace XML_GUI
 {
     public partial class XmlGUI : Form
     {
+        private static String currentOpenXmlPath = String.Empty;
+        
         public XmlGUI()
         {
             InitializeComponent();
@@ -21,12 +23,17 @@ namespace XML_GUI
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Control | Keys.S))
+            switch (keyData)
             {
-                saveCurrent_Click(this,null);
-                return true;
+                case Keys.Control | Keys.S:
+                    saveCurrent_Click(this,null);
+                    return true;
+                case Keys.Control | Keys.O:
+                    OpenXmlDoc_Click(this,null);
+                    return true;
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
             }
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void enableCtrl(bool status)
@@ -60,9 +67,9 @@ namespace XML_GUI
             if (!readOnly.Checked)
             {
                 XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
-                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
+                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            else MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail);
+            else MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         
         private void exportXmlFile()
@@ -78,7 +85,7 @@ namespace XML_GUI
                     // Save the contents of the xmlDataGrid into the chosen file
                     XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
                     currentOpenXmlPath = fileDialog.FileName;
-                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success);
+                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
         }
@@ -106,8 +113,26 @@ namespace XML_GUI
             }
         }
     }
+        
 
-        private static String currentOpenXmlPath = String.Empty;
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenXmlDoc_Click(sender, e);
+        }
 
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/MERZAK-X/SimpleXML");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult exit = MessageBox.Show("Are you sure you want to exit?\nUnsaved progress might be lost !", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.Yes)
+            {
+                this.Close();
+                Application.Exit();
+            }
+        }
     }
 }
