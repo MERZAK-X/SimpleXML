@@ -39,6 +39,7 @@ namespace XML_GUI
         private void enableCtrl(bool status)
         {
             readOnly.Enabled = status;
+            readOnlyToolStripMenuItem.Enabled = status;
             saveCurrent.Enabled = !readOnly.Checked;
             exportXml.Enabled = status;
         }
@@ -133,6 +134,31 @@ namespace XML_GUI
                 this.Close();
                 Application.Exit();
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveCurrent_Click(sender, e);
+        }
+
+        private void toXMLDocumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportXmlFile();
+        }
+
+        private void editToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            readOnly_CheckedChanged(sender, e);
+        }
+
+        private void readOnly_CheckStateChanged(object sender, EventArgs e)
+        {
+            readOnlyToolStripMenuItem.CheckState = readOnly.CheckState;
+        }
+
+        private void readOnlyToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            readOnly.CheckState = readOnlyToolStripMenuItem.CheckState;
         }
     }
 }
