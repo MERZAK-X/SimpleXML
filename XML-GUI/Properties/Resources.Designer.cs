@@ -117,6 +117,16 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t save while on read only mode !
+        ///Disable read only mode and try again..
+        /// </summary>
+        internal static string XMLGUI_saveEmptyXml_fail_msg {
+            get {
+                return ResourceManager.GetString("XMLGUI_saveEmptyXml_fail_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failure.
         /// </summary>
         internal static string XMLGUI_saveXml_fail {

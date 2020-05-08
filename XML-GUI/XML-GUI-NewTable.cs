@@ -10,6 +10,7 @@ namespace XML_GUI
         public XML_GUI_NewTable()
         {
             InitializeComponent();
+            this.Visible = true; // Make form visible
         }
 
         public List<String> getColumnNames()
@@ -29,6 +30,19 @@ namespace XML_GUI
                 columnsList.Items.RemoveAt(columnsList.SelectedIndex); 
             } else {
                 columnsList.Items.Remove(columnName.Text);
+            }
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            new XmlGUI(this.getColumnNames());
+            Dispose(); Close();
+        }
+
+        private void columnName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter){
+                addColumn.PerformClick();
             }
         }
     }
