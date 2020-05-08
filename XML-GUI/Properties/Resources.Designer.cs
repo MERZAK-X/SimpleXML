@@ -117,8 +117,8 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can&apos;t save while on read only mode !
-        ///Disable read only mode and try again..
+        ///   Looks up a localized string similar to Can&apos;t export an empty table !
+        ///Please create a new document using &quot;File &gt; New (Ctrl + N)&quot; or open an existing one !.
         /// </summary>
         internal static string XMLGUI_saveEmptyXml_fail_msg {
             get {

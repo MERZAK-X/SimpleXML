@@ -27,10 +27,7 @@ namespace XML_GUI
             this.newXmlDoc = true; // Specify that we're making a new Xml Document
             // Load DataGrid columns from List
             DataTable newData = new DataTable("New XML Document");
-            foreach (var column in columns)
-            {
-                newData.Columns.Add(column);
-            }
+            foreach (var column in columns){newData.Columns.Add(column);}
             xmlDataGrid.DataSource = newData;
             enableCtrl(true); // Enable control for new xml doc 
             this.Visible = true; // Make the form visible
@@ -77,10 +74,6 @@ namespace XML_GUI
         {
             openXmlFile();
         }
-        private void saveXml_Click(object sender, EventArgs e)
-        {
-            exportXmlFile();
-        }
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
@@ -92,8 +85,7 @@ namespace XML_GUI
             else if (readOnly.Checked || !newXmlDoc)
             {
                 MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }else if (newXmlDoc)
-            {
+            }else if (newXmlDoc) {
                 exportXmlFile();
             }
         }
@@ -115,12 +107,11 @@ namespace XML_GUI
                         XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
                         currentOpenXmlPath = fileDialog.FileName;
                         newXmlDoc = false; // Set flag to false since the document was being exported to the disk
-                        MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success,
-                            MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveEmptyXml_fail_msg, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         
@@ -141,7 +132,7 @@ namespace XML_GUI
                 Stream xmlDoc = openFileDialog.OpenFile();
                 loadXmlFile(xmlDoc);
                 enableCtrl(true);
-                currentOpenXmlPath = openFileDialog.FileName; // Set the static variable to be used later for saving
+                currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
                 this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
                 xmlDoc.Close();
             }
@@ -151,7 +142,7 @@ namespace XML_GUI
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenXmlDoc_Click(sender, e);
+            openXml.PerformClick();
         }
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)

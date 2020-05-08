@@ -131,8 +131,8 @@ Disable read only mode and try again.</value>
     <value>Failure</value>
   </data>
   <data name="XMLGUI_saveEmptyXml_fail_msg" xml:space="preserve">
-    <value>Can't save while on read only mode !
-Disable read only mode and try again.</value>
+    <value>Can't export an empty table !
+Please create a new document using "File > New (Ctrl + N)" or open an existing one !</value>
   </data>
   <data name="XmlGUI_title_" xml:space="preserve">
     <value>XML-GUI - </value>
