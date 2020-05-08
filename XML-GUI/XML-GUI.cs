@@ -41,7 +41,6 @@ namespace XML_GUI
             readOnly.Enabled = status;
             readOnlyToolStripMenuItem.Enabled = status;
             saveCurrent.Enabled = !readOnly.Checked;
-            exportXml.Enabled = status;
         }
         
         private void readOnly_CheckedChanged(object sender, EventArgs e)
@@ -128,7 +127,7 @@ namespace XML_GUI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult exit = MessageBox.Show("Are you sure you want to exit?\nUnsaved progress might be lost !", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.Yes)
             {
                 this.Close();
@@ -160,5 +159,32 @@ namespace XML_GUI
         {
             readOnly.CheckState = readOnlyToolStripMenuItem.CheckState;
         }
+
+        private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog fileDialog = new SaveFileDialog()){
+                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                fileDialog.Filter = Resources.XMLGUI_csvfile_dialogextention;
+                fileDialog.FilterIndex = 1;
+                fileDialog.RestoreDirectory = true;
+
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Save the contents of the xmlDataGrid into the chosen file
+                    if(XmlUtils.export2CSV(xmlDataGrid, fileDialog.FileName))
+                        MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    else 
+                        MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void XmlGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.No) e.Cancel = true;
+        }
+
+        
     }
 }

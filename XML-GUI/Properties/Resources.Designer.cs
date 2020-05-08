@@ -70,6 +70,44 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
+        /// </summary>
+        internal static string XMLGUI_csvfile_dialogextention {
+            get {
+                return ResourceManager.GetString("XMLGUI_csvfile_dialogextention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string XmlGUI_exit {
+            get {
+                return ResourceManager.GetString("XmlGUI_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit?
+        ///Unsaved progress might be lost !.
+        /// </summary>
+        internal static string XmlGUI_exitmsg {
+            get {
+                return ResourceManager.GetString("XmlGUI_exitmsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t export to CSV file!
+        ///Please make sure the chosen file is not open by some other process and try again..
+        /// </summary>
+        internal static string XMLGUI_saveCSV_fail_msg {
+            get {
+                return ResourceManager.GetString("XMLGUI_saveCSV_fail_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File successfully saved to .
         /// </summary>
         internal static string XMLGUI_saveCurrent_success {
