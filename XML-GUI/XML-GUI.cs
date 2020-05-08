@@ -105,7 +105,7 @@ namespace XML_GUI
                     {
                         // Save the contents of the xmlDataGrid into the chosen file
                         XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
-                        currentOpenXmlPath = fileDialog.FileName;
+                        currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
                         newXmlDoc = false; // Set flag to false since the document was being exported to the disk
                         MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
@@ -126,20 +126,19 @@ namespace XML_GUI
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                // Load the contents of the file into xmlDataGrid
-                Stream xmlDoc = openFileDialog.OpenFile();
-                loadXmlFile(xmlDoc);
-                enableCtrl(true);
-                currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
-                this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
-                xmlDoc.Close();
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load the contents of the file into xmlDataGrid
+                    Stream xmlDoc = openFileDialog.OpenFile();
+                    loadXmlFile(xmlDoc);
+                    enableCtrl(true);
+                    currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                    this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
+                    xmlDoc.Close();
+                }
             }
         }
-    }
         
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openXml.PerformClick();
@@ -214,28 +213,13 @@ namespace XML_GUI
             DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.No) e.Cancel = true;
         }
-
-        private void newDocument()
-        {
-            XML_GUI_NewTable newTableDialog = new XML_GUI_NewTable();
-            //newTableDialog.Visible = true;
-            /*List<String> columns = NewTableDialog.getColumnNames();
-            DataTable newData = new DataTable();
-            foreach (var column in columns)
-            {
-                newData.Columns.Add(column);
-            }
-            xmlDataGrid.DataSource = newData;
-            NewTableDialog.Close();*/
-        }
-
+        
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newDocument();
-            // TODO: Open a new documentDialog as a new Thread
-            /*Thread newDocThread = new Thread(newDocument);
+            // Open a new documentDialog as a new Thread
+            Thread newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
             newDocThread.IsBackground = false;
-            newDocThread.Start();*/
+            newDocThread.Start();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace XML_GUI
@@ -35,14 +36,23 @@ namespace XML_GUI
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            new XmlGUI(this.getColumnNames());
+            // Open a new XmlGUI Form as a new Thread
+            Thread newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames())));
+            newXmlDoc.IsBackground = false;
+            newXmlDoc.Start();
             Dispose(); Close();
         }
 
         private void columnName_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter){
-                addColumn.PerformClick();
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    addColumn.PerformClick();
+                    break;
+                case Keys.Delete:
+                    deleteColumn.PerformClick();
+                    break;
             }
         }
     }
