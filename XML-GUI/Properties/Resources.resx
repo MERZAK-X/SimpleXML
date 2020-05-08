@@ -133,4 +133,18 @@ Disable read only mode and try again.</value>
   <data name="XmlGUI_title_" xml:space="preserve">
     <value>XML-GUI - </value>
   </data>
+  <data name="XMLGUI_csvfile_dialogextention" xml:space="preserve">
+    <value>CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
+  </data>
+  <data name="XMLGUI_saveCSV_fail_msg" xml:space="preserve">
+    <value>Couldn't export to CSV file!
+Please make sure the chosen file is not open by some other process and try again.</value>
+  </data>
+  <data name="XmlGUI_exitmsg" xml:space="preserve">
+    <value>Are you sure you want to exit?
+Unsaved progress might be lost !</value>
+  </data>
+  <data name="XmlGUI_exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
 </root>

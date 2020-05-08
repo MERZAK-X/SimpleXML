@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlGUI));
             this.xmlDataGrid = new System.Windows.Forms.DataGridView();
             this.openXml = new System.Windows.Forms.Button();
-            this.exportXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
             this.readOnly = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -44,7 +43,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toXMLDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toDataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toDatabaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,22 +78,10 @@
             this.openXml.UseVisualStyleBackColor = true;
             this.openXml.Click += new System.EventHandler(this.OpenXmlDoc_Click);
             // 
-            // exportXml
-            // 
-            this.exportXml.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportXml.Location = new System.Drawing.Point(879, 46);
-            this.exportXml.MinimumSize = new System.Drawing.Size(153, 59);
-            this.exportXml.Name = "exportXml";
-            this.exportXml.Size = new System.Drawing.Size(153, 59);
-            this.exportXml.TabIndex = 2;
-            this.exportXml.Text = "Export to";
-            this.exportXml.UseVisualStyleBackColor = true;
-            this.exportXml.Click += new System.EventHandler(this.saveXml_Click);
-            // 
             // saveCurrent
             // 
             this.saveCurrent.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveCurrent.Location = new System.Drawing.Point(720, 46);
+            this.saveCurrent.Location = new System.Drawing.Point(879, 46);
             this.saveCurrent.Name = "saveCurrent";
             this.saveCurrent.Size = new System.Drawing.Size(153, 59);
             this.saveCurrent.TabIndex = 3;
@@ -168,7 +155,7 @@
             // 
             // exportToolStripMenuItem
             // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toDataBaseToolStripMenuItem, this.toDatabaseToolStripMenuItem1});
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toCSVToolStripMenuItem, this.toDatabaseToolStripMenuItem1});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.exportToolStripMenuItem.Text = "Export";
@@ -181,11 +168,12 @@
             this.toXMLDocumentToolStripMenuItem.Text = "to XML Document";
             this.toXMLDocumentToolStripMenuItem.Click += new System.EventHandler(this.toXMLDocumentToolStripMenuItem_Click);
             // 
-            // toDataBaseToolStripMenuItem
+            // toCSVToolStripMenuItem
             // 
-            this.toDataBaseToolStripMenuItem.Name = "toDataBaseToolStripMenuItem";
-            this.toDataBaseToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
-            this.toDataBaseToolStripMenuItem.Text = "to CSV Excel sheet";
+            this.toCSVToolStripMenuItem.Name = "toCSVToolStripMenuItem";
+            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toCSVToolStripMenuItem.Text = "to CSV Excel sheet";
+            this.toCSVToolStripMenuItem.Click += new System.EventHandler(this.toCSVToolStripMenuItem_Click);
             // 
             // toDatabaseToolStripMenuItem1
             // 
@@ -223,7 +211,7 @@
             this.readOnlyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.readOnlyToolStripMenuItem.Enabled = false;
             this.readOnlyToolStripMenuItem.Name = "readOnlyToolStripMenuItem";
-            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
             this.readOnlyToolStripMenuItem.Text = "Read Only";
             this.readOnlyToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.readOnlyToolStripMenuItem_CheckStateChanged);
             // 
@@ -248,7 +236,6 @@
             this.ClientSize = new System.Drawing.Size(1044, 566);
             this.Controls.Add(this.readOnly);
             this.Controls.Add(this.saveCurrent);
-            this.Controls.Add(this.exportXml);
             this.Controls.Add(this.openXml);
             this.Controls.Add(this.xmlDataGrid);
             this.Controls.Add(this.menuStrip1);
@@ -256,6 +243,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "XmlGUI";
             this.Text = "XML-GUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlGUI_FormClosing);
             this.Load += new System.EventHandler(this.XmlGUI_Load);
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -267,7 +255,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.Button exportXml;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
@@ -279,7 +266,7 @@
         private System.Windows.Forms.ToolStripMenuItem readOnlyToolStripMenuItem;
         private System.Windows.Forms.Button saveCurrent;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toDataBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toCSVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toDatabaseToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
