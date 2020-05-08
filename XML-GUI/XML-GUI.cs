@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -185,6 +186,19 @@ namespace XML_GUI
             if (exit == DialogResult.No) e.Cancel = true;
         }
 
-        
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var NewTableDialog = new XML_GUI_NewTable();
+            NewTableDialog.Visible = true;
+            List<String> columns = NewTableDialog.getColumnNames();
+            DataTable newData = new DataTable();
+            foreach (var column in columns)
+            {
+                newData.Columns.Add(column);
+            }
+            xmlDataGrid.DataSource = newData;
+            NewTableDialog.Close();
+        }
     }
 }
