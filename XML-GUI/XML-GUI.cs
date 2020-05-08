@@ -26,7 +26,7 @@ namespace XML_GUI
             InitializeComponent();
             this.newXmlDoc = true; // Specify that we're making a new Xml Document
             // Load DataGrid columns from List
-            DataTable newData = new DataTable("New XML Document");
+            DataTable newData = new DataTable("XmlDocument");
             foreach (var column in columns){newData.Columns.Add(column);}
             xmlDataGrid.DataSource = newData;
             enableCtrl(true); // Enable control for new xml doc 
@@ -77,12 +77,12 @@ namespace XML_GUI
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
-            if (!readOnly.Checked || !newXmlDoc)
+            if (!readOnly.Checked && !newXmlDoc)
             {
                 XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
                 MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            else if (readOnly.Checked || !newXmlDoc)
+            else if (readOnly.Checked && !newXmlDoc)
             {
                 MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }else if (newXmlDoc) {
@@ -205,7 +205,7 @@ namespace XML_GUI
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveEmptyXml_fail_msg, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -232,6 +232,7 @@ namespace XML_GUI
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newDocument();
+            // TODO: Open a new documentDialog as a new Thread
             /*Thread newDocThread = new Thread(newDocument);
             newDocThread.IsBackground = false;
             newDocThread.Start();*/

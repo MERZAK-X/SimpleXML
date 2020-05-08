@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <New_x0020_XML_x0020_Document>
+    <TEST_COL_1>TEST_DATA_1</TEST_COL_1>
+    <TEST_COL_2>TEST_DATA_2</TEST_COL_2>
+    <TEST_COL_3>TEST_DATA_3</TEST_COL_3>
+    <TEST_COL_4>TEST_DATA_4</TEST_COL_4>
+    <TEST_COL_5>TEST_DATA_5</TEST_COL_5>
+    <TEST_COL_6>TEST_DATA_6</TEST_COL_6>
+  </New_x0020_XML_x0020_Document>
+</DocumentElement>
