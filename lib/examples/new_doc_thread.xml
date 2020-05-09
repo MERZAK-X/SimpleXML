@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <XmlDocument>
+    <TEST_1>TEST</TEST_1>
+    <TEST_2>TEST</TEST_2>
+    <TEST_3>TEST</TEST_3>
+    <TEST_4>TEST</TEST_4>
+    <TEST_5>TEST</TEST_5>
+    <TEST_6>_</TEST_6>
+  </XmlDocument>
+</DocumentElement>
