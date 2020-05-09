@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -11,9 +12,15 @@ namespace XML_GUI
 {
     public partial class XmlGUI : Form
     {
+        #region Variables
+
         private String currentOpenXmlPath = String.Empty;
         private bool newXmlDoc = false;
-        
+
+        #endregion
+
+        #region Constructors
+
         public XmlGUI()
         {
             InitializeComponent();
@@ -34,60 +41,15 @@ namespace XML_GUI
             readOnlyToolStripMenuItem.PerformClick();
         }
 
-        private void XmlGUI_Load(object sender, EventArgs e)
-        {
-            //openXmlFile(); // No need to show open dialog at start 
-        }
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case Keys.Control | Keys.S:
-                    saveCurrent_Click(this,null);
-                    return true;
-                case Keys.Control | Keys.O:
-                    OpenXmlDoc_Click(this,null);
-                    return true;
-                default:
-                    return base.ProcessCmdKey(ref msg, keyData);
-            }
-        }
+        #endregion
+
+        #region Functions and Methods
 
         private void enableCtrl(bool status)
         {
             readOnly.Enabled = status;
             readOnlyToolStripMenuItem.Enabled = status;
             saveCurrent.Enabled = !readOnly.Checked;
-        }
-        
-        private void readOnly_CheckedChanged(object sender, EventArgs e)
-        {
-            if (newXmlDoc || currentOpenXmlPath != String.Empty)
-            {
-                saveCurrent.Enabled = !readOnly.Checked;
-                xmlDataGrid.ReadOnly = readOnly.Checked;
-                xmlDataGrid.AllowUserToDeleteRows = !readOnly.Checked;
-            }
-        }
-
-        private void OpenXmlDoc_Click(object sender, EventArgs e)
-        {
-            openXmlFile();
-        }
-        
-        private void saveCurrent_Click(object sender, EventArgs e)
-        {
-            if (!readOnly.Checked && !newXmlDoc)
-            {
-                XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
-                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else if (readOnly.Checked && !newXmlDoc)
-            {
-                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }else if (newXmlDoc) {
-                exportXmlFile();
-            }
         }
         
         private void exportXmlFile()
@@ -119,12 +81,13 @@ namespace XML_GUI
         {
             xmlDataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
         }
+        
         private void openXmlFile(){
             using (OpenFileDialog openFileDialog = new OpenFileDialog()){
-            //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-            openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.RestoreDirectory = true;
+                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -138,15 +101,93 @@ namespace XML_GUI
                 }
             }
         }
+
+        #endregion
+
+        #region Events Methods
+
+        #region Form & Hotkeys
+
+        private void XmlGUI_Load(object sender, EventArgs e)
+        {
+            //openXmlFile(); // No need to show open dialog at start 
+        }
+        
+        private void XmlGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit == DialogResult.No) e.Cancel = true;
+        }
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // Ctrl + Key Hotkeys setup 
+        {
+            switch (keyData)
+            {
+                case Keys.Control | Keys.S:
+                    saveCurrent.PerformClick();
+                    return true;
+                case Keys.Control | Keys.O:
+                    openXml.PerformClick();
+                    return true;
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
+
+        #endregion
+
+        #region Buttons & Controls
+
+        private void readOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            if (newXmlDoc || currentOpenXmlPath != String.Empty)
+            {
+                saveCurrent.Enabled = !readOnly.Checked;
+                xmlDataGrid.ReadOnly = readOnly.Checked;
+                xmlDataGrid.AllowUserToDeleteRows = !readOnly.Checked;
+            }
+        }
+
+        private void readOnly_CheckStateChanged(object sender, EventArgs e)
+        {
+            readOnlyToolStripMenuItem.CheckState = readOnly.CheckState;
+        }
+        
+        private void OpenXmlDoc_Click(object sender, EventArgs e)
+        {
+            openXmlFile();
+        }
+        
+        private void saveCurrent_Click(object sender, EventArgs e)
+        {
+            if (!readOnly.Checked && !newXmlDoc)
+            {
+                XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
+                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (readOnly.Checked && !newXmlDoc)
+            {
+                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }else if (newXmlDoc) {
+                exportXmlFile();
+            }
+        }
+
+        #endregion
+        
+        #region Menu
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a new documentDialog as a new Thread
+            Thread newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
+            newDocThread.IsBackground = false;
+            newDocThread.Start();
+        }
         
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openXml.PerformClick();
-        }
-
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/MERZAK-X/SimpleXML");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,21 +208,6 @@ namespace XML_GUI
         private void toXMLDocumentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             exportXmlFile();
-        }
-
-        private void editToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            readOnly_CheckedChanged(sender, e);
-        }
-
-        private void readOnly_CheckStateChanged(object sender, EventArgs e)
-        {
-            readOnlyToolStripMenuItem.CheckState = readOnly.CheckState;
-        }
-
-        private void readOnlyToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
-        {
-            readOnly.CheckState = readOnlyToolStripMenuItem.CheckState;
         }
 
         private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,18 +234,23 @@ namespace XML_GUI
             }
         }
 
-        private void XmlGUI_FormClosing(object sender, FormClosingEventArgs e)
+        private void editToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (exit == DialogResult.No) e.Cancel = true;
+            readOnly_CheckedChanged(sender, e);
         }
-        
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void readOnlyToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
         {
-            // Open a new documentDialog as a new Thread
-            Thread newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
-            newDocThread.IsBackground = false;
-            newDocThread.Start();
+            readOnly.CheckState = readOnlyToolStripMenuItem.CheckState;
         }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MERZAK-X/SimpleXML"); // Opens repo's homepage
+        }
+
+        #endregion
+
+        #endregion
     }
 }
