@@ -190,6 +190,16 @@ namespace XML_GUI
             openXml.PerformClick();
         }
 
+        private void fromDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: @Yassine-Ag Implement your form here
+            // Open a new databaseConnectionDialog as a new Thread
+            /*Thread DBThread = new Thread(() => Application.Run(new XML_GUI_DB_Import()));
+            DBThread.IsBackground = false;
+            DBThread.Start();*/
+            throw new System.NotImplementedException();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -232,6 +242,16 @@ namespace XML_GUI
             } else {
                 MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+        
+        private void toDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: @Yassine-Ag Implement your form here
+            // Open a new databaseConnectionDialog as a new Thread
+            /*Thread DBThread = new Thread(() => Application.Run(new XML_GUI_DB_Export()));
+            DBThread.IsBackground = false;
+            DBThread.Start();*/
+            throw new System.NotImplementedException();
         }
 
         private void editToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
