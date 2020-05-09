@@ -44,13 +44,15 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toXMLDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toDatabaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +117,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.newToolStripMenuItem, this.toolStripSeparator1, this.openToolStripMenuItem, this.toolStripSeparator3, this.saveToolStripMenuItem, this.exportToolStripMenuItem, this.toolStripSeparator2, this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.newToolStripMenuItem, this.toolStripSeparator1, this.openToolStripMenuItem, this.importToolStripMenuItem, this.toolStripSeparator3, this.saveToolStripMenuItem, this.exportToolStripMenuItem, this.toolStripSeparator2, this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
@@ -156,7 +158,7 @@
             // 
             // exportToolStripMenuItem
             // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toCSVToolStripMenuItem, this.toDatabaseToolStripMenuItem1});
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toCSVToolStripMenuItem, this.toDatabaseToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.exportToolStripMenuItem.Text = "Export";
@@ -176,11 +178,12 @@
             this.toCSVToolStripMenuItem.Text = "to CSV Excel sheet";
             this.toCSVToolStripMenuItem.Click += new System.EventHandler(this.toCSVToolStripMenuItem_Click);
             // 
-            // toDatabaseToolStripMenuItem1
+            // toDatabaseToolStripMenuItem
             // 
-            this.toDatabaseToolStripMenuItem1.Name = "toDatabaseToolStripMenuItem1";
-            this.toDatabaseToolStripMenuItem1.Size = new System.Drawing.Size(340, 30);
-            this.toDatabaseToolStripMenuItem1.Text = "to Database";
+            this.toDatabaseToolStripMenuItem.Name = "toDatabaseToolStripMenuItem";
+            this.toDatabaseToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toDatabaseToolStripMenuItem.Text = "to Database";
+            this.toDatabaseToolStripMenuItem.Click += new System.EventHandler(this.toDatabaseToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -212,7 +215,7 @@
             this.readOnlyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.readOnlyToolStripMenuItem.Enabled = false;
             this.readOnlyToolStripMenuItem.Name = "readOnlyToolStripMenuItem";
-            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
+            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.readOnlyToolStripMenuItem.Text = "Read Only";
             this.readOnlyToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.readOnlyToolStripMenuItem_CheckStateChanged);
             // 
@@ -229,6 +232,20 @@
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(128, 30);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fromDatabaseToolStripMenuItem});
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.importToolStripMenuItem.Text = "Import";
+            // 
+            // fromDatabaseToolStripMenuItem
+            // 
+            this.fromDatabaseToolStripMenuItem.Name = "fromDatabaseToolStripMenuItem";
+            this.fromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
+            this.fromDatabaseToolStripMenuItem.Text = "from Database";
+            this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
             // 
             // XmlGUI
             // 
@@ -257,7 +274,9 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -268,7 +287,7 @@
         private System.Windows.Forms.Button saveCurrent;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toCSVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toDatabaseToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
