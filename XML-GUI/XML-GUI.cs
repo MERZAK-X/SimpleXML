@@ -52,6 +52,31 @@ namespace XML_GUI
             saveCurrent.Enabled = !readOnly.Checked;
         }
         
+        private void loadXmlFile(Stream xmlDoc)
+        {
+            xmlDataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
+        }
+        
+        private void openXmlFile(){
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()){
+                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load the contents of the file into xmlDataGrid
+                    Stream xmlDoc = openFileDialog.OpenFile();
+                    loadXmlFile(xmlDoc);
+                    enableCtrl(true);
+                    currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                    this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
+                    xmlDoc.Close();
+                }
+            }
+        }
+        
         private void exportXmlFile()
         {
             if (xmlDataGrid.ColumnCount > 0)
@@ -76,29 +101,28 @@ namespace XML_GUI
                 MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        
-        private void loadXmlFile(Stream xmlDoc)
-        {
-            xmlDataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
-        }
-        
-        private void openXmlFile(){
-            using (OpenFileDialog openFileDialog = new OpenFileDialog()){
-                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Load the contents of the file into xmlDataGrid
-                    Stream xmlDoc = openFileDialog.OpenFile();
-                    loadXmlFile(xmlDoc);
-                    enableCtrl(true);
-                    currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
-                    this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
-                    xmlDoc.Close();
+        private void exportCSVFile()
+        {
+            if (xmlDataGrid.ColumnCount > 0)
+            {
+                using (SaveFileDialog fileDialog = new SaveFileDialog()){
+                    //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                    fileDialog.Filter = Resources.XMLGUI_csvfile_dialogextention;
+                    fileDialog.FilterIndex = 1;
+                    fileDialog.RestoreDirectory = true;
+
+                    if (fileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Save the contents of the xmlDataGrid into the chosen file
+                        if(XmlUtils.export2CSV(xmlDataGrid, fileDialog.FileName))
+                            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        else 
+                            MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            } else {
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -181,6 +205,7 @@ namespace XML_GUI
         {
             // Open a new documentDialog as a new Thread
             Thread newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
+            newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;
             newDocThread.Start();
         }
@@ -222,26 +247,7 @@ namespace XML_GUI
 
         private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (xmlDataGrid.ColumnCount > 0)
-            {
-                using (SaveFileDialog fileDialog = new SaveFileDialog()){
-                    //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                    fileDialog.Filter = Resources.XMLGUI_csvfile_dialogextention;
-                    fileDialog.FilterIndex = 1;
-                    fileDialog.RestoreDirectory = true;
-
-                    if (fileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        // Save the contents of the xmlDataGrid into the chosen file
-                        if(XmlUtils.export2CSV(xmlDataGrid, fileDialog.FileName))
-                            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                        else 
-                            MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            exportCSVFile();
         }
         
         private void toDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
