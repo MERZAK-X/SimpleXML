@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLUtils.cs" />
     <EmbeddedResource Include="XML-DB.resx">
       <DependentUpon>XML-DB.cs</DependentUpon>
     </EmbeddedResource>
