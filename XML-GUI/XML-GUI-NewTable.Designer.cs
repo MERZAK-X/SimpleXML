@@ -44,9 +44,9 @@ namespace XML_GUI
             // 
             this.columnsList.FormattingEnabled = true;
             this.columnsList.ItemHeight = 20;
-            this.columnsList.Location = new System.Drawing.Point(25, 122);
+            this.columnsList.Location = new System.Drawing.Point(70, 85);
             this.columnsList.Name = "columnsList";
-            this.columnsList.Size = new System.Drawing.Size(281, 264);
+            this.columnsList.Size = new System.Drawing.Size(278, 164);
             this.columnsList.TabIndex = 0;
             // 
             // columnName
@@ -77,7 +77,7 @@ namespace XML_GUI
             // 
             // btnDone
             // 
-            this.btnDone.Location = new System.Drawing.Point(446, 348);
+            this.btnDone.Location = new System.Drawing.Point(446, 223);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(102, 38);
             this.btnDone.TabIndex = 4;
@@ -99,14 +99,19 @@ namespace XML_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 420);
+            this.ClientSize = new System.Drawing.Size(568, 279);
             this.Controls.Add(this.deleteColumn);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.txtClmnName);
             this.Controls.Add(this.addColumn);
             this.Controls.Add(this.columnName);
             this.Controls.Add(this.columnsList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(574, 319);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(574, 319);
             this.Name = "XML_GUI_NewTable";
             this.Text = "New Document";
             this.ResumeLayout(false);

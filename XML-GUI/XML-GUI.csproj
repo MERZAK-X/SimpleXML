@@ -98,11 +98,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XML-DB\XML-DB.csproj">
-      <Project>{59903dab-11d3-4adc-b972-b17b8d50198a}</Project>
-      <Name>XML-DB</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
