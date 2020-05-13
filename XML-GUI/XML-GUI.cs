@@ -308,7 +308,7 @@ namespace XML_GUI
         private void xmlDataGrid_DragDrop(object sender, DragEventArgs e)
         {
             var droppedDocumentPath = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
-            MessageBox.Show(Resources.XmlGUI_DragDrop_many_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (droppedDocumentPath.Length > 1) MessageBox.Show(Resources.XmlGUI_DragDrop_many_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if(Path.GetExtension(droppedDocumentPath[0]).ToLower() == ".xml"){
                 Stream xmlDoc = null;
                 try
