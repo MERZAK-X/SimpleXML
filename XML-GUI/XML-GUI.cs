@@ -66,13 +66,26 @@ namespace XML_GUI
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Load the contents of the file into xmlDataGrid
-                    Stream xmlDoc = openFileDialog.OpenFile();
-                    loadXmlFile(xmlDoc);
-                    enableCtrl(true);
-                    currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
-                    this.Text = Resources.XmlGUI_title_ + '[' +openFileDialog.SafeFileName + ']'; // Change the Forms title to currentOpenDoc #10
-                    xmlDoc.Close();
+                    Stream xmlDoc = null;
+                    try
+                    {
+                        // Load the contents of the file into xmlDataGrid
+                        xmlDoc = openFileDialog.OpenFile();
+                        loadXmlFile(xmlDoc);
+                        enableCtrl(true);
+                        currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                        this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail,
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        // Fixes #29 file lock issue
+                        xmlDoc?.Close();
+                    }
                 }
             }
         }
@@ -90,15 +103,18 @@ namespace XML_GUI
 
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
+                        DataTable ds = (DataTable) xmlDataGrid.DataSource;
+                        // Fixes #25 for newly created xml documents tag names (entity name is taken from file name)
+                        ds.TableName = (newXmlDoc) ? Path.GetFileNameWithoutExtension(fileDialog.FileName) : ds.TableName;
                         // Save the contents of the xmlDataGrid into the chosen file
-                        XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, fileDialog.FileName);
+                        XmlUtils.exportXmlData(ds, fileDialog.FileName);
                         currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
                         newXmlDoc = false; // Set flag to false since the document was being exported to the disk
                         MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -118,11 +134,11 @@ namespace XML_GUI
                         if(XmlUtils.export2CSV(xmlDataGrid, fileDialog.FileName))
                             MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         else 
-                            MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -179,7 +195,7 @@ namespace XML_GUI
         
         private void OpenXmlDoc_Click(object sender, EventArgs e)
         {
-            openXmlFile();
+                openXmlFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
@@ -191,7 +207,7 @@ namespace XML_GUI
             }
             else if (readOnly.Checked && !newXmlDoc)
             {
-                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI_saveXml_fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }else if (newXmlDoc) {
                 exportXmlFile();
             }

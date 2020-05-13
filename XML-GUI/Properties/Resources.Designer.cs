@@ -70,6 +70,15 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failure.
+        /// </summary>
+        internal static string XMLGUI__fail {
+            get {
+                return ResourceManager.GetString("XMLGUI__fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
         /// </summary>
         internal static string XMLGUI_csvfile_dialogextention {
@@ -94,6 +103,16 @@ namespace XML_GUI.Properties {
         internal static string XmlGUI_exitmsg {
             get {
                 return ResourceManager.GetString("XmlGUI_exitmsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not open selected file !
+        ///Please make sure the selected file is a valid XML Document..
+        /// </summary>
+        internal static string XmlGUI_OpenXmlDoc_fail_msg {
+            get {
+                return ResourceManager.GetString("XmlGUI_OpenXmlDoc_fail_msg", resourceCulture);
             }
         }
         
@@ -123,15 +142,6 @@ namespace XML_GUI.Properties {
         internal static string XMLGUI_saveEmptyXml_fail_msg {
             get {
                 return ResourceManager.GetString("XMLGUI_saveEmptyXml_fail_msg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failure.
-        /// </summary>
-        internal static string XMLGUI_saveXml_fail {
-            get {
-                return ResourceManager.GetString("XMLGUI_saveXml_fail", resourceCulture);
             }
         }
         

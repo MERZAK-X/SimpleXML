@@ -127,7 +127,7 @@
     <value>Can't save while on read only mode !
 Disable read only mode and try again.</value>
   </data>
-  <data name="XMLGUI_saveXml_fail" xml:space="preserve">
+  <data name="XMLGUI__fail" xml:space="preserve">
     <value>Failure</value>
   </data>
   <data name="XMLGUI_saveEmptyXml_fail_msg" xml:space="preserve">
@@ -150,5 +150,9 @@ Unsaved progress might be lost !</value>
   </data>
   <data name="XmlGUI_exit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="XmlGUI_OpenXmlDoc_fail_msg" xml:space="preserve">
+    <value>Could not open selected file !
+Please make sure the selected file is a valid XML Document.</value>
   </data>
 </root>

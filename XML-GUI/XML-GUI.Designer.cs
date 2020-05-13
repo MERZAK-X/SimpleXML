@@ -39,6 +39,8 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,8 +53,6 @@
             this.readOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -143,6 +143,20 @@
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fromDatabaseToolStripMenuItem});
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.importToolStripMenuItem.Text = "Import";
+            // 
+            // fromDatabaseToolStripMenuItem
+            // 
+            this.fromDatabaseToolStripMenuItem.Name = "fromDatabaseToolStripMenuItem";
+            this.fromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
+            this.fromDatabaseToolStripMenuItem.Text = "from Database";
+            this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -215,7 +229,7 @@
             this.readOnlyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.readOnlyToolStripMenuItem.Enabled = false;
             this.readOnlyToolStripMenuItem.Name = "readOnlyToolStripMenuItem";
-            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.readOnlyToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
             this.readOnlyToolStripMenuItem.Text = "Read Only";
             this.readOnlyToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.readOnlyToolStripMenuItem_CheckStateChanged);
             // 
@@ -232,20 +246,6 @@
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(128, 30);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // importToolStripMenuItem
-            // 
-            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fromDatabaseToolStripMenuItem});
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
-            this.importToolStripMenuItem.Text = "Import";
-            // 
-            // fromDatabaseToolStripMenuItem
-            // 
-            this.fromDatabaseToolStripMenuItem.Name = "fromDatabaseToolStripMenuItem";
-            this.fromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
-            this.fromDatabaseToolStripMenuItem.Text = "from Database";
-            this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
             // 
             // XmlGUI
             // 
