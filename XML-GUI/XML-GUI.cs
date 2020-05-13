@@ -66,6 +66,7 @@ namespace XML_GUI
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".xml"){
                     Stream xmlDoc = null;
                     try
                     {
@@ -86,6 +87,10 @@ namespace XML_GUI
                         // Fixes #29 file lock issue
                         xmlDoc?.Close();
                     }
+                    
+                } else {
+                    MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 }
             }
         }
@@ -155,7 +160,7 @@ namespace XML_GUI
         
         private void XmlGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.No) e.Cancel = true;
         }
         
@@ -195,7 +200,7 @@ namespace XML_GUI
         
         private void OpenXmlDoc_Click(object sender, EventArgs e)
         {
-                openXmlFile();
+            openXmlFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
@@ -243,7 +248,7 @@ namespace XML_GUI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exitmsg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.Yes)
             {
                 this.Close();
@@ -293,6 +298,45 @@ namespace XML_GUI
 
         #endregion
 
+        #region Drag&Drop Event
+
+        private void xmlDataGrid_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.All : DragDropEffects.None;
+        }
+
+        private void xmlDataGrid_DragDrop(object sender, DragEventArgs e)
+        {
+            var droppedDocumentPath = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            MessageBox.Show(Resources.XmlGUI_DragDrop_many_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if(Path.GetExtension(droppedDocumentPath[0]).ToLower() == ".xml"){
+                Stream xmlDoc = null;
+                try
+                {
+                    // Load the contents of the file into xmlDataGrid
+                    xmlDoc = new FileStream(droppedDocumentPath[0], FileMode.Open, FileAccess.Read); // [0] => the first selected file
+                    loadXmlFile(xmlDoc);
+                    enableCtrl(true);
+                    currentOpenXmlPath = droppedDocumentPath[0]; // Set the currentOpenPath variable to be used later for saving
+                    this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(droppedDocumentPath[0]) +']'; // Change the Forms title to currentOpenDoc #10
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    // Fixes #29 file lock issue
+                    xmlDoc?.Close();
+                }
+            } else {
+                MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion
+        
+        #endregion
+
     }
 }

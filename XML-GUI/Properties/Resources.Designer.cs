@@ -79,11 +79,39 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string XMLGUI__warning {
+            get {
+                return ResourceManager.GetString("XMLGUI__warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
         /// </summary>
         internal static string XMLGUI_csvfile_dialogextention {
             get {
                 return ResourceManager.GetString("XMLGUI_csvfile_dialogextention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Many files were dropped!
+        ///Only the first selected will be opened..
+        /// </summary>
+        internal static string XmlGUI_DragDrop_many_msg {
+            get {
+                return ResourceManager.GetString("XmlGUI_DragDrop_many_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dropped file is not an XML Document !.
+        /// </summary>
+        internal static string XmlGUI_DragDrop_wrongExt_msg {
+            get {
+                return ResourceManager.GetString("XmlGUI_DragDrop_wrongExt_msg", resourceCulture);
             }
         }
         
@@ -100,9 +128,9 @@ namespace XML_GUI.Properties {
         ///   Looks up a localized string similar to Are you sure you want to exit?
         ///Unsaved progress might be lost !.
         /// </summary>
-        internal static string XmlGUI_exitmsg {
+        internal static string XmlGUI_exit_msg {
             get {
-                return ResourceManager.GetString("XmlGUI_exitmsg", resourceCulture);
+                return ResourceManager.GetString("XmlGUI_exit_msg", resourceCulture);
             }
         }
         

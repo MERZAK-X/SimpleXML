@@ -144,15 +144,25 @@ Please create a new document using "File > New (Ctrl + N)" or open an existing o
     <value>Couldn't export to CSV file!
 Please make sure the chosen file is not open by some other process and try again.</value>
   </data>
-  <data name="XmlGUI_exitmsg" xml:space="preserve">
+  <data name="XmlGUI_exit_msg" xml:space="preserve">
     <value>Are you sure you want to exit?
 Unsaved progress might be lost !</value>
   </data>
   <data name="XmlGUI_exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="XMLGUI__warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
   <data name="XmlGUI_OpenXmlDoc_fail_msg" xml:space="preserve">
     <value>Could not open selected file !
 Please make sure the selected file is a valid XML Document.</value>
+  </data>
+  <data name="XmlGUI_DragDrop_wrongExt_msg" xml:space="preserve">
+    <value>The dropped file is not an XML Document !</value>
+  </data>
+  <data name="XmlGUI_DragDrop_many_msg" xml:space="preserve">
+    <value>Many files were dropped!
+Only the first selected will be opened.</value>
   </data>
 </root>
