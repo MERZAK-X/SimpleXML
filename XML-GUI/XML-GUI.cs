@@ -115,6 +115,7 @@ namespace XML_GUI
                         XmlUtils.exportXmlData(ds, fileDialog.FileName);
                         currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
                         newXmlDoc = false; // Set flag to false since the document was being exported to the disk
+                        this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(fileDialog.FileName) +']'; // Change the Forms title to currentOpenDoc #10
                         MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
