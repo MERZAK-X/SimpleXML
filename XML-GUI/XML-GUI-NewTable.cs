@@ -37,7 +37,7 @@ namespace XML_GUI
         private void btnDone_Click(object sender, EventArgs e)
         {
             // Open a new XmlGUI Form as a new Thread
-            Thread newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames())));
+            Thread newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entityName.Text)));
             newXmlDoc.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
             newXmlDoc.IsBackground = false;
             newXmlDoc.Start();

@@ -16,6 +16,7 @@ namespace XML_GUI
 
         private String currentOpenXmlPath = String.Empty;
         private bool newXmlDoc = false;
+        private string entityName = "data";
 
         #endregion
 
@@ -28,7 +29,7 @@ namespace XML_GUI
             this.Visible = true; // Make the form visible
         }
         
-        public XmlGUI(List<String> columns)
+        public XmlGUI(List<String> columns, String entityName = "data")
         {
             InitializeComponent();
             this.newXmlDoc = true; // Specify that we're making a new Xml Document
@@ -36,6 +37,7 @@ namespace XML_GUI
             DataTable newData = new DataTable("XmlDocument");
             foreach (var column in columns){newData.Columns.Add(column);}
             xmlDataGrid.DataSource = newData;
+            this.entityName = entityName; // Fixes #25
             enableCtrl(true); // Enable control for new xml doc 
             this.Visible = true; // Make the form visible
             readOnlyToolStripMenuItem.PerformClick();
@@ -110,7 +112,7 @@ namespace XML_GUI
                     {
                         DataTable ds = (DataTable) xmlDataGrid.DataSource;
                         // Fixes #25 for newly created xml documents tag names (entity name is taken from file name)
-                        ds.TableName = (newXmlDoc) ? Path.GetFileNameWithoutExtension(fileDialog.FileName) : ds.TableName;
+                        ds.TableName = (newXmlDoc) ? entityName : ds.TableName; // Fixes #25
                         // Save the contents of the xmlDataGrid into the chosen file
                         XmlUtils.exportXmlData(ds, fileDialog.FileName);
                         currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
