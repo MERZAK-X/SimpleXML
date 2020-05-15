@@ -59,7 +59,6 @@
             // 
             // xmlDataGrid
             // 
-            this.xmlDataGrid.AllowDrop = true;
             this.xmlDataGrid.AllowUserToDeleteRows = false;
             this.xmlDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.xmlDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -70,8 +69,6 @@
             this.xmlDataGrid.RowTemplate.Height = 28;
             this.xmlDataGrid.Size = new System.Drawing.Size(1020, 443);
             this.xmlDataGrid.TabIndex = 0;
-            this.xmlDataGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragDrop);
-            this.xmlDataGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragEnter);
             // 
             // openXml
             // 
