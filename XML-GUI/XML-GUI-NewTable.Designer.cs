@@ -39,7 +39,7 @@ namespace XML_GUI
             this.btnDone = new System.Windows.Forms.Button();
             this.deleteColumn = new System.Windows.Forms.Button();
             this.txtEntityname = new System.Windows.Forms.Label();
-            this.entityName = new System.Windows.Forms.TextBox();
+            this.entityNameBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // columnsList
@@ -105,20 +105,20 @@ namespace XML_GUI
             this.txtEntityname.TabIndex = 6;
             this.txtEntityname.Text = "Entity Name";
             // 
-            // entityName
+            // entityNameBox
             // 
-            this.entityName.Location = new System.Drawing.Point(148, 27);
-            this.entityName.MaxLength = 30;
-            this.entityName.Name = "entityName";
-            this.entityName.Size = new System.Drawing.Size(222, 26);
-            this.entityName.TabIndex = 1;
+            this.entityNameBox.Location = new System.Drawing.Point(148, 27);
+            this.entityNameBox.MaxLength = 30;
+            this.entityNameBox.Name = "entityNameBox";
+            this.entityNameBox.Size = new System.Drawing.Size(222, 26);
+            this.entityNameBox.TabIndex = 1;
             // 
             // XML_GUI_NewTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 317);
-            this.Controls.Add(this.entityName);
+            this.Controls.Add(this.entityNameBox);
             this.Controls.Add(this.txtEntityname);
             this.Controls.Add(this.deleteColumn);
             this.Controls.Add(this.btnDone);
@@ -141,7 +141,7 @@ namespace XML_GUI
         private System.Windows.Forms.TextBox columnName;
         private System.Windows.Forms.ListBox columnsList;
         private System.Windows.Forms.Button deleteColumn;
-        private System.Windows.Forms.TextBox entityName;
+        private System.Windows.Forms.TextBox entityNameBox;
         private System.Windows.Forms.Label txtClmnName;
         private System.Windows.Forms.Label txtEntityname;
 

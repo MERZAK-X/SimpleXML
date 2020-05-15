@@ -70,6 +70,43 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The column already exists !.
+        /// </summary>
+        internal static string XML_NewTable_addExistingColumn_msg {
+            get {
+                return ResourceManager.GetString("XML_NewTable_addExistingColumn_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid column name provided !.
+        /// </summary>
+        internal static string XML_NewTable_invalidColumnName_msg {
+            get {
+                return ResourceManager.GetString("XML_NewTable_invalidColumnName_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given entity name : &quot;{0}&quot; is invalid !
+        ///Would you like to use &quot;data&quot; instead ?.
+        /// </summary>
+        internal static string XML_NewTable_invalidEntityName_msg {
+            get {
+                return ResourceManager.GetString("XML_NewTable_invalidEntityName_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create a table without specifying its columns !.
+        /// </summary>
+        internal static string XML_NewTable_noColumns_msg {
+            get {
+                return ResourceManager.GetString("XML_NewTable_noColumns_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failure.
         /// </summary>
         internal static string XMLGUI__fail {

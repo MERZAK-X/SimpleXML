@@ -34,7 +34,7 @@ namespace XML_GUI
             InitializeComponent();
             this.newXmlDoc = true; // Specify that we're making a new Xml Document
             // Load DataGrid columns from List
-            DataTable newData = new DataTable("XmlDocument");
+            var newData = new DataTable("XmlDocument");
             foreach (var column in columns){newData.Columns.Add(column);}
             xmlDataGrid.DataSource = newData;
             this.entityName = entityName; // Fixes #25
@@ -60,7 +60,7 @@ namespace XML_GUI
         }
         
         private void openXmlFile(){
-            using (OpenFileDialog openFileDialog = new OpenFileDialog()){
+            using (var openFileDialog = new OpenFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
                 openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
                 openFileDialog.FilterIndex = 1;
@@ -101,7 +101,7 @@ namespace XML_GUI
         {
             if (xmlDataGrid.ColumnCount > 0)
             {
-                using (SaveFileDialog fileDialog = new SaveFileDialog())
+                using (var fileDialog = new SaveFileDialog())
                 {
                     //openFileDialog.InitialDirectory = @"%HOMEPATH%";
                     fileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
@@ -110,7 +110,7 @@ namespace XML_GUI
 
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        DataTable ds = (DataTable) xmlDataGrid.DataSource;
+                        var ds = (DataTable) xmlDataGrid.DataSource;
                         // Fixes #25 for newly created xml documents tag names (entity name is taken from file name)
                         ds.TableName = (newXmlDoc) ? entityName : ds.TableName; // Fixes #25
                         // Save the contents of the xmlDataGrid into the chosen file
@@ -130,7 +130,7 @@ namespace XML_GUI
         {
             if (xmlDataGrid.ColumnCount > 0)
             {
-                using (SaveFileDialog fileDialog = new SaveFileDialog()){
+                using (var fileDialog = new SaveFileDialog()){
                     //openFileDialog.InitialDirectory = @"%HOMEPATH%";
                     fileDialog.Filter = Resources.XMLGUI_csvfile_dialogextention;
                     fileDialog.FilterIndex = 1;
@@ -163,7 +163,7 @@ namespace XML_GUI
         
         private void XmlGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.No) e.Cancel = true;
         }
         
@@ -228,7 +228,7 @@ namespace XML_GUI
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open a new documentDialog as a new Thread
-            Thread newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
+            var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
             newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;
             newDocThread.Start();
@@ -251,7 +251,7 @@ namespace XML_GUI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.Yes)
             {
                 this.Close();

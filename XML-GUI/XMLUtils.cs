@@ -18,13 +18,13 @@ namespace XMLUtils
         }*/
         
         public static DataSet getXmlData(String xmlDocPath){
-            DataSet xmlData = new DataSet();
+            var xmlData = new DataSet();
             xmlData.ReadXml(xmlDocPath);
             return xmlData;
         }
         
         public static DataSet getXmlData(Stream xmlDoc){
-            DataSet xmlData = new DataSet();
+            var xmlData = new DataSet();
             xmlData.ReadXml(xmlDoc);
             return xmlData;
         }
@@ -36,12 +36,12 @@ namespace XMLUtils
 
         public static bool export2DB(DataTable xmlData, String connectionString)
         {
-            bool pass = false;
+            var pass = false;
             //string connectionString = @"Data Source = ServerName/Instance; Integrated Security=true; Initial Catalog=Database";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                using (var bulkCopy = new SqlBulkCopy(connection))
                 {
                     foreach (DataColumn c in xmlData.Columns)
                         bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
@@ -65,7 +65,7 @@ namespace XMLUtils
         
         public static bool export2CSV(DataGridView dgv, string filename)
         {
-            bool pass = false;
+            var pass = false;
             /*// Method 1
             dgv.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText; // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
             dgv.SelectAll(); // Select all the cell

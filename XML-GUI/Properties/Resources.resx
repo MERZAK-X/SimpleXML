@@ -165,4 +165,17 @@ Please make sure the selected file is a valid XML Document.</value>
     <value>Many files were dropped!
 Only the first selected will be opened.</value>
   </data>
+  <data name="XML_NewTable_addExistingColumn_msg" xml:space="preserve">
+    <value>The column already exists !</value>
+  </data>
+  <data name="XML_NewTable_noColumns_msg" xml:space="preserve">
+    <value>Cannot create a table without specifying its columns !</value>
+  </data>
+  <data name="XML_NewTable_invalidColumnName_msg" xml:space="preserve">
+    <value>Invalid column name provided !</value>
+  </data>
+  <data name="XML_NewTable_invalidEntityName_msg" xml:space="preserve">
+    <value>The given entity name : "{0}" is invalid !
+Would you like to use "data" instead ?</value>
+  </data>
 </root>
