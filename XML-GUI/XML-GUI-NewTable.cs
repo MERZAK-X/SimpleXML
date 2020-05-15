@@ -10,7 +10,7 @@ namespace XML_GUI
 {
     public partial class XML_GUI_NewTable : Form
     {
-        private string entityName = "data";
+        //private string entityName = "data";
         public XML_GUI_NewTable()
         {
             InitializeComponent();
@@ -48,16 +48,16 @@ namespace XML_GUI
         {
             if (columnsList.Items.Count > 0) {
                 // Entity name check #33
-                if (!validText(entityNameBox.Text))
+                if (!validText(entityName.Text))
                 {
-                    var skipEntityName = MessageBox.Show(string.Format(Resources.XML_NewTable_invalidEntityName_msg, entityNameBox.Text), Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    var skipEntityName = MessageBox.Show(string.Format(Resources.XML_NewTable_invalidEntityName_msg, entityName.Text), Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (skipEntityName == DialogResult.Cancel)
                     {
                         return;
                     }
                 }
                 // Open a new XmlGUI Form as a new Thread
-                var newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entityNameBox.Text)));
+                var newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entityName.Text)));
                 newXmlDoc.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
                 newXmlDoc.IsBackground = false;
                 newXmlDoc.Start();
