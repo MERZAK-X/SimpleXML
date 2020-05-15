@@ -63,7 +63,7 @@ namespace XML_GUI
             // 
             this.addColumn.Location = new System.Drawing.Point(362, 123);
             this.addColumn.Name = "addColumn";
-            this.addColumn.Size = new System.Drawing.Size(94, 38);
+            this.addColumn.Size = new System.Drawing.Size(102, 38);
             this.addColumn.TabIndex = 3;
             this.addColumn.Text = "Add";
             this.addColumn.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@ namespace XML_GUI
             // 
             this.deleteColumn.Location = new System.Drawing.Point(362, 167);
             this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.Size = new System.Drawing.Size(94, 39);
+            this.deleteColumn.Size = new System.Drawing.Size(102, 39);
             this.deleteColumn.TabIndex = 6;
             this.deleteColumn.Text = "Delete";
             this.deleteColumn.UseVisualStyleBackColor = true;
@@ -129,7 +129,9 @@ namespace XML_GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(515, 357);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(515, 357);
             this.Name = "XML_GUI_NewTable";
             this.Text = "New Document";
             this.ResumeLayout(false);
