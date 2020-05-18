@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using XMLUtils;
@@ -159,7 +160,7 @@ namespace XML_GUI
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if(Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xls" || Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xlsx"){
+                    if(Regex.IsMatch(Path.GetExtension(openFileDialog.FileName)?.ToLower(), @"^.*\.(xlsx|xls|csv)$")){
                         Stream xlsSheet = null;
                         try
                         {
@@ -282,6 +283,11 @@ namespace XML_GUI
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openXml.PerformClick();
+        }
+        
+        private void excelSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openXlsFile();
         }
 
         private void fromDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
