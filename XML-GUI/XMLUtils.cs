@@ -1,22 +1,17 @@
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ExcelDataReader;
 
 namespace XMLUtils
 {
     public static class XmlUtils
     {
-        /*static void printData(XmlDocument xmlDoc, List<String> NodeNames)
-        {
-            xmlDoc.Load(Environment.CurrentDirectory + @"../../../lib/examples/test.xml");
-            Console.WriteLine(xmlDoc.DocumentElement.SelectSingleNode(NodeNames[0]).InnerText);
-            // TODO: Test in Windows OS with WinForms
-        }*/
-        
         public static DataSet getXmlData(String xmlDocPath){
             var xmlData = new DataSet();
             xmlData.ReadXml(xmlDocPath);
@@ -92,6 +87,19 @@ namespace XMLUtils
             pass = true;
             
             return pass;
+        }
+
+        public static DataSet getXlsData(Stream xlsSheet)
+        {
+            DataSet xlsData;
+            using (IExcelDataReader xlsDataReader = ExcelReaderFactory.CreateReader(xlsSheet))
+            {
+                xlsData = xlsDataReader.AsDataSet(new ExcelDataSetConfiguration()
+                {
+                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration(){UseHeaderRow = true}
+                });
+            }
+            return xlsData;
         }
         
     }
