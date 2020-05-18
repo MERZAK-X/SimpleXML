@@ -123,6 +123,9 @@
   <data name="XMLGUI_xmlfile_dialogextention" xml:space="preserve">
     <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
+  <data name="XMLGUI_xlsfile_dialogextention" xml:space="preserve">
+    <value>Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
+  </data>
   <data name="XMLGUI_saveXml_fail_msg" xml:space="preserve">
     <value>Can't save while on read only mode !
 Disable read only mode and try again.</value>
@@ -158,8 +161,15 @@ Unsaved progress might be lost !</value>
     <value>Could not open selected file !
 Please make sure the selected file is a valid XML Document.</value>
   </data>
-  <data name="XmlGUI_DragDrop_wrongExt_msg" xml:space="preserve">
+  <data name="XmlGUI_OpenXlsSheet_fail_msg" xml:space="preserve">
+    <value>Could not open selected file !
+Please make sure the selected file is a valid Excel Sheet.</value>
+  </data>
+  <data name="XmlGUI_Open_wrongXmlExt_msg" xml:space="preserve">
     <value>The dropped file is not an XML Document !</value>
+  </data>
+  <data name="XmlGUI_DragDrop_wrongExt_msg" xml:space="preserve">
+    <value>The dropped file is not an XML Document nor an Excel Sheet !</value>
   </data>
   <data name="XmlGUI_DragDrop_many_msg" xml:space="preserve">
     <value>Many files were dropped!

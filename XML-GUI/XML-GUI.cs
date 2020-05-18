@@ -69,30 +69,30 @@ namespace XML_GUI
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".xml"){
-                    Stream xmlDoc = null;
-                    try
-                    {
-                        // Load the contents of the file into xmlDataGrid
-                        xmlDoc = openFileDialog.OpenFile();
-                        loadXmlFile(xmlDoc);
-                        enableCtrl(true);
-                        currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
-                        this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail,
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        // Fixes #29 file lock issue
-                        xmlDoc?.Close();
-                    }
+                        Stream xmlDoc = null;
+                        try
+                        {
+                            // Load the contents of the file into xmlDataGrid
+                            xmlDoc = openFileDialog.OpenFile();
+                            loadXmlFile(xmlDoc);
+                            enableCtrl(true);
+                            currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            // Fixes #29 file lock issue
+                            xmlDoc?.Close();
+                        }
                     
-                } else {
-                    MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    } else {
+                        MessageBox.Show(Resources.XmlGUI_Open_wrongXmlExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
         }
@@ -150,6 +150,45 @@ namespace XML_GUI
             }
         }
 
+        private void openXlsFile(){
+            using (var openFileDialog = new OpenFileDialog()){
+                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                openFileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextention;
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if(Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xls" || Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xlsx"){
+                        Stream xlsSheet = null;
+                        try
+                        {
+                            // Load the contents of the file into xmlDataGrid
+                            xlsSheet = openFileDialog.OpenFile();
+                            xmlDataGrid.DataSource = XmlUtils.getXlsData(xlsSheet).Tables[0];
+                            enableCtrl(true);
+                            // TODO: either add export Excel Sheets by saving or remove option. 
+                            //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(Resources.XmlGUI_OpenXlsSheet_fail_msg, Resources.XMLGUI__fail,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            // Fixes #29 file lock issue
+                            xlsSheet?.Close();
+                        }
+                    
+                    } else {
+                        MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+        
         #endregion
 
         #region Events Methods
@@ -208,15 +247,21 @@ namespace XML_GUI
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
-            if (!readOnly.Checked && !newXmlDoc)
+            if (currentOpenXmlPath != String.Empty)
             {
-                XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
-                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                if (!readOnly.Checked && !newXmlDoc)
+                {
+                    XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
+                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success,
+                        MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                else if (readOnly.Checked && !newXmlDoc)
+                {
+                    MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
-            else if (readOnly.Checked && !newXmlDoc)
-            {
-                MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }else if (newXmlDoc) {
+            else if (newXmlDoc || currentOpenXmlPath == String.Empty) {
                 exportXmlFile();
             }
         }
