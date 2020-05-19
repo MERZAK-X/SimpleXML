@@ -80,7 +80,7 @@ namespace XML_GUI
                                 : XmlUtils.getSpreadSheetData(openedDocument as FileStream).Tables[0]; // else if (xlsx|xls|csv)
                             enableCtrl(true);
                             // TODO: implement by Excel Sheets full support. 
-                            //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            currentOpenXmlPath = (Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xml") ? openFileDialog.FileName : String.Empty;
                             this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
                         }
                         catch (Exception)
@@ -95,7 +95,7 @@ namespace XML_GUI
                         }
                     
                     } else {
-                        MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(Resources.XmlGUI_OpenDoc_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -404,25 +404,27 @@ namespace XML_GUI
         {
             var droppedDocumentPath = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             if (droppedDocumentPath.Length > 1) MessageBox.Show(Resources.XmlGUI_DragDrop_many_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            if(Path.GetExtension(droppedDocumentPath[0]).ToLower() == ".xml"){
-                Stream xmlDoc = null;
+            if(Regex.IsMatch(Path.GetExtension(droppedDocumentPath[0])?.ToLower(), @"^.*\.(xml|xlsx|xls|csv)$")){
+                FileStream droppedDocument = null;
                 try
                 {
                     // Load the contents of the file into xmlDataGrid
-                    xmlDoc = new FileStream(droppedDocumentPath[0], FileMode.Open, FileAccess.Read); // [0] => the first selected file
-                    loadXmlFile(xmlDoc);
+                    droppedDocument = new FileStream(droppedDocumentPath[0], FileMode.Open, FileAccess.Read); // [0] => the first selected file
+                    xmlDataGrid.DataSource = (Path.GetExtension(droppedDocumentPath[0])?.ToLower() == ".xml") 
+                        ? XmlUtils.getXmlData(droppedDocument).Tables[0] // if it's an xml document
+                        : XmlUtils.getSpreadSheetData(droppedDocument).Tables[0]; // else if (xlsx|xls|csv)
                     enableCtrl(true);
-                    currentOpenXmlPath = droppedDocumentPath[0]; // Set the currentOpenPath variable to be used later for saving
+                    currentOpenXmlPath = (Path.GetExtension(droppedDocumentPath[0])?.ToLower() == ".xml") ? droppedDocumentPath[0] : String.Empty; // Set the currentOpenPath variable to be used later for saving
                     this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(droppedDocumentPath[0]) +']'; // Change the Forms title to currentOpenDoc #10
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.XmlGUI_OpenDoc_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     // Fixes #29 file lock issue
-                    xmlDoc?.Close();
+                    droppedDocument?.Close();
                 }
             } else {
                 MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
