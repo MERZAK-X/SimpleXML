@@ -77,7 +77,7 @@ namespace XML_GUI
                             openedDocument = openFileDialog.OpenFile();
                             xmlDataGrid.DataSource = (Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xml") 
                                 ? XmlUtils.getXmlData(openedDocument).Tables[0] // if it's an xml document
-                                : XmlUtils.getXlsData(openedDocument).Tables[0]; // else if (xlsx|xls|csv)
+                                : XmlUtils.getSpreadSheetData(openedDocument as FileStream).Tables[0]; // else if (xlsx|xls|csv)
                             enableCtrl(true);
                             // TODO: implement by Excel Sheets full support. 
                             //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
@@ -207,7 +207,7 @@ namespace XML_GUI
                         {
                             // Load the contents of the file into xmlDataGrid
                             xlsSheet = openFileDialog.OpenFile();
-                            xmlDataGrid.DataSource = XmlUtils.getXlsData(xlsSheet).Tables[0];
+                            xmlDataGrid.DataSource = XmlUtils.getSpreadSheetData(xlsSheet as FileStream).Tables[0];
                             enableCtrl(true);
                             // TODO: either add export Excel Sheets by saving or remove option. 
                             //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
