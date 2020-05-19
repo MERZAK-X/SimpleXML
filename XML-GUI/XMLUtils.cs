@@ -89,17 +89,20 @@ namespace XMLUtils
             return pass;
         }
 
-        public static DataSet getXlsData(Stream xlsSheet)
+        public static DataSet getSpreadSheetData(FileStream excelSheet)
         {
-            DataSet xlsData;
-            using (IExcelDataReader xlsDataReader = ExcelReaderFactory.CreateReader(xlsSheet))
+            DataSet spreadSheet;
+            using (IExcelDataReader excelReader = (Path.GetExtension(excelSheet.Name)?.ToLower() != ".csv") 
+                ? ExcelReaderFactory.CreateReader(excelSheet)
+                : ExcelReaderFactory.CreateCsvReader(excelSheet))
             {
-                xlsData = xlsDataReader.AsDataSet(new ExcelDataSetConfiguration()
+                spreadSheet = excelReader.AsDataSet(new ExcelDataSetConfiguration()
                 {
                     ConfigureDataTable = (_) => new ExcelDataTableConfiguration(){UseHeaderRow = true}
                 });
+                excelReader.Close();
             }
-            return xlsData;
+            return spreadSheet;
         }
         
     }
