@@ -120,6 +120,9 @@
   <data name="success" xml:space="preserve">
     <value>Success</value>
   </data>
+  <data name="XMLGUI_supportedfiles_dialogextention" xml:space="preserve">
+    <value>XML Documents / Excel Tables|*.xml;*.xlsx;*.xls;*.csv|XML files (*.xml)|*.xml|Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
+  </data>
   <data name="XMLGUI_xmlfile_dialogextention" xml:space="preserve">
     <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
@@ -156,6 +159,10 @@ Unsaved progress might be lost !</value>
   </data>
   <data name="XMLGUI__warning" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="XmlGUI_OpenDoc_fail_msg" xml:space="preserve">
+    <value>Could not open selected file !
+Please make sure the selected file is a simple valid XML Document / Excel Sheet.</value>
   </data>
   <data name="XmlGUI_OpenXmlDoc_fail_msg" xml:space="preserve">
     <value>Could not open selected file !

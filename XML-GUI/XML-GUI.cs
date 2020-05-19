@@ -60,6 +60,47 @@ namespace XML_GUI
             xmlDataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
         }
         
+        private void openFile(){
+            using (var openFileDialog = new OpenFileDialog()){
+                
+                openFileDialog.Filter = Resources.XMLGUI_supportedfiles_dialogextention;
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if(Regex.IsMatch(Path.GetExtension(openFileDialog.FileName)?.ToLower(), @"^.*\.(xml|xlsx|xls|csv)$")){
+                        Stream openedDocument = null;
+                        try
+                        {
+                            // Load the contents of the file into xmlDataGrid
+                            openedDocument = openFileDialog.OpenFile();
+                            xmlDataGrid.DataSource = (Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xml") 
+                                ? XmlUtils.getXmlData(openedDocument).Tables[0] // if it's an xml document
+                                : XmlUtils.getXlsData(openedDocument).Tables[0]; // else if (xlsx|xls|csv)
+                            enableCtrl(true);
+                            // TODO: implement by Excel Sheets full support. 
+                            //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(Resources.XmlGUI_OpenDoc_fail_msg, Resources.XMLGUI__fail,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            // Fixes #29 file lock issue
+                            openedDocument?.Close();
+                        }
+                    
+                    } else {
+                        MessageBox.Show(Resources.XmlGUI_DragDrop_wrongExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+        
         private void openXmlFile(){
             using (var openFileDialog = new OpenFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
@@ -282,7 +323,7 @@ namespace XML_GUI
         
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openXml.PerformClick();
+            openFile();
         }
         
         private void excelSheetToolStripMenuItem_Click(object sender, EventArgs e)
