@@ -41,6 +41,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@
             this.readOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -158,6 +158,13 @@
             this.fromDatabaseToolStripMenuItem.Text = "from Database";
             this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
             // 
+            // excelSheetToolStripMenuItem
+            // 
+            this.excelSheetToolStripMenuItem.Name = "excelSheetToolStripMenuItem";
+            this.excelSheetToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
+            this.excelSheetToolStripMenuItem.Text = "Excel Sheet";
+            this.excelSheetToolStripMenuItem.Click += new System.EventHandler(this.excelSheetToolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -247,13 +254,6 @@
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(128, 30);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // excelSheetToolStripMenuItem
-            // 
-            this.excelSheetToolStripMenuItem.Name = "excelSheetToolStripMenuItem";
-            this.excelSheetToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
-            this.excelSheetToolStripMenuItem.Text = "Excel Sheet";
-            this.excelSheetToolStripMenuItem.Click += new System.EventHandler(this.excelSheetToolStripMenuItem_Click);
             // 
             // XmlGUI
             // 
