@@ -59,34 +59,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XML-DB.cs">
+    <Compile Include="Forms\ConnectionFrame.cs" />
+    <Compile Include="Forms\ConnectionFrame.Designer.cs" />
+    <Compile Include="Forms\XML-DB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XML-DB.Designer.cs">
+    <Compile Include="Forms\XML-DB.Designer.cs">
       <DependentUpon>XML-DB.cs</DependentUpon>
     </Compile>
-    <Compile Include="XML-GUI-NewTable.cs">
+    <Compile Include="Forms\XML-GUI-NewTable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XML-GUI-NewTable.Designer.cs">
+    <Compile Include="Forms\XML-GUI-NewTable.Designer.cs">
       <DependentUpon>XML-GUI-NewTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="XML-GUI.cs">
+    <Compile Include="Forms\XML-GUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="XML-GUI.Designer.cs">
+    <Compile Include="Forms\XML-GUI.Designer.cs">
       <DependentUpon>XML-GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLUtils.cs" />
-    <EmbeddedResource Include="XML-DB.resx">
+    <Compile Include="Utils\ODBConnection.cs" />
+    <Compile Include="Utils\XMLUtils.cs" />
+    <EmbeddedResource Include="Forms\ConnectionFrame.resx" />
+    <EmbeddedResource Include="Forms\XML-DB.resx">
       <DependentUpon>XML-DB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="XML-GUI-NewTable.resx">
+    <EmbeddedResource Include="Forms\XML-GUI-NewTable.resx">
       <DependentUpon>XML-GUI-NewTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="XML-GUI.resx">
+    <EmbeddedResource Include="Forms\XML-GUI.resx">
       <DependentUpon>XML-GUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
