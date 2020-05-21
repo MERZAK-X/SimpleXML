@@ -73,7 +73,7 @@
             this.connect.Text = "Connect";
             this.toolTip.SetToolTip(this.connect, "Connect to database");
             this.connect.UseVisualStyleBackColor = false;
-            this.connect.Click += new System.EventHandler(this.button1_Click);
+            this.connect.Click += new System.EventHandler(this.connect_Click);
             // 
             // dbAuthType
             // 
@@ -270,10 +270,10 @@
             this.serverHostname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.serverHostname.Location = new System.Drawing.Point(182, 75);
             this.serverHostname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.serverHostname.MaxLength = 3;
+            this.serverHostname.MaxLength = 255;
             this.serverHostname.Name = "serverHostname";
             this.serverHostname.Size = new System.Drawing.Size(239, 31);
-            this.serverHostname.TabIndex = 18;
+            this.serverHostname.TabIndex = 17;
             this.serverHostname.Text = "localhost";
             this.serverHostname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -286,7 +286,7 @@
             this.serverPort.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.serverPort.Name = "serverPort";
             this.serverPort.Size = new System.Drawing.Size(100, 30);
-            this.serverPort.TabIndex = 17;
+            this.serverPort.TabIndex = 18;
             this.serverPort.Value = new decimal(new int[] {1433, 0, 0, 0});
             // 
             // serverInstance

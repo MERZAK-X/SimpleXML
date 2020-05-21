@@ -25,7 +25,7 @@ using System.Drawing;
             dbAuthType.SelectedItem = "Windows Authentication";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void connect_Click(object sender, EventArgs e)
         {
             if (!advancedOptions)
             {
@@ -43,7 +43,6 @@ using System.Drawing;
             }
             else if (advancedOptions)
             {
-                
                 if (serverInstance.Text == "" || serverHostname.Text == "")
                 {
                     MessageBox.Show("Instance name or server address is still empty !", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -64,11 +63,12 @@ using System.Drawing;
 
             try
             {
-                ODBConnection.getConnection();
+                //ODBConnection.getConnection();
+                ODBConnection.TableToXml("employees");
             }
             catch (SqlException sqle)
             {
-                MessageBox.Show($"Connection failed :\n{sqle.ErrorCode} : {sqle.Message}", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Connection failed :\nError-{sqle.Number} : {sqle.Message}", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
