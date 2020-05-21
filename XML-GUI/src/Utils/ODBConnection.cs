@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
  using System.Text.RegularExpressions;
 
- namespace XML2DB
+ namespace XMLUtils
 {
     public class ODBConnection
     {

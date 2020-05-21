@@ -1,4 +1,4 @@
-﻿namespace XML2DB
+﻿namespace XML_GUI
 {
     partial class DatabaseConnection
     {
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseConnection));
             this.connect = new System.Windows.Forms.Button();
             this.dbAuthType = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -344,12 +345,12 @@
             this.Controls.Add(this.bannerPanel);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DatabaseConnection";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Connect to MS SQL DataBase";
             this.Load += new System.EventHandler(this.Form_Load);
             this.bannerPanel.ResumeLayout(false);
