@@ -1,11 +1,10 @@
-﻿﻿using System;
+﻿using System;
 using System.Data.SqlClient;
-using System.Drawing;
- using System.Reflection;
- using System.Windows.Forms;
- using XML_GUI.Properties;
+using System.Windows.Forms;
+using XML_GUI.Properties;
+using XMLUtils;
 
- namespace XML2DB
+ namespace XML_GUI
 {
     public partial class DatabaseConnection : Form
     {

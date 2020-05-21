@@ -8,7 +8,6 @@ using System.Threading;
 using System.Windows.Forms;
 using XMLUtils;
 using XML_GUI.Properties;
-using XML2DB;
 
 namespace XML_GUI
 {
@@ -38,7 +37,8 @@ namespace XML_GUI
             entityName = (newXmlDoc) ? entityName : "data"; // Fixes #42
             var newData = new DataTable(entityName); // Fixes #25
             // Load DataGrid columns from List
-            foreach (var column in columns){newData.Columns.Add(column);}
+            foreach (var column in columns)
+                newData.Columns.Add(column);
             xmlDataGrid.DataSource = newData;
             this.Text = Resources.XmlGUI_title_ + string.Format(Resources.XmlGUI__Unsaved_new_title, entityName);
             enableCtrl(true); // Enable control for new xml doc 
@@ -316,12 +316,12 @@ namespace XML_GUI
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Open a new documentDialog as a new Thread
+            // Open a new documentDialog as a new Dialog
+            new XML_GUI_NewTable().ShowDialog(this);
             /*var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable(){Owner = this}));
             newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;
             newDocThread.Start();*/
-            new XML_GUI_NewTable().ShowDialog(this);
         }
         
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -337,11 +337,12 @@ namespace XML_GUI
         private void fromDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TODO: @Yassine-Ag Implement your form here
-            // Open a new databaseConnectionDialog as a new Thread
-            Thread DBThread = new Thread(() => Application.Run(new DatabaseConnection()));
+            // Open a new databaseConnectionDialog as a new Dialog
+            new DatabaseConnection().ShowDialog(this);
+            /*Thread DBThread = new Thread(() => Application.Run(new DatabaseConnection()));
             DBThread.SetApartmentState(ApartmentState.STA);
             DBThread.IsBackground = false;
-            DBThread.Start();
+            DBThread.Start();*/
             //throw new System.NotImplementedException();
         }
 
