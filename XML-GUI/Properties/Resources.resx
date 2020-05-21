@@ -198,4 +198,7 @@ Would you like to use "data" instead ?</value>
   <data name="Connection_fail_msg" xml:space="preserve">
     <value>Connection error-{0} : {1}</value>
   </data>
+  <data name="XmlGUI__Unsaved_new_title" xml:space="preserve">
+    <value>[Unsaved - {0}]</value>
+  </data>
 </root>
