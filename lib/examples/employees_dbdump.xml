@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <employees>
+    <ID>3dcf99b5-7e8a-446f-b0b5-80c3bbff4867</ID>
+    <NAME>TEST      </NAME>
+    <SALARY>0.0000</SALARY>
+    <DOB>2001-01-01T00:00:00+00:00</DOB>
+  </employees>
+</DocumentElement>

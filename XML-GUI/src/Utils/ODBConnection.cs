@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+ using System.Text.RegularExpressions;
 
-namespace XML2DB
+ namespace XML2DB
 {
     public class ODBConnection
     {
@@ -14,8 +15,8 @@ namespace XML2DB
         public static string connectionString
         {
             get => winAuth 
-                ? $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}Integrated Security=true" 
-                : $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}User ID={_user};Password={_password}";
+                ? $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}Integrated Security=true;Connection Timeout=10;" 
+                : $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}User ID={_user};Password={_password};Connection Timeout=10;";
             set
             {
                 _dbName = value.Split(':')[0];
@@ -53,16 +54,11 @@ namespace XML2DB
         
         public static void TableToXml(string tableName)
         {
-            SqlCommand ps = new SqlCommand("SELECT * FROM QUOTENAME(@table_name)", ODBConnection.getConnection());
-            ps.Parameters.AddWithValue("@table_name", tableName);
-            //ps.Parameters.Add("@table_name", SqlDbType.VarChar, 50);
-            //ps.Parameters["@table_name"].Value = tableName;
-            ps.Prepare();
-            //ps.ExecuteReader();
-            DataTable dt = new DataTable();
+            SqlCommand ps = new SqlCommand($"SELECT * FROM {Regex.Escape(tableName)}", ODBConnection.getConnection());
+            //ps.Parameters.AddWithValue("@tableName", tableName); // Not working due to no DDL (only DML/DQL) support available for SqlCommand
+            DataTable dt = new DataTable(tableName);
             new SqlDataAdapter(ps).Fill(dt);
-            dt.TableName = tableName;
-            dt.WriteXml(tableName + ".xml");
+            dt.WriteXml($@"..\..\..\lib\examples\{tableName}_dbdump.xml");
         }
         
     }
