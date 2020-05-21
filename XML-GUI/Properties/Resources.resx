@@ -195,4 +195,7 @@ Only the first selected will be opened.</value>
     <value>The given entity name : "{0}" is invalid !
 Would you like to use "data" instead ?</value>
   </data>
+  <data name="Connection_fail_msg" xml:space="preserve">
+    <value>Connection error-{0} : {1}</value>
+  </data>
 </root>

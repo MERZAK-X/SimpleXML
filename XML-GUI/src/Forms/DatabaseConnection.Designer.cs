@@ -1,6 +1,6 @@
 ﻿namespace XML2DB
 {
-    partial class ConnectionFrame
+    partial class DatabaseConnection
     {
         /// <summary>
         /// Required designer variable.
@@ -332,7 +332,7 @@
             this.buttonsPanel.Size = new System.Drawing.Size(623, 105);
             this.buttonsPanel.TabIndex = 19;
             // 
-            // ConnectionFrame
+            // DatabaseConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -343,11 +343,11 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.bannerPanel);
             this.Controls.Add(this.label5);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ConnectionFrame";
+            this.Name = "DatabaseConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect to MS SQL DataBase";
             this.Load += new System.EventHandler(this.Form_Load);
