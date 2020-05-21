@@ -15,7 +15,9 @@ namespace XML_GUI
         public XML_GUI_NewTable()
         {
             InitializeComponent();
-            this.Visible = true; // Make form visible
+            //this.StartPosition = Owner.Location;
+            //this.Parent = Owner; this.CenterToParent();
+            //this.Visible = true; // Make form visible
         }
 
         private List<String> getColumnNames()
@@ -53,7 +55,8 @@ namespace XML_GUI
                     }
                 }
                 // Open a new XmlGUI Form as a new Thread
-                var newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entityName.Text)));
+                var entity = entityName.Text; // Fixes #42 : do not pass entityName.Text to the constructor
+                var newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entity)));
                 newXmlDoc.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
                 newXmlDoc.IsBackground = false;
                 newXmlDoc.Start();

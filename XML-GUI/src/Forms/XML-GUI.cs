@@ -18,7 +18,6 @@ namespace XML_GUI
 
         private String currentOpenXmlPath = String.Empty;
         private bool newXmlDoc = false;
-        private string entityName = "data";
 
         #endregion
 
@@ -31,15 +30,17 @@ namespace XML_GUI
             this.Visible = true; // Make the form visible
         }
         
-        public XmlGUI(List<String> columns, String entityName = "data")
+        public XmlGUI(List<String> columns, String entityName)
         {
             InitializeComponent();
             this.newXmlDoc = true; // Specify that we're making a new Xml Document
+            // Fixes #25 & #43 for newly created xml documents tag names (entity name is no longer taken from file name)
+            entityName = (newXmlDoc) ? entityName : "data"; // Fixes #42
+            var newData = new DataTable(entityName); // Fixes #25
             // Load DataGrid columns from List
-            var newData = new DataTable("XmlDocument");
             foreach (var column in columns){newData.Columns.Add(column);}
             xmlDataGrid.DataSource = newData;
-            this.entityName = entityName; // Fixes #25
+            this.Text = Resources.XmlGUI_title_ + string.Format(Resources.XmlGUI__Unsaved_new_title, entityName);
             enableCtrl(true); // Enable control for new xml doc 
             this.Visible = true; // Make the form visible
             readOnlyToolStripMenuItem.PerformClick();
@@ -154,8 +155,6 @@ namespace XML_GUI
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         var ds = (DataTable) xmlDataGrid.DataSource;
-                        // Fixes #25 for newly created xml documents tag names (entity name is taken from file name)
-                        ds.TableName = (newXmlDoc) ? entityName : ds.TableName; // Fixes #25
                         // Save the contents of the xmlDataGrid into the chosen file
                         XmlUtils.exportXmlData(ds, fileDialog.FileName);
                         currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
@@ -318,10 +317,11 @@ namespace XML_GUI
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open a new documentDialog as a new Thread
-            var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable(){Owner = this}));
+            /*var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable(){Owner = this}));
             newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;
-            newDocThread.Start();
+            newDocThread.Start();*/
+            new XML_GUI_NewTable().ShowDialog(this);
         }
         
         private void openToolStripMenuItem_Click(object sender, EventArgs e)

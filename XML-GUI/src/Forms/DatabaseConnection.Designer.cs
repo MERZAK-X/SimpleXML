@@ -348,6 +348,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DatabaseConnection";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect to MS SQL DataBase";
             this.Load += new System.EventHandler(this.Form_Load);

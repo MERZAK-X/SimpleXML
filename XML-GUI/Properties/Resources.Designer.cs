@@ -125,6 +125,15 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [Unsaved - {0}].
+        /// </summary>
+        internal static string XmlGUI__Unsaved_new_title {
+            get {
+                return ResourceManager.GetString("XmlGUI__Unsaved_new_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
         internal static string XMLGUI__warning {
