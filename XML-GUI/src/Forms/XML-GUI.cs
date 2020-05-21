@@ -247,6 +247,8 @@ namespace XML_GUI
         {
             var exit = MessageBox.Show(Resources.XmlGUI_exit_msg, Resources.XmlGUI_exit, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (exit == DialogResult.No) e.Cancel = true;
+            foreach (var form in OwnedForms) // Fixes #41
+                form.Close();
         }
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // Ctrl + Key Hotkeys setup 
@@ -316,7 +318,7 @@ namespace XML_GUI
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open a new documentDialog as a new Thread
-            var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable()));
+            var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable(){Owner = this}));
             newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;
             newDocThread.Start();
@@ -336,7 +338,7 @@ namespace XML_GUI
         {
             // TODO: @Yassine-Ag Implement your form here
             // Open a new databaseConnectionDialog as a new Thread
-            Thread DBThread = new Thread(() => Application.Run(new ConnectionFrame()));
+            Thread DBThread = new Thread(() => Application.Run(new DatabaseConnection()));
             DBThread.SetApartmentState(ApartmentState.STA);
             DBThread.IsBackground = false;
             DBThread.Start();

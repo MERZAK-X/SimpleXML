@@ -7,11 +7,11 @@ using System.Drawing;
 
  namespace XML2DB
 {
-    public partial class ConnectionFrame : Form
+    public partial class DatabaseConnection : Form
     {
         bool advancedOptions = false;
 
-        public ConnectionFrame()
+        public DatabaseConnection()
         {
             InitializeComponent();
             /*Icon = new Icon(
@@ -43,10 +43,19 @@ using System.Drawing;
             }
             else if (advancedOptions)
             {
-                if (serverInstance.Text == "" || serverHostname.Text == "")
+                if (serverHostname.Text == "")
                 {
                     MessageBox.Show("Instance name or server address is still empty !", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 } else {
+                    if (serverInstance.Text == "" || serverInstance.Text == "\\")
+                    {
+                        var result = MessageBox.Show("Instance name is empty !\nIf there's more than one instance running in the remote server, the connection might fail !", Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Cancel)
+                        {
+                            return;
+                        }
+                        serverInstance.Text = "";
+                    }
                     ODBConnection.remote = true;
                     if (dbAuthType.SelectedItem.Equals("Windows Authentication"))
                     {
@@ -68,7 +77,7 @@ using System.Drawing;
             }
             catch (SqlException sqle)
             {
-                MessageBox.Show($"Connection failed :\nError-{sqle.Number} : {sqle.Message}", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resources.Connection_fail_msg, sqle.Number, sqle.Message), Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -133,6 +133,7 @@ namespace XML_GUI
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 357);
             this.Name = "XML_GUI_NewTable";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Document";
             this.ResumeLayout(false);
             this.PerformLayout();

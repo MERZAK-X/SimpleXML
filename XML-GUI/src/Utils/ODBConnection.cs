@@ -15,8 +15,8 @@ using System.Data.SqlClient;
         public static string connectionString
         {
             get => winAuth 
-                ? $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}Integrated Security=true;Connection Timeout=10;" 
-                : $@"Data Source={_host + _instance};Initial Catalog={_dbName};{((remote) ? "Network Library=DBMSSOCN;" : String.Empty)}User ID={_user};Password={_password};Connection Timeout=10;";
+                ? $@"Data Source={((remote) ? "tcp:" : String.Empty)}{_host + _instance};Initial Catalog={_dbName};Integrated Security=true;Connection Timeout=10;" 
+                : $@"Data Source={((remote) ? "tcp:" : String.Empty)}{_host + _instance};Initial Catalog={_dbName};User ID={_user};Password={_password};Connection Timeout=10;";
             set
             {
                 _dbName = value.Split(':')[0];

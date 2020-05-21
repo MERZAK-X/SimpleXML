@@ -61,6 +61,15 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection error-{0} : {1}.
+        /// </summary>
+        internal static string Connection_fail_msg {
+            get {
+                return ResourceManager.GetString("Connection_fail_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string success {
