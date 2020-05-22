@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using ExcelDataReader;
 
 namespace XMLUtils
@@ -99,12 +100,15 @@ namespace XMLUtils
             return flag;
         }
 
-        public static bool export2Xls(DataSet xlsData, string filename)
+        public static bool export2Xls(DataTable xlsData, string filename)
         {
             var flag = false;
-            var xlsWorkbook = new ExcelFile();
+            var xlsWorkbook = new XLWorkbook();
+
+            //foreach (DataTable dataTable in xlsData.Tables)
+                xlsWorkbook.Worksheets.Add(xlsData, xlsData.TableName);
             
-            // Import all tables from DataSet the new workbook
+            /*// Import all tables from DataSet the new workbook
             foreach (DataTable dataTable in xlsData.Tables)
             {
                 // Add new worksheet to the file.
@@ -114,10 +118,10 @@ namespace XMLUtils
                 // Insert the data from DataTable to the worksheet starting at cell "A1".
                 xlsSheet.InsertDataTable(dataTable,
                     new InsertDataTableOptions("A1") { ColumnHeaders = true });
-            }
+            }*/
 
             try{
-                xlsWorkbook.Save(filename);
+                xlsWorkbook.SaveAs(filename);
                 flag = true;
             }catch(Exception){
                 flag = false;

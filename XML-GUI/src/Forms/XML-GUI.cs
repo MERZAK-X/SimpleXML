@@ -180,7 +180,7 @@ namespace XML_GUI
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         // Save the contents of the xmlDataGrid into the chosen file
-                        if(XmlUtils.export2Xls(xmlDataGrid.DataSource as DataSet, fileDialog.FileName))
+                        if(XmlUtils.export2Xls(xmlDataGrid.DataSource as DataTable, fileDialog.FileName))
                             MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         else 
                             MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
