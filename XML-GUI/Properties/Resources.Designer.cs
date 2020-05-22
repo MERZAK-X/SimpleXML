@@ -70,6 +70,16 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instance name is empty !
+        ///If there&apos;s more than one instance running in the remote server, the connection might fail !.
+        /// </summary>
+        internal static string DatabaseConnection_emptyInstance_msg {
+            get {
+                return ResourceManager.GetString("DatabaseConnection_emptyInstance_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string success {
@@ -143,7 +153,7 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv.
         /// </summary>
         internal static string XMLGUI_csvfile_dialogextention {
             get {
@@ -229,8 +239,7 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Couldn&apos;t export to CSV file!
-        ///Please make sure the chosen file is not open by some other process and try again..
+        ///   Looks up a localized string similar to Couldn&apos;t export to CSV file !.
         /// </summary>
         internal static string XMLGUI_saveCSV_fail_msg {
             get {
@@ -254,6 +263,15 @@ namespace XML_GUI.Properties {
         internal static string XMLGUI_saveEmptyXml_fail_msg {
             get {
                 return ResourceManager.GetString("XMLGUI_saveEmptyXml_fail_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t export to Excel Sheet xls file !.
+        /// </summary>
+        internal static string XMLGUI_saveXls_fail_msg {
+            get {
+                return ResourceManager.GetString("XMLGUI_saveXls_fail_msg", resourceCulture);
             }
         }
         
@@ -286,7 +304,7 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Excel Sheets (*.xlsx)|*.xlsx.
         /// </summary>
         internal static string XMLGUI_xlsfile_dialogextention {
             get {

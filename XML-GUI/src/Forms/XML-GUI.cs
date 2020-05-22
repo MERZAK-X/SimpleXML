@@ -4,7 +4,6 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 using XMLUtils;
 using XML_GUI.Properties;
@@ -167,7 +166,31 @@ namespace XML_GUI
                 MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        
+        private void exportXlsFile()
+        {
+            if (xmlDataGrid.ColumnCount > 0)
+            {
+                using (var fileDialog = new SaveFileDialog()){
+                    //openFileDialog.InitialDirectory = @"%HOMEPATH%";
+                    fileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextention;
+                    fileDialog.FilterIndex = 1;
+                    fileDialog.RestoreDirectory = true;
 
+                    if (fileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Save the contents of the xmlDataGrid into the chosen file
+                        if(XmlUtils.export2Xls(xmlDataGrid.DataSource as DataSet, fileDialog.FileName))
+                            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        else 
+                            MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            } else {
+                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        
         private void exportCSVFile()
         {
             if (xmlDataGrid.ColumnCount > 0)
@@ -364,6 +387,11 @@ namespace XML_GUI
         private void toXMLDocumentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             exportXmlFile();
+        }
+        
+        private void toXLSXExcelSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportXlsFile();
         }
 
         private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)

@@ -13,9 +13,6 @@ using XMLUtils;
         public DatabaseConnection()
         {
             InitializeComponent();
-            /*Icon = new Icon(
-                Assembly.GetExecutingAssembly().GetManifestResourceStream("lib/icons/ssms.ico")
-            );*/
             this.Height += advancedOptions ? advancedOptionsPanel.Height : -advancedOptionsPanel.Height;
         }
 
@@ -44,11 +41,11 @@ using XMLUtils;
             {
                 if (serverHostname.Text == "")
                 {
-                    MessageBox.Show("Instance name or server address is still empty !", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Server address is still empty !", Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 } else {
                     if (serverInstance.Text == "" || serverInstance.Text == "\\")
                     {
-                        var result = MessageBox.Show("Instance name is empty !\nIf there's more than one instance running in the remote server, the connection might fail !", Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        var result = MessageBox.Show(Resources.DatabaseConnection_emptyInstance_msg, Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (result == DialogResult.Cancel)
                         {
                             return;
