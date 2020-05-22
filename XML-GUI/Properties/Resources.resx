@@ -143,12 +143,17 @@ Please create a new document using "File > New (Ctrl + N)" or open an existing o
   <data name="XmlGUI_title_" xml:space="preserve">
     <value>XML-GUI - </value>
   </data>
+  <data name="XMLGUI_xlsfile_dialogextention" xml:space="preserve">
+    <value>Excel Sheets (*.xlsx)|*.xlsx</value>
+  </data>
   <data name="XMLGUI_csvfile_dialogextention" xml:space="preserve">
-    <value>CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
+    <value>CSV Excel Sheets (*.csv)|*.csv</value>
+  </data>
+  <data name="XMLGUI_saveXls_fail_msg" xml:space="preserve">
+    <value>Couldn't export to Excel Sheet xls file !</value>
   </data>
   <data name="XMLGUI_saveCSV_fail_msg" xml:space="preserve">
-    <value>Couldn't export to CSV file!
-Please make sure the chosen file is not open by some other process and try again.</value>
+    <value>Couldn't export to CSV file !</value>
   </data>
   <data name="XmlGUI_exit_msg" xml:space="preserve">
     <value>Are you sure you want to exit?
@@ -200,5 +205,9 @@ Would you like to use "data" instead ?</value>
   </data>
   <data name="XmlGUI__Unsaved_new_title" xml:space="preserve">
     <value>[Unsaved - {0}]</value>
+  </data>
+  <data name="DatabaseConnection_emptyInstance_msg" xml:space="preserve">
+    <value>Instance name is empty !
+If there's more than one instance running in the remote server, the connection might fail !</value>
   </data>
 </root>

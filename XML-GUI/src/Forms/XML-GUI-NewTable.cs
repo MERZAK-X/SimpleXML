@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using XML_GUI.Properties;
@@ -11,13 +10,9 @@ namespace XML_GUI
 {
     public partial class XML_GUI_NewTable : Form
     {
-        //private string entityName = "data";
         public XML_GUI_NewTable()
         {
             InitializeComponent();
-            //this.StartPosition = Owner.Location;
-            //this.Parent = Owner; this.CenterToParent();
-            //this.Visible = true; // Make form visible
         }
 
         private List<String> getColumnNames()

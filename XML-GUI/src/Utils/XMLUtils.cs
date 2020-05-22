@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -66,7 +65,7 @@ namespace XMLUtils
         
         public static bool export2CSV(DataGridView dgv, string filename)
         {
-            var pass = false;
+            var flag = false;
             /*// Method 1
             dgv.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText; // Choose whether to write header. Use EnableWithoutHeaderText instead to omit header.
             dgv.SelectAll(); // Select all the cell
@@ -89,10 +88,42 @@ namespace XMLUtils
                 var cells = row.Cells.Cast<DataGridViewCell>();
                 sb.AppendLine(string.Join(",", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
             }
-            System.IO.File.WriteAllText(filename, sb.ToString());
-            pass = true;
+
+            try{
+                File.WriteAllText(filename, sb.ToString());
+                flag = true;
+            }catch(Exception){
+                flag = false;
+            }
             
-            return pass;
+            return flag;
+        }
+
+        public static bool export2Xls(DataSet xlsData, string filename)
+        {
+            var flag = false;
+            var xlsWorkbook = new ExcelFile();
+            
+            // Import all tables from DataSet the new workbook
+            foreach (DataTable dataTable in xlsData.Tables)
+            {
+                // Add new worksheet to the file.
+                var xlsSheet = xlsWorkbook.Worksheets.Add(dataTable.TableName);
+                // Change the value of the first cell in the DataTable.
+                dataTable.Rows[0][0] = "TEST";
+                // Insert the data from DataTable to the worksheet starting at cell "A1".
+                xlsSheet.InsertDataTable(dataTable,
+                    new InsertDataTableOptions("A1") { ColumnHeaders = true });
+            }
+
+            try{
+                xlsWorkbook.Save(filename);
+                flag = true;
+            }catch(Exception){
+                flag = false;
+            }
+
+            return flag;
         }
 
         public static DataSet getSpreadSheetData(FileStream excelSheet)
