@@ -53,10 +53,6 @@
       <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GemBox.Spreadsheet, Version=45.0.0.1176, Culture=neutral, PublicKeyToken=b1b72c69714d4847">
-      <HintPath>..\packages\GemBox.Spreadsheet.45.0.1176\lib\net35\GemBox.Spreadsheet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342">
       <HintPath>..\packages\Oracle.ManagedDataAccess.19.7.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>

@@ -104,11 +104,13 @@ namespace XMLUtils
         {
             var flag = false;
             var xlsWorkbook = new XLWorkbook();
-
-            //foreach (DataTable dataTable in xlsData.Tables)
-                xlsWorkbook.Worksheets.Add(xlsData, xlsData.TableName);
+            // Add the data table to the xls sheet
+            xlsWorkbook.Worksheets.Add(xlsData, xlsData.TableName);
             
-            /*// Import all tables from DataSet the new workbook
+            /*
+                //using GemBox.Spreadsheet
+                
+            // Import all tables from DataSet the new workbook
             foreach (DataTable dataTable in xlsData.Tables)
             {
                 // Add new worksheet to the file.
