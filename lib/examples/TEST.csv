@@ -1,11 +1,83 @@
-"TITLE","ARTIST","COUNTRY","COMPANY","PRICE","YEAR"
-"C#","MERZAK","MA","MERZAK-X","10.90","1999"
-"TEST","TEST","TEST","TEST","0.00","2020"
-"SAVE TEST","TEST","null","null","0.00","2002"
-"Ctrl+S test","MERZAK","DE","MERZAK-X","9.99","2020"
-"#7 TEST","TEST","TEST","null","0.00","2020"
-"CSV_TEST","MERZAK","TEST","MERZAK-X","0.00","2016"
-"DROP_TEST","MERZAK","DRAG","","","2020"
-"CSV_SAVE_TEST","MERZAK","Sheet","MERZAK-X","","2020"
-"ESCAPE_TEST","MERZAK","&amp;quot;,&amp;quot;TEST&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;","&apos;","-1","2000"
-"","","","","",""
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <TITLE>C#</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>MA</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>10.90</PRICE>
+    <YEAR>1999</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>TEST</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>SAVE TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>null</COUNTRY>
+    <COMPANY>null</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2002</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>Ctrl+S test</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>DE</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>9.99</PRICE>
+    <YEAR>2020</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>#7 TEST</TITLE>
+    <ARTIST>TEST</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>null</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2020</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>CSV_TEST</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>TEST</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE>0.00</PRICE>
+    <YEAR>2016</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>DROP_TEST</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>DRAG</COUNTRY>
+    <COMPANY />
+    <PRICE />
+    <YEAR>2020</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>CSV_SAVE_TEST</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>Sheet</COUNTRY>
+    <COMPANY>MERZAK-X</COMPANY>
+    <PRICE />
+    <YEAR>2021</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE>ESCAPE_TEST</TITLE>
+    <ARTIST>MERZAK</ARTIST>
+    <COUNTRY>&amp;amp;quot;,&amp;amp;quot;TEST&amp;amp;quot;,&amp;amp;quot;&amp;amp;quot;,&amp;amp;quot;&amp;amp;quot;,&amp;amp;quot;&amp;amp;quot;,&amp;amp;quot;</COUNTRY>
+    <COMPANY>&amp;apos;</COMPANY>
+    <PRICE>-1</PRICE>
+    <YEAR>2000</YEAR>
+  </Table1>
+  <Table1>
+    <TITLE />
+    <ARTIST />
+    <COUNTRY />
+    <COMPANY />
+    <PRICE />
+    <YEAR />
+  </Table1>
+</NewDataSet>

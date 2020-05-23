@@ -101,7 +101,6 @@ namespace XMLUtils
             }catch(Exception){
                 flag = false;
             }
-
             return flag;
         }
         

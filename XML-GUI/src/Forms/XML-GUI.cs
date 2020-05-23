@@ -151,28 +151,27 @@ namespace XML_GUI
 
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
+                        var fileSuccessfullyExported = false;
                         switch (Path.GetExtension(fileDialog.FileName)?.ToLower())
                         {
-                            // Export the file depending on the chosen extension 
-                            case ".xml": 
-                                if (XmlUtils.ExportXML(dataGrid.DataSource as DataTable, fileDialog.FileName))
-                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                else
-                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Export the file depending on the chosen extension, !Export -> if export fails, return instead is to display err msg only
+                            case ".xml":
+                                fileSuccessfullyExported = XmlUtils.ExportXML(dataGrid.DataSource as DataTable, fileDialog.FileName);
                                 break;
                             case ".xlsx":
-                                if (XmlUtils.ExportXLS(dataGrid.DataSource as DataTable, fileDialog.FileName)) 
-                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                else
-                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                fileSuccessfullyExported = XmlUtils.ExportXLS(dataGrid.DataSource as DataTable, fileDialog.FileName);
                                 break;
                             case ".csv":
-                                if(XmlUtils.ExportCSV(dataGrid, fileDialog.FileName))
-                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                else 
-                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                fileSuccessfullyExported = XmlUtils.ExportCSV(dataGrid, fileDialog.FileName);
                                 break;
                         }
+
+                        if (fileSuccessfullyExported) {
+                            currentOpenDocumentPath = fileDialog.FileName;
+                            this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(currentOpenDocumentPath) +']'; // Change the Forms title to currentOpenDoc #10
+                            MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        } else 
+                            MessageBox.Show(string.Format(Resources.XmlGUI_saveFile_fail_msg, fileDialog.FileName), Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             } else {
@@ -359,20 +358,23 @@ namespace XML_GUI
             }
         }
         
-        /*protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // Ctrl + Key Hotkeys setup 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // Ctrl + Key Hotkeys setup 
         {
             switch (keyData)
             {
                 case Keys.Control | Keys.S:
                     saveCurrent.PerformClick();
                     return true;
-                case Keys.Control | Keys.O:
+                /*case Keys.Control | Keys.O:
                     openXml.PerformClick();
+                    return true;*/
+                case Keys.Control | Keys.Alt | Keys.E:
+                    exportToolStripMenuItem.PerformClick();
                     return true;
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
             }
-        }*/
+        }
 
         #endregion
 
