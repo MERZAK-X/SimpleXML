@@ -76,7 +76,7 @@ namespace XMLUtils
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 var cells = row.Cells.Cast<DataGridViewCell>();
-                sb.AppendLine(string.Join(",", cells.Select(cell => "\"" + SecurityElement.Escape(cell.Value.ToString()) + "\"").ToArray()));
+                sb.AppendLine(string.Join(",", cells.Select(cell => "\"" + SecurityElement.Escape(cell?.Value + String.Empty) + "\"").ToArray()));
             }
 
             try{
