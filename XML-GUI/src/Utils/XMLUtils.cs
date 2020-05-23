@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -70,12 +71,12 @@ namespace XMLUtils
              
             var sb = new StringBuilder();
             var headers = dgv.Columns.Cast<DataGridViewColumn>();
-            sb.AppendLine(string.Join(",", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
+            sb.AppendLine(string.Join(",", headers.Select(column => "\"" + SecurityElement.Escape(column.HeaderText.ToString()) + "\"").ToArray()));
 
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 var cells = row.Cells.Cast<DataGridViewCell>();
-                sb.AppendLine(string.Join(",", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
+                sb.AppendLine(string.Join(",", cells.Select(cell => "\"" + SecurityElement.Escape(cell.Value.ToString()) + "\"").ToArray()));
             }
 
             try{

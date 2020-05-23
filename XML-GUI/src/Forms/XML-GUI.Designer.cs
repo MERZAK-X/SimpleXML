@@ -66,6 +66,7 @@
             this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGrid.Location = new System.Drawing.Point(12, 111);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
@@ -131,20 +132,20 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(243, 6);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -152,7 +153,7 @@
             // 
             this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.excelSheetToolStripMenuItem, this.fromDatabaseToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // excelSheetToolStripMenuItem
@@ -172,13 +173,13 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(243, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -186,49 +187,49 @@
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toXLSXExcelSheetToolStripMenuItem, this.toCSVToolStripMenuItem, this.toDatabaseToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) (((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) | System.Windows.Forms.Keys.E)));
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.exportToolStripMenuItem.Text = "Export";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toXMLDocumentToolStripMenuItem
             // 
             this.toXMLDocumentToolStripMenuItem.Name = "toXMLDocumentToolStripMenuItem";
-            this.toXMLDocumentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) (((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) | System.Windows.Forms.Keys.E)));
-            this.toXMLDocumentToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toXMLDocumentToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.toXMLDocumentToolStripMenuItem.Text = "to XML Document";
             this.toXMLDocumentToolStripMenuItem.Click += new System.EventHandler(this.toXMLDocumentToolStripMenuItem_Click);
             // 
             // toXLSXExcelSheetToolStripMenuItem
             // 
             this.toXLSXExcelSheetToolStripMenuItem.Name = "toXLSXExcelSheetToolStripMenuItem";
-            this.toXLSXExcelSheetToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toXLSXExcelSheetToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.toXLSXExcelSheetToolStripMenuItem.Text = "to XLSX Excel Sheet";
             this.toXLSXExcelSheetToolStripMenuItem.Click += new System.EventHandler(this.toXLSXExcelSheetToolStripMenuItem_Click);
             // 
             // toCSVToolStripMenuItem
             // 
             this.toCSVToolStripMenuItem.Name = "toCSVToolStripMenuItem";
-            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.toCSVToolStripMenuItem.Text = "to CSV Excel Sheet";
             this.toCSVToolStripMenuItem.Click += new System.EventHandler(this.toCSVToolStripMenuItem_Click);
             // 
             // toDatabaseToolStripMenuItem
             // 
             this.toDatabaseToolStripMenuItem.Name = "toDatabaseToolStripMenuItem";
-            this.toDatabaseToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toDatabaseToolStripMenuItem.Size = new System.Drawing.Size(250, 30);
             this.toDatabaseToolStripMenuItem.Text = "to Database";
             this.toDatabaseToolStripMenuItem.Click += new System.EventHandler(this.toDatabaseToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(243, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(246, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -290,6 +291,7 @@
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelSheetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -314,7 +316,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem toXLSXExcelSheetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toXMLDocumentToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGrid;
 
         #endregion
     }
