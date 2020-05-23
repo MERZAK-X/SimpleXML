@@ -397,28 +397,12 @@ namespace XML_GUI
         
         private void OpenXmlDoc_Click(object sender, EventArgs e)
         {
-            openXmlFile();
+            openFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
-            if (currentOpenDocumentPath != String.Empty)
-            {
-                if (!readOnly.Checked && !newXmlDoc)
-                {
-                    XmlUtils.ExportXML((DataTable) dataGrid.DataSource, currentOpenDocumentPath);
-                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success,
-                        MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                else if (readOnly.Checked && !newXmlDoc)
-                {
-                    MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                }
-            }
-            else if (newXmlDoc || currentOpenDocumentPath == String.Empty) {
-                exportXmlFile();
-            }
+            saveFile();
         }
 
         #endregion
