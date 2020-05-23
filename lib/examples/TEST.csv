@@ -5,4 +5,7 @@
 "Ctrl+S test","MERZAK","DE","MERZAK-X","9.99","2020"
 "#7 TEST","TEST","TEST","null","0.00","2020"
 "CSV_TEST","MERZAK","TEST","MERZAK-X","0.00","2016"
+"DROP_TEST","MERZAK","DRAG","","","2020"
+"CSV_SAVE_TEST","MERZAK","Sheet","MERZAK-X","","2020"
+"ESCAPE_TEST","MERZAK","&amp;quot;,&amp;quot;TEST&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;","&apos;","-1","2000"
 "","","","","",""

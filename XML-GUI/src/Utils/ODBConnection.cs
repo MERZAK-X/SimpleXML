@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
- using System.Text.RegularExpressions;
+ using System.Security;
 
  namespace XMLUtils
 {
@@ -54,7 +54,7 @@ using System.Data.SqlClient;
         
         public static void TableToXml(string tableName)
         {
-            SqlCommand ps = new SqlCommand($"SELECT * FROM {Regex.Escape(tableName)}", ODBConnection.getConnection());
+            SqlCommand ps = new SqlCommand($"SELECT * FROM {SecurityElement.Escape(tableName)}", ODBConnection.getConnection());
             //ps.Parameters.AddWithValue("@tableName", tableName); // Not working due to no DDL (only DML/DQL) support available for SqlCommand
             DataTable dt = new DataTable(tableName);
             new SqlDataAdapter(ps).Fill(dt);
