@@ -30,7 +30,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlGUI));
-            this.xmlDataGrid = new System.Windows.Forms.DataGridView();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.openXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
             this.readOnly = new System.Windows.Forms.CheckBox();
@@ -40,12 +40,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toXMLDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toXLSXExcelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,26 +55,25 @@
             this.readOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toXLSXExcelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.dataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // xmlDataGrid
+            // dataGrid
             // 
-            this.xmlDataGrid.AllowDrop = true;
-            this.xmlDataGrid.AllowUserToDeleteRows = false;
-            this.xmlDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.xmlDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.xmlDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.xmlDataGrid.Location = new System.Drawing.Point(12, 111);
-            this.xmlDataGrid.Name = "xmlDataGrid";
-            this.xmlDataGrid.ReadOnly = true;
-            this.xmlDataGrid.RowTemplate.Height = 28;
-            this.xmlDataGrid.Size = new System.Drawing.Size(1020, 443);
-            this.xmlDataGrid.TabIndex = 0;
-            this.xmlDataGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragDrop);
-            this.xmlDataGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragEnter);
+            this.dataGrid.AllowDrop = true;
+            this.dataGrid.AllowUserToDeleteRows = false;
+            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Location = new System.Drawing.Point(12, 111);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.ReadOnly = true;
+            this.dataGrid.RowTemplate.Height = 28;
+            this.dataGrid.Size = new System.Drawing.Size(1020, 443);
+            this.dataGrid.TabIndex = 0;
+            this.dataGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragDrop);
+            this.dataGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragEnter);
             // 
             // openXml
             // 
@@ -150,17 +150,10 @@
             // 
             // importToolStripMenuItem
             // 
-            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fromDatabaseToolStripMenuItem, this.excelSheetToolStripMenuItem});
+            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.excelSheetToolStripMenuItem, this.fromDatabaseToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.importToolStripMenuItem.Text = "Import";
-            // 
-            // fromDatabaseToolStripMenuItem
-            // 
-            this.fromDatabaseToolStripMenuItem.Name = "fromDatabaseToolStripMenuItem";
-            this.fromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
-            this.fromDatabaseToolStripMenuItem.Text = "from Database";
-            this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
             // 
             // excelSheetToolStripMenuItem
             // 
@@ -168,6 +161,13 @@
             this.excelSheetToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
             this.excelSheetToolStripMenuItem.Text = "Excel Sheet";
             this.excelSheetToolStripMenuItem.Click += new System.EventHandler(this.excelSheetToolStripMenuItem_Click);
+            // 
+            // fromDatabaseToolStripMenuItem
+            // 
+            this.fromDatabaseToolStripMenuItem.Name = "fromDatabaseToolStripMenuItem";
+            this.fromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(214, 30);
+            this.fromDatabaseToolStripMenuItem.Text = "from Database";
+            this.fromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.fromDatabaseToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -184,10 +184,11 @@
             // 
             // exportToolStripMenuItem
             // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toCSVToolStripMenuItem, this.toXLSXExcelSheetToolStripMenuItem, this.toDatabaseToolStripMenuItem});
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toXMLDocumentToolStripMenuItem, this.toXLSXExcelSheetToolStripMenuItem, this.toCSVToolStripMenuItem, this.toDatabaseToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toXMLDocumentToolStripMenuItem
             // 
@@ -196,6 +197,13 @@
             this.toXMLDocumentToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
             this.toXMLDocumentToolStripMenuItem.Text = "to XML Document";
             this.toXMLDocumentToolStripMenuItem.Click += new System.EventHandler(this.toXMLDocumentToolStripMenuItem_Click);
+            // 
+            // toXLSXExcelSheetToolStripMenuItem
+            // 
+            this.toXLSXExcelSheetToolStripMenuItem.Name = "toXLSXExcelSheetToolStripMenuItem";
+            this.toXLSXExcelSheetToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
+            this.toXLSXExcelSheetToolStripMenuItem.Text = "to XLSX Excel Sheet";
+            this.toXLSXExcelSheetToolStripMenuItem.Click += new System.EventHandler(this.toXLSXExcelSheetToolStripMenuItem_Click);
             // 
             // toCSVToolStripMenuItem
             // 
@@ -259,13 +267,6 @@
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
-            // toXLSXExcelSheetToolStripMenuItem
-            // 
-            this.toXLSXExcelSheetToolStripMenuItem.Name = "toXLSXExcelSheetToolStripMenuItem";
-            this.toXLSXExcelSheetToolStripMenuItem.Size = new System.Drawing.Size(340, 30);
-            this.toXLSXExcelSheetToolStripMenuItem.Text = "to XLSX Excel Sheet";
-            this.toXLSXExcelSheetToolStripMenuItem.Click += new System.EventHandler(this.toXLSXExcelSheetToolStripMenuItem_Click);
-            // 
             // XmlGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -274,7 +275,7 @@
             this.Controls.Add(this.readOnly);
             this.Controls.Add(this.saveCurrent);
             this.Controls.Add(this.openXml);
-            this.Controls.Add(this.xmlDataGrid);
+            this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -282,7 +283,7 @@
             this.Text = "XML-GUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlGUI_FormClosing);
             this.Load += new System.EventHandler(this.XmlGUI_Load);
-            ((System.ComponentModel.ISupportInitialize) (this.xmlDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.dataGrid)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -313,7 +314,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem toXLSXExcelSheetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toXMLDocumentToolStripMenuItem;
-        private System.Windows.Forms.DataGridView xmlDataGrid;
+        private System.Windows.Forms.DataGridView dataGrid;
 
         #endregion
     }

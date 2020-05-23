@@ -155,9 +155,9 @@ namespace XML_GUI.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv.
         /// </summary>
-        internal static string XMLGUI_csvfile_extention {
+        internal static string XMLGUI_csvfile_extension {
             get {
-                return ResourceManager.GetString("XMLGUI_csvfile_extention", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_csvfile_extension", resourceCulture);
             }
         }
         
@@ -190,7 +190,7 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to exit?
+        ///   Looks up a localized string similar to Are you sure you want to close this window ?
         ///Unsaved progress might be lost !.
         /// </summary>
         internal static string XmlGUI_exit_msg {
@@ -239,6 +239,16 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to exit all opened windows ?
+        ///Unsaved progress might be lost !.
+        /// </summary>
+        internal static string XmlGUI_quit_msg {
+            get {
+                return ResourceManager.GetString("XmlGUI_quit_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t export to CSV file !.
         /// </summary>
         internal static string XMLGUI_saveCSV_fail_msg {
@@ -263,6 +273,15 @@ namespace XML_GUI.Properties {
         internal static string XMLGUI_saveEmptyTable_fail_msg {
             get {
                 return ResourceManager.GetString("XMLGUI_saveEmptyTable_fail_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t save data to {0} !.
+        /// </summary>
+        internal static string XmlGUI_saveFile_fail_msg {
+            get {
+                return ResourceManager.GetString("XmlGUI_saveFile_fail_msg", resourceCulture);
             }
         }
         

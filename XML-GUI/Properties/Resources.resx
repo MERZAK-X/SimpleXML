@@ -149,7 +149,7 @@ Please create a new document using "File > New (Ctrl + N)" or open an existing o
   <data name="XMLGUI_xlsfile_extention" xml:space="preserve">
     <value>Excel Sheets (*.xlsx)|*.xlsx</value>
   </data>
-  <data name="XMLGUI_csvfile_extention" xml:space="preserve">
+  <data name="XMLGUI_csvfile_extension" xml:space="preserve">
     <value>CSV Excel Sheets (*.csv)|*.csv</value>
   </data>
   <data name="XMLGUI_saveXls_fail_msg" xml:space="preserve">
@@ -159,7 +159,11 @@ Please create a new document using "File > New (Ctrl + N)" or open an existing o
     <value>Couldn't export to CSV file !</value>
   </data>
   <data name="XmlGUI_exit_msg" xml:space="preserve">
-    <value>Are you sure you want to exit?
+    <value>Are you sure you want to close this window ?
+Unsaved progress might be lost !</value>
+  </data>
+  <data name="XmlGUI_quit_msg" xml:space="preserve">
+    <value>Are you sure you want to exit all opened windows ?
 Unsaved progress might be lost !</value>
   </data>
   <data name="XmlGUI_exit" xml:space="preserve">
@@ -212,5 +216,8 @@ Would you like to use "data" instead ?</value>
   <data name="DatabaseConnection_emptyInstance_msg" xml:space="preserve">
     <value>Instance name is empty !
 If there's more than one instance running in the remote server, the connection might fail !</value>
+  </data>
+  <data name="XmlGUI_saveFile_fail_msg" xml:space="preserve">
+    <value>Couldn't save data to {0} !</value>
   </data>
 </root>
