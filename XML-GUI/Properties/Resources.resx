@@ -120,13 +120,16 @@
   <data name="success" xml:space="preserve">
     <value>Success</value>
   </data>
-  <data name="XMLGUI_supportedfiles_dialogextention" xml:space="preserve">
+  <data name="XMLGUI_supportedFiles_extension" xml:space="preserve">
+    <value>XML file (*.xml)|*.xml|Excel xlsx Sheet (*.xlsx)|*.xlsx|Excel xls (97-2003) sheet (*.xls)|*.xls|CSV Excel Sheet (*.csv)|*.csv</value>
+  </data>
+  <data name="XMLGUI_supportedfiles_opendialogExtension" xml:space="preserve">
     <value>XML Documents / Excel Tables|*.xml;*.xlsx;*.xls;*.csv|XML files (*.xml)|*.xml|Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
   </data>
-  <data name="XMLGUI_xmlfile_dialogextention" xml:space="preserve">
+  <data name="XMLGUI_xmlfile_dialogextension" xml:space="preserve">
     <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
   </data>
-  <data name="XMLGUI_xlsfile_dialogextention" xml:space="preserve">
+  <data name="XMLGUI_xlsfile_dialogextension" xml:space="preserve">
     <value>Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*</value>
   </data>
   <data name="XMLGUI_saveXml_fail_msg" xml:space="preserve">
@@ -136,17 +139,17 @@ Disable read only mode and try again.</value>
   <data name="XMLGUI__fail" xml:space="preserve">
     <value>Failure</value>
   </data>
-  <data name="XMLGUI_saveEmptyXml_fail_msg" xml:space="preserve">
+  <data name="XMLGUI_saveEmptyTable_fail_msg" xml:space="preserve">
     <value>Can't export an empty table !
 Please create a new document using "File > New (Ctrl + N)" or open an existing one !</value>
   </data>
   <data name="XmlGUI_title_" xml:space="preserve">
     <value>XML-GUI - </value>
   </data>
-  <data name="XMLGUI_xlsfile_dialogextention" xml:space="preserve">
+  <data name="XMLGUI_xlsfile_extention" xml:space="preserve">
     <value>Excel Sheets (*.xlsx)|*.xlsx</value>
   </data>
-  <data name="XMLGUI_csvfile_dialogextention" xml:space="preserve">
+  <data name="XMLGUI_csvfile_extention" xml:space="preserve">
     <value>CSV Excel Sheets (*.csv)|*.csv</value>
   </data>
   <data name="XMLGUI_saveXls_fail_msg" xml:space="preserve">
