@@ -13,15 +13,9 @@ namespace XMLUtils
 {
     public static class XmlUtils
     {
-        public static bool validInput(string text) // Check for #33
+        public static bool validInput(string text) // Check for #33 
         {
             return (text != "" && Regex.IsMatch(text, @"^([a-zA-Z_][a-zA-Z0-9_]*)$"));
-        }
-        
-        public static DataSet getXmlData(String xmlDocPath){
-            var xmlData = new DataSet();
-            xmlData.ReadXml(xmlDocPath);
-            return xmlData;
         }
         
         public static DataSet getXmlData(Stream xmlDoc){
@@ -29,42 +23,36 @@ namespace XMLUtils
             xmlData.ReadXml(xmlDoc);
             return xmlData;
         }
-        
-        public static void exportXmlData(DataTable xmlData, String xmlDocPath)
-        {
-            xmlData.WriteXml(xmlDocPath);
-        }
 
-        public static bool export2DB(DataTable xmlData, String connectionString)
+        public static DataSet getSpreadSheetData(FileStream excelSheet)
         {
-            var pass = false;
-            //string connectionString = @"Data Source = ServerName/Instance; Integrated Security=true; Initial Catalog=Database";
-            using (var connection = new SqlConnection(connectionString))
+            DataSet spreadSheet;
+            using (IExcelDataReader excelReader = (Path.GetExtension(excelSheet.Name)?.ToLower() != ".csv") 
+                ? ExcelReaderFactory.CreateReader(excelSheet)
+                : ExcelReaderFactory.CreateCsvReader(excelSheet))
             {
-                connection.Open();
-                using (var bulkCopy = new SqlBulkCopy(connection))
+                spreadSheet = excelReader.AsDataSet(new ExcelDataSetConfiguration()
                 {
-                    foreach (DataColumn c in xmlData.Columns)
-                        bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
- 
-                    bulkCopy.DestinationTableName = xmlData.TableName;
-                    try
-                    {
-                        bulkCopy.WriteToServer(xmlData);
-                        pass = true;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        pass = false;
-                    }
-                }
+                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration(){UseHeaderRow = true}
+                });
+                excelReader.Close();
             }
-
-            return pass;
+            return spreadSheet;
         }
         
-        public static bool export2CSV(DataGridView dgv, string filename)
+        public static bool ExportXML(DataTable xmlData, String xmlDocPath)
+        {
+            var flag = false;
+            try{
+                xmlData.WriteXml(xmlDocPath);
+                flag = true;
+            }catch(Exception){
+                flag = false;
+            }
+            return flag;
+        }
+        
+        public static bool ExportCSV(DataGridView dgv, string filename)
         {
             var flag = false;
             /*// Method 1
@@ -100,28 +88,12 @@ namespace XMLUtils
             return flag;
         }
 
-        public static bool export2Xls(DataTable xlsData, string filename)
+        public static bool ExportXLS(DataTable xlsData, string filename)
         {
             var flag = false;
             var xlsWorkbook = new XLWorkbook();
             // Add the data table to the xls sheet
             xlsWorkbook.Worksheets.Add(xlsData, xlsData.TableName);
-            
-            /*
-                //using GemBox.Spreadsheet
-                
-            // Import all tables from DataSet the new workbook
-            foreach (DataTable dataTable in xlsData.Tables)
-            {
-                // Add new worksheet to the file.
-                var xlsSheet = xlsWorkbook.Worksheets.Add(dataTable.TableName);
-                // Change the value of the first cell in the DataTable.
-                dataTable.Rows[0][0] = "TEST";
-                // Insert the data from DataTable to the worksheet starting at cell "A1".
-                xlsSheet.InsertDataTable(dataTable,
-                    new InsertDataTableOptions("A1") { ColumnHeaders = true });
-            }*/
-
             try{
                 xlsWorkbook.SaveAs(filename);
                 flag = true;
@@ -131,21 +103,34 @@ namespace XMLUtils
 
             return flag;
         }
-
-        public static DataSet getSpreadSheetData(FileStream excelSheet)
+        
+        public static bool export2DB(DataTable xmlData, String connectionString)
         {
-            DataSet spreadSheet;
-            using (IExcelDataReader excelReader = (Path.GetExtension(excelSheet.Name)?.ToLower() != ".csv") 
-                ? ExcelReaderFactory.CreateReader(excelSheet)
-                : ExcelReaderFactory.CreateCsvReader(excelSheet))
+            var pass = false;
+            //string connectionString = @"Data Source = ServerName/Instance; Integrated Security=true; Initial Catalog=Database";
+            using (var connection = new SqlConnection(connectionString))
             {
-                spreadSheet = excelReader.AsDataSet(new ExcelDataSetConfiguration()
+                connection.Open();
+                using (var bulkCopy = new SqlBulkCopy(connection))
                 {
-                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration(){UseHeaderRow = true}
-                });
-                excelReader.Close();
+                    foreach (DataColumn c in xmlData.Columns)
+                        bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
+ 
+                    bulkCopy.DestinationTableName = xmlData.TableName;
+                    try
+                    {
+                        bulkCopy.WriteToServer(xmlData);
+                        pass = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        pass = false;
+                    }
+                }
             }
-            return spreadSheet;
+
+            return pass;
         }
         
     }

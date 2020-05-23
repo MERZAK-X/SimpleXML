@@ -155,9 +155,9 @@ namespace XML_GUI.Properties {
         /// <summary>
         ///   Looks up a localized string similar to CSV Excel Sheets (*.csv)|*.csv.
         /// </summary>
-        internal static string XMLGUI_csvfile_dialogextention {
+        internal static string XMLGUI_csvfile_extention {
             get {
-                return ResourceManager.GetString("XMLGUI_csvfile_dialogextention", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_csvfile_extention", resourceCulture);
             }
         }
         
@@ -260,9 +260,9 @@ namespace XML_GUI.Properties {
         ///   Looks up a localized string similar to Can&apos;t export an empty table !
         ///Please create a new document using &quot;File &gt; New (Ctrl + N)&quot; or open an existing one !.
         /// </summary>
-        internal static string XMLGUI_saveEmptyXml_fail_msg {
+        internal static string XMLGUI_saveEmptyTable_fail_msg {
             get {
-                return ResourceManager.GetString("XMLGUI_saveEmptyXml_fail_msg", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_saveEmptyTable_fail_msg", resourceCulture);
             }
         }
         
@@ -286,11 +286,20 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XML file (*.xml)|*.xml|Excel xlsx Sheet (*.xlsx)|*.xlsx|Excel xls (97-2003) sheet (*.xls)|*.xls|CSV Excel Sheet (*.csv)|*.csv.
+        /// </summary>
+        internal static string XMLGUI_supportedFiles_extension {
+            get {
+                return ResourceManager.GetString("XMLGUI_supportedFiles_extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XML Documents / Excel Tables|*.xml;*.xlsx;*.xls;*.csv|XML files (*.xml)|*.xml|Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
         /// </summary>
-        internal static string XMLGUI_supportedfiles_dialogextention {
+        internal static string XMLGUI_supportedfiles_opendialogExtension {
             get {
-                return ResourceManager.GetString("XMLGUI_supportedfiles_dialogextention", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_supportedfiles_opendialogExtension", resourceCulture);
             }
         }
         
@@ -304,20 +313,29 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excel xlsx Sheets (*.xlsx)|*.xlsx|Excel xls (97-2003) sheets (*.xls)|*.xls|CSV Excel Sheets (*.csv)|*.csv|All files (*.*)|*.*.
+        /// </summary>
+        internal static string XMLGUI_xlsfile_dialogextension {
+            get {
+                return ResourceManager.GetString("XMLGUI_xlsfile_dialogextension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excel Sheets (*.xlsx)|*.xlsx.
         /// </summary>
-        internal static string XMLGUI_xlsfile_dialogextention {
+        internal static string XMLGUI_xlsfile_extention {
             get {
-                return ResourceManager.GetString("XMLGUI_xlsfile_dialogextention", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_xlsfile_extention", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to XML files (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
-        internal static string XMLGUI_xmlfile_dialogextention {
+        internal static string XMLGUI_xmlfile_dialogextension {
             get {
-                return ResourceManager.GetString("XMLGUI_xmlfile_dialogextention", resourceCulture);
+                return ResourceManager.GetString("XMLGUI_xmlfile_dialogextension", resourceCulture);
             }
         }
     }

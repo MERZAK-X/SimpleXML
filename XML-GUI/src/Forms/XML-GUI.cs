@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using XMLUtils;
 using XML_GUI.Properties;
 
@@ -14,7 +15,7 @@ namespace XML_GUI
     {
         #region Variables
 
-        private String currentOpenXmlPath = String.Empty;
+        private String currentOpenDocumentPath = String.Empty;
         private bool newXmlDoc = false;
 
         #endregion
@@ -64,7 +65,7 @@ namespace XML_GUI
         private void openFile(){
             using (var openFileDialog = new OpenFileDialog()){
                 
-                openFileDialog.Filter = Resources.XMLGUI_supportedfiles_dialogextention;
+                openFileDialog.Filter = Resources.XMLGUI_supportedfiles_opendialogExtension;
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -81,7 +82,7 @@ namespace XML_GUI
                                 : XmlUtils.getSpreadSheetData(openedDocument as FileStream).Tables[0]; // else if (xlsx|xls|csv)
                             enableCtrl(true);
                             // TODO: implement by Excel Sheets full support. 
-                            currentOpenXmlPath = (Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xml") ? openFileDialog.FileName : String.Empty;
+                            currentOpenDocumentPath = (Path.GetExtension(openFileDialog.FileName)?.ToLower() == ".xml") ? openFileDialog.FileName : String.Empty;
                             this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
                         }
                         catch (Exception)
@@ -101,11 +102,92 @@ namespace XML_GUI
                 }
             }
         }
+
+        private void saveFile()
+        {
+            if (currentOpenDocumentPath != String.Empty)
+            {
+                if (!readOnly.Checked && !newXmlDoc)
+                {
+                    switch (Path.GetExtension(currentOpenDocumentPath)?.ToLower())
+                    {
+                        // Save the file depending on the chosen extension 
+                        case ".xml": 
+                            if (XmlUtils.ExportXML(xmlDataGrid.DataSource as DataTable, currentOpenDocumentPath))
+                                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            else
+                                MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case ".xlsx":
+                            if (XmlUtils.ExportXLS(xmlDataGrid.DataSource as DataTable, currentOpenDocumentPath)) 
+                                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            else
+                                MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case ".csv":
+                            if(XmlUtils.ExportCSV(xmlDataGrid, currentOpenDocumentPath))
+                                MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            else 
+                                MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                else if (readOnly.Checked && !newXmlDoc)
+                {
+                    MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else if (newXmlDoc || currentOpenDocumentPath == String.Empty) {
+                exportFile();
+            }
+        }
+
+        private void exportFile()
+        {
+            if (xmlDataGrid.ColumnCount > 0)
+            {
+                using (var fileDialog = new SaveFileDialog()){
+                    
+                    fileDialog.Filter = Resources.XMLGUI_supportedFiles_extension;
+                    fileDialog.FilterIndex = 1;
+                    fileDialog.RestoreDirectory = true;
+
+                    if (fileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        switch (Path.GetExtension(fileDialog.FileName)?.ToLower())
+                        {
+                            // Export the file depending on the chosen extension 
+                            case ".xml": 
+                                if (XmlUtils.ExportXML(xmlDataGrid.DataSource as DataTable, fileDialog.FileName))
+                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                else
+                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            case ".xlsx":
+                                if (XmlUtils.ExportXLS(xmlDataGrid.DataSource as DataTable, fileDialog.FileName)) 
+                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                else
+                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            case ".csv":
+                                if(XmlUtils.ExportCSV(xmlDataGrid, fileDialog.FileName))
+                                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                else 
+                                    MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                    }
+                }
+            } else {
+                MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         
         private void openXmlFile(){
             using (var openFileDialog = new OpenFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
+                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextension;
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -119,7 +201,7 @@ namespace XML_GUI
                             xmlDoc = openFileDialog.OpenFile();
                             loadXmlFile(xmlDoc);
                             enableCtrl(true);
-                            currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            currentOpenDocumentPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
                             this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
                         }
                         catch (Exception)
@@ -147,7 +229,7 @@ namespace XML_GUI
                 using (var fileDialog = new SaveFileDialog())
                 {
                     //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                    fileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextention;
+                    fileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextension;
                     fileDialog.FilterIndex = 1;
                     fileDialog.RestoreDirectory = true;
 
@@ -155,15 +237,15 @@ namespace XML_GUI
                     {
                         var ds = (DataTable) xmlDataGrid.DataSource;
                         // Save the contents of the xmlDataGrid into the chosen file
-                        XmlUtils.exportXmlData(ds, fileDialog.FileName);
-                        currentOpenXmlPath = fileDialog.FileName; // Save to the exported file if future edits
+                        XmlUtils.ExportXML(ds, fileDialog.FileName);
+                        currentOpenDocumentPath = fileDialog.FileName; // Save to the exported file if future edits
                         newXmlDoc = false; // Set flag to false since the document was being exported to the disk
                         this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(fileDialog.FileName) +']'; // Change the Forms title to currentOpenDoc #10
-                        MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg,Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg,Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         
@@ -173,21 +255,21 @@ namespace XML_GUI
             {
                 using (var fileDialog = new SaveFileDialog()){
                     //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                    fileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextention;
+                    fileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextension;
                     fileDialog.FilterIndex = 1;
                     fileDialog.RestoreDirectory = true;
 
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         // Save the contents of the xmlDataGrid into the chosen file
-                        if(XmlUtils.export2Xls(xmlDataGrid.DataSource as DataTable, fileDialog.FileName))
+                        if(XmlUtils.ExportXLS(xmlDataGrid.DataSource as DataTable, fileDialog.FileName))
                             MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         else 
                             MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         
@@ -197,28 +279,28 @@ namespace XML_GUI
             {
                 using (var fileDialog = new SaveFileDialog()){
                     //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                    fileDialog.Filter = Resources.XMLGUI_csvfile_dialogextention;
+                    fileDialog.Filter = Resources.XMLGUI_csvfile_extention;
                     fileDialog.FilterIndex = 1;
                     fileDialog.RestoreDirectory = true;
 
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         // Save the contents of the xmlDataGrid into the chosen file
-                        if(XmlUtils.export2CSV(xmlDataGrid, fileDialog.FileName))
+                        if(XmlUtils.ExportCSV(xmlDataGrid, fileDialog.FileName))
                             MessageBox.Show(Resources.XMLGUI_saveCurrent_success + fileDialog.FileName, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         else 
                             MessageBox.Show(Resources.XMLGUI_saveCSV_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             } else {
-                MessageBox.Show(Resources.XMLGUI_saveEmptyXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void openXlsFile(){
             using (var openFileDialog = new OpenFileDialog()){
                 //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                openFileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextention;
+                openFileDialog.Filter = Resources.XMLGUI_xlsfile_dialogextension;
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -233,7 +315,7 @@ namespace XML_GUI
                             xmlDataGrid.DataSource = XmlUtils.getSpreadSheetData(xlsSheet as FileStream).Tables[0];
                             enableCtrl(true);
                             // TODO: either add export Excel Sheets by saving or remove option. 
-                            //currentOpenXmlPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
+                            //currentOpenDocumentPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
                             this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
                         }
                         catch (Exception)
@@ -294,7 +376,7 @@ namespace XML_GUI
 
         private void readOnly_CheckedChanged(object sender, EventArgs e)
         {
-            if (newXmlDoc || currentOpenXmlPath != String.Empty)
+            if (newXmlDoc || currentOpenDocumentPath != String.Empty)
             {
                 saveCurrent.Enabled = !readOnly.Checked;
                 xmlDataGrid.ReadOnly = readOnly.Checked;
@@ -314,12 +396,12 @@ namespace XML_GUI
         
         private void saveCurrent_Click(object sender, EventArgs e)
         {
-            if (currentOpenXmlPath != String.Empty)
+            if (currentOpenDocumentPath != String.Empty)
             {
                 if (!readOnly.Checked && !newXmlDoc)
                 {
-                    XmlUtils.exportXmlData((DataTable) xmlDataGrid.DataSource, currentOpenXmlPath);
-                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenXmlPath, Resources.success,
+                    XmlUtils.ExportXML((DataTable) xmlDataGrid.DataSource, currentOpenDocumentPath);
+                    MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success,
                         MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else if (readOnly.Checked && !newXmlDoc)
@@ -328,7 +410,7 @@ namespace XML_GUI
                         MessageBoxIcon.Warning);
                 }
             }
-            else if (newXmlDoc || currentOpenXmlPath == String.Empty) {
+            else if (newXmlDoc || currentOpenDocumentPath == String.Empty) {
                 exportXmlFile();
             }
         }
@@ -447,7 +529,7 @@ namespace XML_GUI
                         ? XmlUtils.getXmlData(droppedDocument).Tables[0] // if it's an xml document
                         : XmlUtils.getSpreadSheetData(droppedDocument).Tables[0]; // else if (xlsx|xls|csv)
                     enableCtrl(true);
-                    currentOpenXmlPath = (Path.GetExtension(droppedDocumentPath[0])?.ToLower() == ".xml") ? droppedDocumentPath[0] : String.Empty; // Set the currentOpenPath variable to be used later for saving
+                    currentOpenDocumentPath = (Path.GetExtension(droppedDocumentPath[0])?.ToLower() == ".xml") ? droppedDocumentPath[0] : String.Empty; // Set the currentOpenPath variable to be used later for saving
                     this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(droppedDocumentPath[0]) +']'; // Change the Forms title to currentOpenDoc #10
                 }
                 catch (Exception)
