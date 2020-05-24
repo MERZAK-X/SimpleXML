@@ -4,6 +4,6 @@
 ## SimpleXML-GUI
 A simple `XML`, `XLSX`, `XLS` & `CSV` Documents & database tables reader that displays the result to a table `DataGridView`, allowing the user to easily manipulate the simple Document and export it to either one of those file formats or to an existing database table.
 
-> Currently supported DBMS : MS-SQL
+> Currently supported DBMS : Microsoft SQL Server
 
-> Future support : Oracle DB
+> Future support : Oracle Database
