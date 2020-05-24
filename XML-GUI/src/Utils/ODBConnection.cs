@@ -42,7 +42,7 @@ using System.Data.SqlClient;
             return cn;
         }
         
-        public static string[] GetAllTables()
+        public static string[] GetTableNames()
         {
             List<string> result = new List<string>();
             SqlCommand cmd = new SqlCommand("SELECT name FROM sys.Tables", ODBConnection.getConnection());
