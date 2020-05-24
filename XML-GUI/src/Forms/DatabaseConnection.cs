@@ -78,9 +78,10 @@ using XMLUtils;
             }
 
             
-            //string[] tb = ODBConnection.GetAllTables();
-
-            this.Dispose();
+            var importForm = new XML_GUI_NewTable(ODBConnection.GetAllTables());
+            //this.Hide();
+            importForm.ShowDialog();
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)

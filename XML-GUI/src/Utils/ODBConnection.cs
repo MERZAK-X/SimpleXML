@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+ using System.Linq;
  using System.Security;
 
  namespace XMLUtils
@@ -45,19 +46,34 @@ using System.Data.SqlClient;
         {
             List<string> result = new List<string>();
             SqlCommand cmd = new SqlCommand("SELECT name FROM sys.Tables", ODBConnection.getConnection());
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader(); // Could've been returned directly tho ...
             while (reader.Read())
                 result.Add(reader["name"].ToString());
             reader.Close();
             return result.ToArray();
         }
+
+        public static string[] GetTableColumns(string tableName)
+        {
+            string[] restrictions = new string[4] { null, null, tableName, null };
+            var columnList = (ODBConnection.getConnection()).GetSchema("Columns", restrictions).AsEnumerable().Select(s => s.Field<String>("Column_Name")).ToArray();
+            return columnList;
+        }
+        
+        public static DataTable GetTable(string tableName)
+        {
+            SqlCommand st = new SqlCommand($"SELECT * FROM {SecurityElement.Escape(tableName)}", ODBConnection.getConnection());
+            DataTable dt = new DataTable(tableName);
+            new SqlDataAdapter(st).Fill(dt);
+            return dt;
+        }
         
         public static void TableToXml(string tableName)
         {
-            SqlCommand ps = new SqlCommand($"SELECT * FROM {SecurityElement.Escape(tableName)}", ODBConnection.getConnection());
+            SqlCommand st = new SqlCommand($"SELECT * FROM {SecurityElement.Escape(tableName)}", ODBConnection.getConnection());
             //ps.Parameters.AddWithValue("@tableName", tableName); // Not working due to no DDL (only DML/DQL) support available for SqlCommand
             DataTable dt = new DataTable(tableName);
-            new SqlDataAdapter(ps).Fill(dt);
+            new SqlDataAdapter(st).Fill(dt);
             dt.WriteXml($@"..\..\..\lib\examples\{tableName}_dbdump.xml");
         }
         

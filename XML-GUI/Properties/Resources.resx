@@ -200,12 +200,19 @@ Only the first selected will be opened.</value>
   <data name="XML_NewTable_noColumns_msg" xml:space="preserve">
     <value>Cannot create a table without specifying its columns !</value>
   </data>
+  <data name="XML_ImportTable_noColumns_msg" xml:space="preserve">
+    <value>Cannot create a document from without specifying a database table !</value>
+  </data>
   <data name="XML_NewTable_invalidColumnName_msg" xml:space="preserve">
     <value>Invalid column name provided !</value>
   </data>
   <data name="XML_NewTable_invalidEntityName_msg" xml:space="preserve">
     <value>The given entity name : "{0}" is invalid !
 Would you like to use "data" instead ?</value>
+  </data>
+  <data name="XML_NewTable_invalidImportEntityName_msg" xml:space="preserve">
+    <value>The given entity name : "{0}" is invalid !
+Would you like to use "{0}" instead ?</value>
   </data>
   <data name="Connection_fail_msg" xml:space="preserve">
     <value>Connection error-{0} : {1}</value>

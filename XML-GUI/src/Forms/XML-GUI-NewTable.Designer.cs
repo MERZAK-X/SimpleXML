@@ -40,6 +40,10 @@ namespace XML_GUI
             this.deleteColumn = new System.Windows.Forms.Button();
             this.txtEntityname = new System.Windows.Forms.Label();
             this.entityName = new System.Windows.Forms.TextBox();
+            this.dbPanel = new System.Windows.Forms.Panel();
+            this.import = new System.Windows.Forms.Button();
+            this.databaseTables = new System.Windows.Forms.ComboBox();
+            this.dbPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // columnsList
@@ -50,6 +54,7 @@ namespace XML_GUI
             this.columnsList.Name = "columnsList";
             this.columnsList.Size = new System.Drawing.Size(254, 164);
             this.columnsList.TabIndex = 5;
+            this.columnsList.SelectedIndexChanged += new System.EventHandler(this.columnsList_SelectedIndexChanged);
             // 
             // columnName
             // 
@@ -113,11 +118,41 @@ namespace XML_GUI
             this.entityName.Size = new System.Drawing.Size(222, 26);
             this.entityName.TabIndex = 1;
             // 
+            // dbPanel
+            // 
+            this.dbPanel.Controls.Add(this.import);
+            this.dbPanel.Controls.Add(this.databaseTables);
+            this.dbPanel.Location = new System.Drawing.Point(12, 293);
+            this.dbPanel.Name = "dbPanel";
+            this.dbPanel.Size = new System.Drawing.Size(485, 100);
+            this.dbPanel.TabIndex = 7;
+            // 
+            // import
+            // 
+            this.import.Location = new System.Drawing.Point(350, 30);
+            this.import.Name = "import";
+            this.import.Size = new System.Drawing.Size(102, 38);
+            this.import.TabIndex = 8;
+            this.import.Text = "Import";
+            this.import.UseVisualStyleBackColor = true;
+            this.import.Click += new System.EventHandler(this.import_Click);
+            // 
+            // databaseTables
+            // 
+            this.databaseTables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.databaseTables.FormattingEnabled = true;
+            this.databaseTables.Location = new System.Drawing.Point(20, 36);
+            this.databaseTables.Name = "databaseTables";
+            this.databaseTables.Size = new System.Drawing.Size(289, 28);
+            this.databaseTables.TabIndex = 0;
+            this.databaseTables.SelectedIndexChanged += new System.EventHandler(this.databaseTables_SelectedIndexChanged);
+            // 
             // XML_GUI_NewTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 317);
+            this.ClientSize = new System.Drawing.Size(509, 400);
+            this.Controls.Add(this.dbPanel);
             this.Controls.Add(this.entityName);
             this.Controls.Add(this.txtEntityname);
             this.Controls.Add(this.deleteColumn);
@@ -129,12 +164,13 @@ namespace XML_GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 357);
+            this.MaximumSize = new System.Drawing.Size(515, 440);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 357);
             this.Name = "XML_GUI_NewTable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Document";
+            this.dbPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -143,8 +179,11 @@ namespace XML_GUI
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.TextBox columnName;
         private System.Windows.Forms.ListBox columnsList;
+        private System.Windows.Forms.ComboBox databaseTables;
+        private System.Windows.Forms.Panel dbPanel;
         private System.Windows.Forms.Button deleteColumn;
         private System.Windows.Forms.TextBox entityName;
+        private System.Windows.Forms.Button import;
         private System.Windows.Forms.Label txtClmnName;
         private System.Windows.Forms.Label txtEntityname;
 
