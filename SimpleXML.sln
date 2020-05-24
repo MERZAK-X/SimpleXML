@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML-GUI", "XML-GUI\XML-GUI.csproj", "{3E502176-267E-4DAC-91E7-91F2645A434C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXML", "SimpleXML\SimpleXML.csproj", "{3E502176-267E-4DAC-91E7-91F2645A434C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
