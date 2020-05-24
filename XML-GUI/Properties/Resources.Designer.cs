@@ -89,6 +89,15 @@ namespace XML_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create a document from without specifying a database table !.
+        /// </summary>
+        internal static string XML_ImportTable_noColumns_msg {
+            get {
+                return ResourceManager.GetString("XML_ImportTable_noColumns_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The column already exists !.
         /// </summary>
         internal static string XML_NewTable_addExistingColumn_msg {
@@ -113,6 +122,16 @@ namespace XML_GUI.Properties {
         internal static string XML_NewTable_invalidEntityName_msg {
             get {
                 return ResourceManager.GetString("XML_NewTable_invalidEntityName_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given entity name : &quot;{0}&quot; is invalid !
+        ///Would you like to use &quot;{0}&quot; instead ?.
+        /// </summary>
+        internal static string XML_NewTable_invalidImportEntityName_msg {
+            get {
+                return ResourceManager.GetString("XML_NewTable_invalidImportEntityName_msg", resourceCulture);
             }
         }
         

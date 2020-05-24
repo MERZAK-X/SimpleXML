@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -13,6 +14,30 @@ namespace XML_GUI
         public XML_GUI_NewTable()
         {
             InitializeComponent();
+            enableControl(true);
+            dbPanel.Hide();
+        }
+        
+        public XML_GUI_NewTable(string []tablenames)
+        {
+            InitializeComponent();
+            enableControl(false);
+            foreach (var table in tablenames)
+                databaseTables.Items.Add(table);
+        }
+        
+        private void enableControl(bool flag)
+        {
+            txtClmnName.Enabled = flag;
+            columnName.Enabled = flag;
+            addColumn.Enabled = flag;
+            deleteColumn.Enabled = flag;
+            btnDone.Enabled = flag;
+            Height += (flag) ? -83 : +83; // Remove or add database panel space
+            dbPanel.Visible = !flag;
+            dbPanel.Enabled = !flag;
+            databaseTables.Enabled = !flag;
+            import.Enabled = !flag;
         }
 
         private List<String> getColumnNames()
@@ -72,6 +97,49 @@ namespace XML_GUI
                     deleteColumn.PerformClick();
                     break;
             }
+        }
+
+        private void databaseTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tableName = databaseTables.SelectedItem.ToString();
+            var columnNames = ODBConnection.GetTableColumns(tableName);
+            entityName.Text = tableName;
+            columnsList.Items.Clear();
+            foreach (var column in columnNames)
+                columnsList.Items.Add(column);
+        }
+
+        private void import_Click(object sender, EventArgs e)
+        {
+            String tableName = databaseTables.SelectedItem.ToString(), entity = entityName.Text; // Fixes #42 : do not pass entityName.Text to the constructor
+            if (columnsList.Items.Count > 0) {
+                // Entity name check #33
+                if (!XmlUtils.validInput(entityName.Text))
+                {
+                    var skipEntityName = MessageBox.Show(string.Format(Resources.XML_NewTable_invalidImportEntityName_msg, entityName.Text, tableName), Resources.XMLGUI__warning, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    switch (skipEntityName)
+                    {
+                        case DialogResult.Cancel:
+                            return;
+                        case DialogResult.OK:
+                            entity = tableName;
+                            break;
+                    }
+                }
+                // Open a new XmlGUI Form as a new Thread
+                var newDocument = new Thread(() => Application.Run(new XmlGUI(ODBConnection.GetTable(databaseTables.SelectedItem.ToString()), entity)));
+                newDocument.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
+                newDocument.IsBackground = false;
+                newDocument.Start();
+                Dispose();
+                Close();
+                
+            } else MessageBox.Show(Resources.XML_ImportTable_noColumns_msg, Resources.XMLGUI__warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void columnsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            columnName.Text = columnsList.SelectedItem.ToString();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace XML_GUI
         #region Variables
 
         private String currentOpenDocumentPath = String.Empty;
-        private bool newXmlDoc = false;
+        private bool newDocument = false;
 
         #endregion
 
@@ -32,9 +32,9 @@ namespace XML_GUI
         public XmlGUI(List<String> columns, String entityName)
         {
             InitializeComponent();
-            this.newXmlDoc = true; // Specify that we're making a new Xml Document
+            this.newDocument = true; // Specify that we're making a new Xml Document
             // Fixes #25 & #43 for newly created xml documents tag names (entity name is no longer taken from file name)
-            entityName = (newXmlDoc) ? entityName : "data"; // Fixes #42
+            entityName = (newDocument) ? entityName : "data"; // Fixes #42
             var newData = new DataTable(entityName); // Fixes #25
             // Load DataGrid columns from List
             foreach (var column in columns)
@@ -44,6 +44,17 @@ namespace XML_GUI
             enableCtrl(true); // Enable control for new xml doc 
             this.Visible = true; // Make the form visible
             readOnlyToolStripMenuItem.PerformClick();
+        }
+        public XmlGUI(DataTable table, String entityName)
+        {
+            InitializeComponent();
+            this.newDocument = true; // Specify that we're making a new Xml Document
+            // Fixes #25 & #43 for newly created xml documents tag names (entity name is no longer taken from file name)
+            table.TableName = entityName;
+            dataGrid.DataSource = table;
+            this.Text = Resources.XmlGUI_title_ + string.Format(Resources.XmlGUI__Unsaved_new_title, entityName);
+            this.Visible = true; // Make the form visible
+            enableCtrl(true);
         }
 
         #endregion
@@ -108,7 +119,7 @@ namespace XML_GUI
         {
             if (currentOpenDocumentPath != String.Empty)
             {
-                if (!readOnly.Checked && !newXmlDoc)
+                if (!readOnly.Checked && !newDocument)
                 {
                     var fileSuccessfullyExported = false;
                     switch (Path.GetExtension(currentOpenDocumentPath)?.ToLower())
@@ -129,12 +140,12 @@ namespace XML_GUI
                     else 
                         MessageBox.Show(string.Format(Resources.XmlGUI_saveFile_fail_msg, currentOpenDocumentPath), Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (readOnly.Checked && !newXmlDoc)
+                else if (readOnly.Checked && !newDocument)
                 {
                     MessageBox.Show(Resources.XMLGUI_saveXml_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else if (newXmlDoc || currentOpenDocumentPath == String.Empty) {
+            else if (newDocument || currentOpenDocumentPath == String.Empty) {
                 exportFile();
             }
         }
@@ -234,7 +245,7 @@ namespace XML_GUI
                         // Save the contents of the dataGrid into the chosen file
                         XmlUtils.ExportXML(ds, fileDialog.FileName);
                         currentOpenDocumentPath = fileDialog.FileName; // Save to the exported file if future edits
-                        newXmlDoc = false; // Set flag to false since the document was being exported to the disk
+                        newDocument = false; // Set flag to false since the document was being exported to the disk
                         this.Text = Resources.XmlGUI_title_ + '[' + Path.GetFileName(fileDialog.FileName) +']'; // Change the Forms title to currentOpenDoc #10
                         MessageBox.Show(Resources.XMLGUI_saveCurrent_success + currentOpenDocumentPath, Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
@@ -382,7 +393,7 @@ namespace XML_GUI
 
         private void readOnly_CheckedChanged(object sender, EventArgs e)
         {
-            if (newXmlDoc || currentOpenDocumentPath != String.Empty)
+            if (newDocument || currentOpenDocumentPath != String.Empty)
             {
                 saveCurrent.Enabled = !readOnly.Checked;
                 dataGrid.ReadOnly = readOnly.Checked;
