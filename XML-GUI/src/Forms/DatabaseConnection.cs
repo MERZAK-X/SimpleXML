@@ -78,7 +78,7 @@ using XMLUtils;
             }
 
             
-            var importForm = new XML_GUI_NewTable(ODBConnection.GetAllTables());
+            var importForm = new XML_GUI_NewTable(ODBConnection.GetTableNames());
             //this.Hide();
             importForm.ShowDialog();
             this.Close();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -489,12 +490,15 @@ namespace XML_GUI
         
         private void toDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: @Yassine-Ag Implement your form here
-            // Open a new databaseConnectionDialog as a new Thread
-            /*Thread DBThread = new Thread(() => Application.Run(new XML_GUI_DB_Export()));
-            DBThread.IsBackground = false;
-            DBThread.Start();*/
-            throw new System.NotImplementedException();
+            // Check whether ODBConnection._Connection is open and usable  
+            try
+            {
+                var dbTables = ODBConnection.GetTableNames();
+            }
+            catch (SqlException)
+            {
+                
+            }
         }
 
         private void editToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
