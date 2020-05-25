@@ -53,10 +53,10 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.databaseConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize) (this.dataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -256,6 +256,18 @@
             this.readOnlyToolStripMenuItem.Text = "Read Only";
             this.readOnlyToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.readOnlyToolStripMenuItem_CheckStateChanged);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(262, 6);
+            // 
+            // databaseConnectionToolStripMenuItem
+            // 
+            this.databaseConnectionToolStripMenuItem.Name = "databaseConnectionToolStripMenuItem";
+            this.databaseConnectionToolStripMenuItem.Size = new System.Drawing.Size(265, 30);
+            this.databaseConnectionToolStripMenuItem.Text = "Database Connection";
+            this.databaseConnectionToolStripMenuItem.Click += new System.EventHandler(this.databaseConnectionToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.infoToolStripMenuItem});
@@ -269,18 +281,6 @@
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(128, 30);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // databaseConnectionToolStripMenuItem
-            // 
-            this.databaseConnectionToolStripMenuItem.Name = "databaseConnectionToolStripMenuItem";
-            this.databaseConnectionToolStripMenuItem.Size = new System.Drawing.Size(265, 30);
-            this.databaseConnectionToolStripMenuItem.Text = "Database Connection";
-            this.databaseConnectionToolStripMenuItem.Click += new System.EventHandler(this.databaseConnectionToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(262, 6);
             // 
             // XmlGUI
             // 
