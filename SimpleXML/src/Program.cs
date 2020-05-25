@@ -13,7 +13,7 @@ namespace SimpleXML
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new XmlGUI());
+            Application.Run(new SimpleXml());
         }
     }
 }

@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace SimpleXML
 {
-    partial class XML_GUI_NewTable
+    partial class NewDocument
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace SimpleXML
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XML_GUI_NewTable));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewDocument));
             this.columnsList = new System.Windows.Forms.ListBox();
             this.columnName = new System.Windows.Forms.TextBox();
             this.addColumn = new System.Windows.Forms.Button();
@@ -147,7 +147,7 @@ namespace SimpleXML
             this.databaseTables.TabIndex = 0;
             this.databaseTables.SelectedIndexChanged += new System.EventHandler(this.databaseTables_SelectedIndexChanged);
             // 
-            // XML_GUI_NewTable
+            // NewDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,7 +167,7 @@ namespace SimpleXML
             this.MaximumSize = new System.Drawing.Size(515, 440);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 357);
-            this.Name = "XML_GUI_NewTable";
+            this.Name = "NewDocument";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Document";
             this.dbPanel.ResumeLayout(false);

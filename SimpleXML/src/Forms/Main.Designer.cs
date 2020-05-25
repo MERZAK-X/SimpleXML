@@ -1,6 +1,6 @@
 ﻿namespace SimpleXML
 {
-    partial class XmlGUI
+    partial class SimpleXml
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlGUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleXml));
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.openXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
@@ -282,7 +282,7 @@
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
-            // XmlGUI
+            // SimpleXml
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -294,7 +294,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "XmlGUI";
+            this.Name = "SimpleXml";
             this.Text = "SimpleXML";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlGUI_FormClosing);
             this.Load += new System.EventHandler(this.XmlGUI_Load);
