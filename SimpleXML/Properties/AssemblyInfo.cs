@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SimpleXML")]
-[assembly: AssemblyDescription("SimpleXML is a simple, easy to use XML Documents & XLSX, XLS & CSV Sheets manipulation program.")]
+[assembly: AssemblyDescription("SimpleXML is a simple, easy to use Simple non complex XML, XLSX, XLS & CSV Documents manipulation program.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MERZAK-X")]
 [assembly: AssemblyProduct("SimpleXML")]

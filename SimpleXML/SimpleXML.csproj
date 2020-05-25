@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3E502176-267E-4DAC-91E7-91F2645A434C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>XML_GUI</RootNamespace>
-    <AssemblyName>XML_GUI</AssemblyName>
+    <RootNamespace>SimpleXML</RootNamespace>
+    <AssemblyName>SimpleXML</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
