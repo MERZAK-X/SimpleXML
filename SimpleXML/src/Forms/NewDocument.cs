@@ -9,16 +9,16 @@ using XMLUtils;
 
 namespace SimpleXML
 {
-    public partial class XML_GUI_NewTable : Form
+    public partial class NewDocument : Form
     {
-        public XML_GUI_NewTable()
+        public NewDocument()
         {
             InitializeComponent();
             enableControl(true);
             dbPanel.Hide();
         }
         
-        public XML_GUI_NewTable(string []tablenames)
+        public NewDocument(string []tablenames)
         {
             InitializeComponent();
             enableControl(false);
@@ -74,9 +74,9 @@ namespace SimpleXML
                         return;
                     }
                 }
-                // Open a new XmlGUI Form as a new Thread
+                // Open a new SimpleXml Form as a new Thread
                 var entity = entityName.Text; // Fixes #42 : do not pass entityName.Text to the constructor
-                var newXmlDoc = new Thread(() => Application.Run(new XmlGUI(this.getColumnNames(), entity)));
+                var newXmlDoc = new Thread(() => Application.Run(new SimpleXml(this.getColumnNames(), entity)));
                 newXmlDoc.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
                 newXmlDoc.IsBackground = false;
                 newXmlDoc.Start();
@@ -126,8 +126,8 @@ namespace SimpleXML
                             break;
                     }
                 }
-                // Open a new XmlGUI Form as a new Thread
-                var newDocument = new Thread(() => Application.Run(new XmlGUI(ODBConnection.ImportTable(databaseTables.SelectedItem.ToString()), entity)));
+                // Open a new SimpleXml Form as a new Thread
+                var newDocument = new Thread(() => Application.Run(new SimpleXml(ODBConnection.ImportTable(databaseTables.SelectedItem.ToString()), entity)));
                 newDocument.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
                 newDocument.IsBackground = false;
                 newDocument.Start();

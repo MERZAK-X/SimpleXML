@@ -11,7 +11,7 @@ using XMLUtils;
 
 namespace SimpleXML
 {
-    public partial class XmlGUI : Form
+    public partial class SimpleXml : Form
     {
         #region Variables
 
@@ -22,14 +22,14 @@ namespace SimpleXML
 
         #region Constructors
 
-        public XmlGUI()
+        public SimpleXml()
         {
             InitializeComponent();
             enableCtrl(false); // Disable control since no xml doc is loaded  
             this.Visible = true; // Make the form visible
         }
         
-        public XmlGUI(List<String> columns, String entityName)
+        public SimpleXml(List<String> columns, String entityName)
         {
             InitializeComponent();
             this.newDocument = true; // Specify that we're making a new Xml Document
@@ -46,7 +46,7 @@ namespace SimpleXML
             readOnlyToolStripMenuItem.PerformClick();
         }
         
-        public XmlGUI(DataTable table, String entityName)
+        public SimpleXml(DataTable table, String entityName)
         {
             InitializeComponent();
             this.newDocument = true; // Specify that we're making a new Xml Document
@@ -424,7 +424,7 @@ namespace SimpleXML
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open a new documentDialog as a new Dialog
-            new XML_GUI_NewTable().ShowDialog(this);
+            new NewDocument().ShowDialog(this);
             /*var newDocThread = new Thread(() => Application.Run(new XML_GUI_NewTable(){Owner = this}));
             newDocThread.SetApartmentState(ApartmentState.STA);
             newDocThread.IsBackground = false;

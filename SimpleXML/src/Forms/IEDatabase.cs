@@ -65,8 +65,8 @@ namespace SimpleXML
                             break;
                     }
                 }
-                // Open a new XmlGUI Form as a new Thread
-                var newDocument = new Thread(() => Application.Run(new XmlGUI(ODBConnection.ImportTable(databaseTables.SelectedItem.ToString()), entity)));
+                // Open a new SimpleXml Form as a new Thread
+                var newDocument = new Thread(() => Application.Run(new SimpleXml(ODBConnection.ImportTable(tableName), entity)));
                 newDocument.SetApartmentState(ApartmentState.STA); // Fixes Threads issue #21
                 newDocument.IsBackground = false;
                 newDocument.Start();

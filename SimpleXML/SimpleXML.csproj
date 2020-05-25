@@ -90,13 +90,13 @@
     <Compile Include="src\Forms\IEDatabase.Designer.cs">
       <DependentUpon>IEDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Forms\XML-GUI-NewTable.cs" />
-    <Compile Include="src\Forms\XML-GUI-NewTable.Designer.cs">
-      <DependentUpon>XML-GUI-NewTable.cs</DependentUpon>
+    <Compile Include="src\Forms\NewDocument.cs" />
+    <Compile Include="src\Forms\NewDocument.Designer.cs">
+      <DependentUpon>NewDocument.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Forms\XML-GUI.cs" />
-    <Compile Include="src\Forms\XML-GUI.Designer.cs">
-      <DependentUpon>XML-GUI.cs</DependentUpon>
+    <Compile Include="src\Forms\Main.cs" />
+    <Compile Include="src\Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Utils\ODBConnection.cs" />
@@ -116,11 +116,11 @@
     <EmbeddedResource Include="src\Forms\IEDatabase.resx">
       <DependentUpon>IEDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Forms\XML-GUI-NewTable.resx">
-      <DependentUpon>XML-GUI-NewTable.cs</DependentUpon>
+    <EmbeddedResource Include="src\Forms\NewDocument.resx">
+      <DependentUpon>NewDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Forms\XML-GUI.resx">
-      <DependentUpon>XML-GUI.cs</DependentUpon>
+    <EmbeddedResource Include="src\Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
