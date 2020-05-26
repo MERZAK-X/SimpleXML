@@ -455,7 +455,11 @@ namespace SimpleXML
                     MessageBox.Show(Resources.IEDatabase_connectionFail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }else{
-                new DatabaseConnection().ShowDialog();
+                var result = new DatabaseConnection().ShowDialog();
+                if (result == DialogResult.OK && ODBConnection.valid)
+                    fromDatabaseToolStripMenuItem_Click(sender, e);
+                else if (result == DialogResult.Cancel)
+                    return;
             }
         }
 
@@ -496,24 +500,32 @@ namespace SimpleXML
         
         private void toDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Check whether ODBConnection._Connection is open and usable  
-            if (ODBConnection.valid)
+            if (dataGrid.ColumnCount > 0) // Fixes #56
             {
-                try
+                // Check whether ODBConnection._Connection is open and usable  
+                if (ODBConnection.valid)
                 {
-                    var dbTables = ODBConnection.GetTableNames();
-                    var exportTable = dataGrid.DataSource as DataTable;
-                    new IEDatabase(dbTables, exportTable).ShowDialog();
+                    try
+                    {
+                        var dbTables = ODBConnection.GetTableNames();
+                        var exportTable = dataGrid.DataSource as DataTable;
+                        new IEDatabase(dbTables, exportTable).ShowDialog();
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show(Resources.IEDatabase_connectionFail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                catch (SqlException)
+                else
                 {
-                    MessageBox.Show(Resources.IEDatabase_connectionFail_msg, Resources.XMLGUI__fail,
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var result = new DatabaseConnection().ShowDialog();
+                    if (result == DialogResult.OK && ODBConnection.valid)
+                        toDatabaseToolStripMenuItem_Click(sender, e);
+                    else if (result == DialogResult.Cancel)
+                        return;
                 }
-            }
-            else
-            {
-                new DatabaseConnection().ShowDialog();
+            } else {
+                MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -181,6 +181,7 @@
             this.dbName.Name = "dbName";
             this.dbName.Size = new System.Drawing.Size(351, 31);
             this.dbName.TabIndex = 10;
+            this.dbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dbName_KeyDown);
             // 
             // label5
             // 
@@ -352,6 +353,7 @@
             this.Name = "DatabaseConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Connect to MS SQL DataBase";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DatabaseConnection_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.bannerPanel.ResumeLayout(false);
             this.bannerPanel.PerformLayout();

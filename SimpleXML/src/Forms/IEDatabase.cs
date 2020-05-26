@@ -83,11 +83,9 @@ namespace SimpleXML
                 if (!importColumnsList.Items.Contains(column)) match = false;
             if (match) {
                 exportTable.TableName = databaseTables.SelectedItem.ToString();
-                try
-                {
-                    if (ODBConnection.ExportTable(exportTable))
-                        MessageBox.Show(string.Format(Resources.IEDatabase_successExport_msg, exportTable.TableName), Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    else throw new Exception();
+                try{
+                    ODBConnection.ExportTable(exportTable);
+                    MessageBox.Show(string.Format(Resources.IEDatabase_successExport_msg, exportTable.TableName), Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }catch(Exception e){
                     if (MessageBox.Show(e.Message, Resources.XMLGUI__fail, MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                         exportToDatabase();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
+using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleXML.Properties;
 using XMLUtils;
 
@@ -8,17 +10,23 @@ using XMLUtils;
 {
     public partial class DatabaseConnection : Form
     {
-        bool advancedOptions = false;
+        bool advancedOptions = false, connectionSuccess = false;
 
         public DatabaseConnection()
         {
             InitializeComponent();
             this.Height += advancedOptions ? advancedOptionsPanel.Height : -advancedOptionsPanel.Height;
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
             dbAuthType.SelectedItem = "Windows Authentication";
+        }
+
+        private void DatabaseConnection_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           //if (e.CloseReason == CloseReason.UserClosing) this.DialogResult = DialogResult.Cancel;
         }
 
         private void connect_Click(object sender, EventArgs e)
@@ -70,6 +78,7 @@ using XMLUtils;
             try
             {
                 databaseName = ODBConnection.getConnection().Database;
+                connectionSuccess = true;
             }
             catch (SqlException sqle)
             {
@@ -78,19 +87,9 @@ using XMLUtils;
             }
 
             MessageBox.Show(string.Format(Resources.IEDatabase_successConnection_msg, databaseName), Resources.success, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-
-
 
         private void dbAuthType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -103,7 +102,8 @@ using XMLUtils;
 
         private void btn_cl_Click(object sender, EventArgs e)
         {
-            this.Dispose();this.Close();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void options_Click(object sender, EventArgs e)
@@ -118,6 +118,10 @@ using XMLUtils;
         {
             
         }
-        
+
+        private void dbName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter) connect.PerformClick();
+        }
     }
 }
