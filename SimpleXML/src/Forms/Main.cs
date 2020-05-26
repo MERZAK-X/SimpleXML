@@ -29,7 +29,7 @@ namespace SimpleXML
             this.Visible = true; // Make the form visible
         }
         
-        public SimpleXml(List<String> columns, String entityName)
+        public SimpleXml(List<String> columns, String entityName) // New Document 
         {
             InitializeComponent();
             this.newDocument = true; // Specify that we're making a new Xml Document
@@ -46,7 +46,7 @@ namespace SimpleXML
             readOnlyToolStripMenuItem.PerformClick();
         }
         
-        public SimpleXml(DataTable table, String entityName)
+        public SimpleXml(DataTable table, String entityName) // Import from Database 
         {
             InitializeComponent();
             this.newDocument = true; // Specify that we're making a new Xml Document

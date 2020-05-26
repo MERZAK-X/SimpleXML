@@ -99,6 +99,11 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Program.cs" />
+    <Compile Include="src\Utils\Licenses.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Licenses.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\Utils\ODBConnection.cs" />
     <Compile Include="src\Utils\XMLUtils.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,6 +126,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Utils\Licenses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Licenses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -1,4 +1,8 @@
 
-/XML-GUI/obj/
+
 /SimpleXML.sln.DotSettings.user
 /obj/
+/SimpleXML/obj/
+/SimpleXML/src/Utils/[Licenses]**
+/SimpleXML/src/Utils/Licenses.resx
+/SimpleXML/src/Utils/Licenses.Designer.cs

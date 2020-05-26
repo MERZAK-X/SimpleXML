@@ -70,7 +70,7 @@
             this.connect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(138, 46);
-            this.connect.TabIndex = 0;
+            this.connect.TabIndex = 2;
             this.connect.Text = "Connect";
             this.toolTip.SetToolTip(this.connect, "Connect to database");
             this.connect.UseVisualStyleBackColor = false;
@@ -87,7 +87,7 @@
             this.dbAuthType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dbAuthType.Name = "dbAuthType";
             this.dbAuthType.Size = new System.Drawing.Size(351, 33);
-            this.dbAuthType.TabIndex = 1;
+            this.dbAuthType.TabIndex = 3;
             this.dbAuthType.SelectedIndexChanged += new System.EventHandler(this.dbAuthType_SelectedIndexChanged);
             // 
             // panel1
@@ -180,7 +180,7 @@
             this.dbName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dbName.Name = "dbName";
             this.dbName.Size = new System.Drawing.Size(351, 31);
-            this.dbName.TabIndex = 10;
+            this.dbName.TabIndex = 1;
             this.dbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dbName_KeyDown);
             // 
             // label5
