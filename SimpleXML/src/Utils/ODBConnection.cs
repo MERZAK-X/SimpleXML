@@ -69,22 +69,15 @@ using System.Data.SqlClient;
             return dt;
         }
         
-        public static bool ExportTable(DataTable table)
+        public static void ExportTable(DataTable table)
         {
-            var flag = false;
             var bulkCopy = new SqlBulkCopy(ODBConnection.getConnection());
+            
             foreach (DataColumn column in table.Columns)
                 bulkCopy.ColumnMappings.Add(column.ColumnName, column.ColumnName);
 
             bulkCopy.DestinationTableName = table.TableName;
-            //try{
-                bulkCopy.WriteToServer(table);
-                flag = true;
-            //}catch(Exception e){
-            //    Console.WriteLine(e.Message);
-            //    flag = false;
-            //}
-            return flag;
+            bulkCopy.WriteToServer(table);
         }
         
         public static void TableToXml(string tableName)
