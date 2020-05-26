@@ -31,7 +31,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleXml));
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.openXml = new System.Windows.Forms.Button();
             this.saveCurrent = new System.Windows.Forms.Button();
             this.readOnly = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -78,16 +77,6 @@
             this.dataGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragDrop);
             this.dataGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.xmlDataGrid_DragEnter);
             // 
-            // openXml
-            // 
-            this.openXml.Location = new System.Drawing.Point(12, 46);
-            this.openXml.Name = "openXml";
-            this.openXml.Size = new System.Drawing.Size(162, 59);
-            this.openXml.TabIndex = 1;
-            this.openXml.Text = "Open XML";
-            this.openXml.UseVisualStyleBackColor = true;
-            this.openXml.Click += new System.EventHandler(this.OpenXmlDoc_Click);
-            // 
             // saveCurrent
             // 
             this.saveCurrent.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -104,7 +93,7 @@
             this.readOnly.Checked = true;
             this.readOnly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.readOnly.Enabled = false;
-            this.readOnly.Location = new System.Drawing.Point(197, 64);
+            this.readOnly.Location = new System.Drawing.Point(32, 64);
             this.readOnly.Name = "readOnly";
             this.readOnly.Size = new System.Drawing.Size(114, 24);
             this.readOnly.TabIndex = 4;
@@ -289,7 +278,6 @@
             this.ClientSize = new System.Drawing.Size(1044, 566);
             this.Controls.Add(this.readOnly);
             this.Controls.Add(this.saveCurrent);
-            this.Controls.Add(this.openXml);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
@@ -319,7 +307,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.Button openXml;
         private System.Windows.Forms.CheckBox readOnly;
         private System.Windows.Forms.ToolStripMenuItem readOnlyToolStripMenuItem;
         private System.Windows.Forms.Button saveCurrent;

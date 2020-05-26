@@ -46,8 +46,8 @@ using System.Data.SqlClient;
         public static string[] GetTableNames()
         {
             List<string> result = new List<string>();
-            SqlCommand cmd = new SqlCommand("SELECT name FROM sys.Tables", ODBConnection.getConnection());
-            SqlDataReader reader = cmd.ExecuteReader(); // Could've been returned directly tho ...
+            SqlCommand st = new SqlCommand("SELECT name FROM sys.Tables", ODBConnection.getConnection());
+            SqlDataReader reader = st.ExecuteReader(); // Could've been returned directly tho ...
             while (reader.Read())
                 result.Add(reader["name"].ToString());
             reader.Close();
@@ -78,15 +78,7 @@ using System.Data.SqlClient;
 
             bulkCopy.DestinationTableName = table.TableName;
             bulkCopy.WriteToServer(table);
-        }
-        
-        public static void TableToXml(string tableName)
-        {
-            SqlCommand st = new SqlCommand($"SELECT * FROM {SecurityElement.Escape(tableName)}", ODBConnection.getConnection());
-            //ps.Parameters.AddWithValue("@tableName", tableName); // Not working due to no DDL (only DML/DQL) support available for SqlCommand
-            DataTable dt = new DataTable(tableName);
-            new SqlDataAdapter(st).Fill(dt);
-            dt.WriteXml($@"..\..\..\lib\examples\{tableName}_dbdump.xml");
+            bulkCopy.Close();
         }
         
     }
