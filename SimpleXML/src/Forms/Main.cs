@@ -69,11 +69,6 @@ namespace SimpleXML
             saveCurrent.Enabled = !readOnly.Checked;
         }
         
-        private void loadXmlFile(Stream xmlDoc)
-        {
-            dataGrid.DataSource = XmlUtils.getXmlData(xmlDoc).Tables[0];
-        }
-        
         private void openFile(){
             using (var openFileDialog = new OpenFileDialog()){
                 
@@ -188,44 +183,6 @@ namespace SimpleXML
                 }
             } else {
                 MessageBox.Show(Resources.XMLGUI_saveEmptyTable_fail_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        
-        private void openXmlFile(){
-            using (var openFileDialog = new OpenFileDialog()){
-                //openFileDialog.InitialDirectory = @"%HOMEPATH%";
-                openFileDialog.Filter = Resources.XMLGUI_xmlfile_dialogextension;
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".xml"){
-                        Stream xmlDoc = null;
-                        try
-                        {
-                            // Load the contents of the file into dataGrid
-                            xmlDoc = openFileDialog.OpenFile();
-                            loadXmlFile(xmlDoc);
-                            enableCtrl(true);
-                            currentOpenDocumentPath = openFileDialog.FileName; // Set the currentOpenPath variable to be used later for saving
-                            this.Text = Resources.XmlGUI_title_ + '[' + openFileDialog.SafeFileName +']'; // Change the Forms title to currentOpenDoc #10
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show(Resources.XmlGUI_OpenXmlDoc_fail_msg, Resources.XMLGUI__fail,
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            // Fixes #29 file lock issue
-                            xmlDoc?.Close();
-                        }
-                    
-                    } else {
-                        MessageBox.Show(Resources.XmlGUI_Open_wrongXmlExt_msg, Resources.XMLGUI__fail, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
             }
         }
         
@@ -405,11 +362,6 @@ namespace SimpleXML
         private void readOnly_CheckStateChanged(object sender, EventArgs e)
         {
             readOnlyToolStripMenuItem.CheckState = readOnly.CheckState;
-        }
-        
-        private void OpenXmlDoc_Click(object sender, EventArgs e)
-        {
-            openFile();
         }
         
         private void saveCurrent_Click(object sender, EventArgs e)
