@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
-using DocumentFormat.OpenXml.Wordprocessing;
 using SimpleXML.Properties;
 using XMLUtils;
 
