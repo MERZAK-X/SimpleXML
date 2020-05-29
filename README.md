@@ -8,7 +8,8 @@ A simple `XML`, `XLSX`, `XLS` & `CSV` Documents & database tables reader that di
 
 ![SimpleXML](https://i.imgur.com/pnH5Prq.png)
 
-
 > Currently supported DBMS : Microsoft SQL Server
 
 > Future support : Oracle Database
+
+[![MERZAK-X](https://badgen.net/badge/Developer/MERZAK-X/blue?icon=github)](https://github.com/MERZAK-X)
