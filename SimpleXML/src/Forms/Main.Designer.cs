@@ -67,7 +67,7 @@
             this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystrokeOrF2; // Opens EditOnEnter; #31
             this.dataGrid.Location = new System.Drawing.Point(12, 111);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
